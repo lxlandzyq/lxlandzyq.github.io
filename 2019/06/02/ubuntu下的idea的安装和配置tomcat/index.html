@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>ubuntu下的idea的安装和配置tomcat | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="linux,tomcat,idea,">
+  
+
+  <meta name="description" content="首先安装IDEA安装安装包在官网(https://www.jetbrains.com/idea/download/#section=linux)进行下载 注意：下载的后缀为tar.gz 解压安装包1sudo tar -zxvf ideaIU-2019.1.3.tar.gz -C ~/IntellijIDEA  运行idea切换目录 1cd /IntellijIDEA/idea-IU-191.747">
+<meta name="keywords" content="linux,tomcat,idea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu下的idea的安装和配置tomcat">
+<meta property="og:url" content="http://yoursite.com/2019/06/02/ubuntu下的idea的安装和配置tomcat/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先安装IDEA安装安装包在官网(https://www.jetbrains.com/idea/download/#section=linux)进行下载 注意：下载的后缀为tar.gz 解压安装包1sudo tar -zxvf ideaIU-2019.1.3.tar.gz -C ~/IntellijIDEA  运行idea切换目录 1cd /IntellijIDEA/idea-IU-191.747">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/idea.png">
+<meta property="og:image" content="http://yoursite.com/image/colorThemes.png">
+<meta property="og:image" content="http://yoursite.com/image/tomcat_pid.png">
+<meta property="og:updated_time" content="2019-06-01T22:01:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu下的idea的安装和配置tomcat">
+<meta name="twitter:description" content="首先安装IDEA安装安装包在官网(https://www.jetbrains.com/idea/download/#section=linux)进行下载 注意：下载的后缀为tar.gz 解压安装包1sudo tar -zxvf ideaIU-2019.1.3.tar.gz -C ~/IntellijIDEA  运行idea切换目录 1cd /IntellijIDEA/idea-IU-191.747">
+<meta name="twitter:image" content="http://yoursite.com/image/idea.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#首先安装IDEA"><span class="toc-text">首先安装IDEA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装安装包"><span class="toc-text">安装安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压安装包"><span class="toc-text">解压安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行idea"><span class="toc-text">运行idea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#破解idea"><span class="toc-text">破解idea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换idea的主题"><span class="toc-text">更换idea的主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TOMCA的配置"><span class="toc-text">TOMCA的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压"><span class="toc-text">解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看tomcat的启动与关闭"><span class="toc-text">查看tomcat的启动与关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tomcat的卸载"><span class="toc-text">tomcat的卸载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-ubuntu下的idea的安装和配置tomcat" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">ubuntu下的idea的安装和配置tomcat</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.06.02</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="首先安装IDEA"><a href="#首先安装IDEA" class="headerlink" title="首先安装IDEA"></a>首先安装IDEA</h1><h2 id="安装安装包"><a href="#安装安装包" class="headerlink" title="安装安装包"></a>安装安装包</h2><p>在官网(<a href="https://www.jetbrains.com/idea/download/#section=linux)进行下载" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download/#section=linux)进行下载</a></p>
+<p><strong>注意：下载的后缀为tar.gz</strong></p>
+<h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf ideaIU-2019.1.3.tar.gz -C ~/IntellijIDEA</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行idea"><a href="#运行idea" class="headerlink" title="运行idea"></a>运行idea</h2><p>切换目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /IntellijIDEA/idea-IU-191.7479.19/bin</span><br></pre></td></tr></table></figure>
+
+<p>运行idea.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./idea.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="破解idea"><a href="#破解idea" class="headerlink" title="破解idea"></a>破解idea</h2><p>破解链接：<a href="http://idea.lanyus.com/" target="_blank" rel="noopener">http://idea.lanyus.com/</a><br>然后将里面的内容<br>粘贴处:<br><img src="/image/idea.png" alt></p>
+<h2 id="更换idea的主题"><a href="#更换idea的主题" class="headerlink" title="更换idea的主题"></a>更换idea的主题</h2><p>进入到此网站进行想要下载的ideaThemes<br><a href="http://color-themes.com/?view=index" target="_blank" rel="noopener">http://color-themes.com/?view=index</a><br>下载主题：<br><img src="/image/colorThemes.png" alt><br>下载之后进入到idea进行选择</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file--&gt;import setting--&gt;一直确认，然后重启</span><br></pre></td></tr></table></figure>
+
+<p>重启之后再进行设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file --&gt;settings --&gt;Editor--&gt;Color Scheme--&gt;General</span><br></pre></td></tr></table></figure>
+
+<p>在右侧选择自己导入的主题即可</p>
+<h1 id="TOMCA的配置"><a href="#TOMCA的配置" class="headerlink" title="TOMCA的配置"></a>TOMCA的配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在官网进行下载，下载的是.tar.gz</p>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf apache-tomcat-9.0.20* -C  ~/tomcat</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>解压后进行配置<br>进入到配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>打开之后输入以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#TOMCAT</span><br><span class="line">export TOMCAT_HOME=/home/lxl/tomcat/apache-tomcat-9.0.20/bin</span><br><span class="line">export PATH=$TOMCAT_HOME:$PATH</span><br></pre></td></tr></table></figure>
+
+<p>为它的路劲</p>
+<h2 id="查看tomcat的启动与关闭"><a href="#查看tomcat的启动与关闭" class="headerlink" title="查看tomcat的启动与关闭"></a>查看tomcat的启动与关闭</h2><p>在其bin目录下启动tomcat,进入其bin目录下然后输入下面命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+
+<p>关闭tomcat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shundown.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>也可以进行进程的杀死tomcat</strong><br>查询进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep tomcat</span><br></pre></td></tr></table></figure>
+
+<p>显示tomcat的进程<br><img src="/image/tomcat_pid.png" alt></p>
+<p>杀死进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 21517 //21517为起pid号</span><br></pre></td></tr></table></figure>
+
+<h2 id="tomcat的卸载"><a href="#tomcat的卸载" class="headerlink" title="tomcat的卸载"></a>tomcat的卸载</h2><p>即为删除其文件</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>在进行配置idea中配置tomcat的时候无发配置<br>发现:在tomcat中它只允许读，不允许写，只要root权限下才可以写<br>使用命令，递归改变文件下所有问价的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 -R apache-tomcat-9.0.20/    //其中-R 后面的为其tomcat的包名</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/06/01/JSP的EL表达式/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/06/02/Linux命令/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
