@@ -24,7 +24,7 @@
 <meta property="og:description" content="简单介绍brew全名为Homebrew，是mac osX上的软件管理工具，方便安装软件和卸载软件。 安装brew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  例子：安装git1brew install git  安装完成查看">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/image/updatingHomebrew.png">
-<meta property="og:updated_time" content="2019-06-15T13:28:01.358Z">
+<meta property="og:updated_time" content="2019-06-15T15:25:36.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="brew进行软件管理">
 <meta name="twitter:description" content="简单介绍brew全名为Homebrew，是mac osX上的软件管理工具，方便安装软件和卸载软件。 安装brew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  例子：安装git1brew install git  安装完成查看">
@@ -231,7 +231,7 @@ ga('send', 'pageview');
 <p>替换<strong>homebrew-core.git</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;</span><br><span class="line">git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</span><br></pre></td></tr></table></figure>
 
-<p>替换Homebrew Bottles源<br>添加** <del>/.bash_profile<strong>或者</strong></del>/.zsgrc**文本末尾</p>
+<p>替换Homebrew Bottles源<br>添加<strong>~/.bash_profile</strong>或者<strong>~/.zsgrc</strong>文本末尾</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles</span><br></pre></td></tr></table></figure>
 
 <h2 id="切换回官方源"><a href="#切换回官方源" class="headerlink" title="切换回官方源"></a>切换回官方源</h2><p>重置<strong>brew.git</strong></p>
