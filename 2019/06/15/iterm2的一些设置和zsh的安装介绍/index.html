@@ -25,7 +25,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/image/quickopentheiterm.png">
 <meta property="og:image" content="http://yoursite.com/image/cancelTheCatage.png">
-<meta property="og:updated_time" content="2019-06-15T15:24:54.568Z">
+<meta property="og:updated_time" content="2019-06-16T02:26:51.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iterm2的一些设置和zsh的安装介绍">
 <meta name="twitter:description" content="itemr2的安装与一些实质安装包下载https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip直接安装 快捷键设置 显示目录高亮 zsh介绍zshzsh与bash都是shell环境下的，zsh对于bash的功能更多，也兼容bash，所以zsh对于交互来说比价好 主要工能  强大的补全功能 错误检查以及自动更正 命令别名、路径别名 强大的提示信息  z">
@@ -164,7 +164,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#itemr2的安装与一些实质"><span class="toc-text">itemr2的安装与一些实质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zsh"><span class="toc-text">zsh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍zsh"><span class="toc-text">介绍zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh的安装"><span class="toc-text">zsh的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境转换"><span class="toc-text">环境转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#各平台下的环境文件"><span class="toc-text">各平台下的环境文件</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#itemr2的安装与一些实质"><span class="toc-text">itemr2的安装与一些实质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zsh"><span class="toc-text">zsh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍zsh"><span class="toc-text">介绍zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh的安装"><span class="toc-text">zsh的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境转换"><span class="toc-text">环境转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#各平台下的环境文件"><span class="toc-text">各平台下的环境文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh的一些插接"><span class="toc-text">zsh的一些插接</span></a></li></ol></li></ol>
   </div>
 
 
@@ -230,6 +230,30 @@ ga('send', 'pageview');
 <p>zsh的配置为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.zshrc</span><br></pre></td></tr></table></figure>
 
+<h2 id="zsh的一些插接"><a href="#zsh的一些插接" class="headerlink" title="zsh的一些插接"></a>zsh的一些插接</h2><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zsh-autosuggestions</td>
+<td>自动提示输入</td>
+</tr>
+<tr>
+<td>zsh-syntax-highlighting</td>
+<td>输入命令时候的判断是否出错</td>
+</tr>
+<tr>
+<td>### 例子：</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh-autosuggestions   //安装</span><br><span class="line">vim ~/.zshrc  //进行配置</span><br><span class="line">source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh  //添加如下命令 保存并退出</span><br><span class="line"></span><br><span class="line">source ~/.zshrc  //即可</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+</tbody></table>
 
     
   </div>
