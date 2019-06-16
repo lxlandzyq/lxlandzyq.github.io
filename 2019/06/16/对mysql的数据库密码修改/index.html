@@ -7,29 +7,28 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>iterm2的一些设置和zsh的安装介绍 | Hexo</title>
+  <title>对mysql的数据库密码修改 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="zsh,itemr2,">
+    <meta name="keywords" content="mysql,">
   
 
-  <meta name="description" content="itemr2的安装与一些实质安装包下载https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip直接安装 快捷键设置 显示目录高亮 zsh介绍zshzsh与bash都是shell环境下的，zsh对于bash的功能更多，也兼容bash，所以zsh对于交互来说比价好 主要工能  强大的补全功能 错误检查以及自动更正 命令别名、路径别名 强大的提示信息  z">
-<meta name="keywords" content="zsh,itemr2">
+  <meta name="description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iterm2的一些设置和zsh的安装介绍">
-<meta property="og:url" content="http://yoursite.com/2019/06/15/iterm2的一些设置和zsh的安装介绍/index.html">
+<meta property="og:title" content="对mysql的数据库密码修改">
+<meta property="og:url" content="http://yoursite.com/2019/06/16/对mysql的数据库密码修改/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="itemr2的安装与一些实质安装包下载https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip直接安装 快捷键设置 显示目录高亮 zsh介绍zshzsh与bash都是shell环境下的，zsh对于bash的功能更多，也兼容bash，所以zsh对于交互来说比价好 主要工能  强大的补全功能 错误检查以及自动更正 命令别名、路径别名 强大的提示信息  z">
+<meta property="og:description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/image/quickopentheiterm.png">
-<meta property="og:image" content="http://yoursite.com/image/cancelTheCatage.png">
-<meta property="og:updated_time" content="2019-06-16T03:14:21.149Z">
+<meta property="og:image" content="http://yoursite.com/image/mispasswordonmysql.png">
+<meta property="og:updated_time" content="2019-06-16T14:49:10.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iterm2的一些设置和zsh的安装介绍">
-<meta name="twitter:description" content="itemr2的安装与一些实质安装包下载https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip直接安装 快捷键设置 显示目录高亮 zsh介绍zshzsh与bash都是shell环境下的，zsh对于bash的功能更多，也兼容bash，所以zsh对于交互来说比价好 主要工能  强大的补全功能 错误检查以及自动更正 命令别名、路径别名 强大的提示信息  z">
-<meta name="twitter:image" content="http://yoursite.com/image/quickopentheiterm.png">
+<meta name="twitter:title" content="对mysql的数据库密码修改">
+<meta name="twitter:description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
+<meta name="twitter:image" content="http://yoursite.com/image/mispasswordonmysql.png">
 
   
 
@@ -164,20 +163,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#itemr2的安装与一些实质"><span class="toc-text">itemr2的安装与一些实质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zsh"><span class="toc-text">zsh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍zsh"><span class="toc-text">介绍zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh的安装"><span class="toc-text">zsh的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境转换"><span class="toc-text">环境转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#各平台下的环境文件"><span class="toc-text">各平台下的环境文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh的一些插接"><span class="toc-text">zsh的一些插接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例子："><span class="toc-text">例子：</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#当忘记数据库密码的时候"><span class="toc-text">当忘记数据库密码的时候</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看配置文件路径并添加代码"><span class="toc-text">查看配置文件路径并添加代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重启数据库服务"><span class="toc-text">重启数据库服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开启数据库服务"><span class="toc-text">开启数据库服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭数据库服务"><span class="toc-text">关闭数据库服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进入数据库中"><span class="toc-text">进入数据库中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除之前添加的命令"><span class="toc-text">删除之前添加的命令</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-iterm2的一些设置和zsh的安装介绍" class="article article-type-post" itemprop="blogPost">
+   <article id="post-对mysql的数据库密码修改" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">iterm2的一些设置和zsh的安装介绍</h1>
+    <h1 class="post-title">对mysql的数据库密码修改</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.06.15</span>
+        <span>2019.06.16</span>
       </span>
 
       
@@ -205,49 +204,35 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="itemr2的安装与一些实质"><a href="#itemr2的安装与一些实质" class="headerlink" title="itemr2的安装与一些实质"></a>itemr2的安装与一些实质</h1><p>安装包下载<br><a href="https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip" target="_blank" rel="noopener">https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip</a><br>直接安装</p>
-<p>快捷键设置<br><img src="/image/quickopentheiterm.png" alt></p>
-<p>显示目录高亮<br><img src="/image/cancelTheCatage.png" alt></p>
-<h1 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h1><h2 id="介绍zsh"><a href="#介绍zsh" class="headerlink" title="介绍zsh"></a>介绍zsh</h2><p>zsh与bash都是shell环境下的，zsh对于bash的功能更多，也兼容bash，所以zsh对于交互来说比价好</p>
-<p>主要工能</p>
-<ul>
-<li>强大的补全功能</li>
-<li>错误检查以及自动更正</li>
-<li>命令别名、路径别名</li>
-<li>强大的提示信息</li>
-</ul>
-<h2 id="zsh的安装"><a href="#zsh的安装" class="headerlink" title="zsh的安装"></a>zsh的安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+      <h1 id="当忘记数据库密码的时候"><a href="#当忘记数据库密码的时候" class="headerlink" title="当忘记数据库密码的时候"></a>当忘记数据库密码的时候</h1><p>我的数据库下载为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mysql</span><br></pre></td></tr></table></figure>
 
-<h2 id="环境转换"><a href="#环境转换" class="headerlink" title="环境转换"></a>环境转换</h2><p>转换为：zsh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+<h1 id="查看配置文件路径并添加代码"><a href="#查看配置文件路径并添加代码" class="headerlink" title="查看配置文件路径并添加代码"></a>查看配置文件路径并添加代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list mysql //显示其文件路径</span><br></pre></td></tr></table></figure>
 
-<p>转换为bash</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /usr -name &quot;my.cnf&quot; //也可以用这个命令查询/usr下的文件</span><br></pre></td></tr></table></figure>
 
-<h2 id="各平台下的环境文件"><a href="#各平台下的环境文件" class="headerlink" title="各平台下的环境文件"></a>各平台下的环境文件</h2><p>bash下面的是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>其中有一个路径显示是在一下路劲，也要进行修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
 
-<p>zsh的配置为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.zshrc</span><br></pre></td></tr></table></figure>
+<h1 id="重启数据库服务"><a href="#重启数据库服务" class="headerlink" title="重启数据库服务"></a>重启数据库服务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart mysql //重启数据库服务</span><br></pre></td></tr></table></figure>
 
-<h2 id="zsh的一些插接"><a href="#zsh的一些插接" class="headerlink" title="zsh的一些插接"></a>zsh的一些插接</h2><table>
-<thead>
-<tr>
-<th>插件</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>zsh-autosuggestions</td>
-<td>自动提示输入</td>
-</tr>
-<tr>
-<td>zsh-syntax-highlighting</td>
-<td>输入命令时候的判断是否出错</td>
-</tr>
-</tbody></table>
-<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh-autosuggestions   //安装</span><br><span class="line">vim ~/.zshrc  //进行配置</span><br><span class="line">source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh  //添加如下命令 保存并退出</span><br><span class="line"></span><br><span class="line">source ~/.zshrc  //即可</span><br></pre></td></tr></table></figure>
+<h2 id="开启数据库服务"><a href="#开启数据库服务" class="headerlink" title="开启数据库服务"></a>开启数据库服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mysql</span><br></pre></td></tr></table></figure>
 
+<h2 id="关闭数据库服务"><a href="#关闭数据库服务" class="headerlink" title="关闭数据库服务"></a>关闭数据库服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew service stop mysql</span><br></pre></td></tr></table></figure>
+
+<h1 id="进入数据库中"><a href="#进入数据库中" class="headerlink" title="进入数据库中"></a>进入数据库中</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>直接回车</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;123&apos; ; //123为你要修改的密码</span><br></pre></td></tr></table></figure>
+
+<p>显示报错<br><img src="/image/mispasswordonmysql.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;123&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>退出数据库</p>
+<h1 id="删除之前添加的命令"><a href="#删除之前添加的命令" class="headerlink" title="删除之前添加的命令"></a>删除之前添加的命令</h1><p>再把my.cnf上面的skip-grant-tables的去掉<br>全部去掉</p>
+<p>接下来进入数据库就需要输入密码了</p>
 
     
   </div>
@@ -285,10 +270,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/06/15/brew进行软件管理/">
+    <a class="show pull-left" href="/2019/06/15/iterm2的一些设置和zsh的安装介绍/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/06/16/对mysql的数据库密码修改/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
