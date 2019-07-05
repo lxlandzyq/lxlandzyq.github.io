@@ -7,28 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>对mysql的数据库密码修改 | Hexo</title>
+  <title>LeetCode算法 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="mysql,">
+    <meta name="keywords" content="algorithm,">
   
 
-  <meta name="description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
-<meta name="keywords" content="mysql">
+  <meta name="description" content="算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。Add Two Numbers题目链接  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their">
+<meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对mysql的数据库密码修改">
-<meta property="og:url" content="http://yoursite.com/2019/06/16/对mysql的数据库密码修改/index.html">
+<meta property="og:title" content="LeetCode算法">
+<meta property="og:url" content="http://yoursite.com/2019/06/23/LeetCode算法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
+<meta property="og:description" content="算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。Add Two Numbers题目链接  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/image/mispasswordonmysql.png">
-<meta property="og:updated_time" content="2019-06-17T03:16:08.254Z">
+<meta property="og:updated_time" content="2019-06-23T11:07:10.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对mysql的数据库密码修改">
-<meta name="twitter:description" content="当忘记数据库密码的时候我的数据库下载为 1brew install mysql  查看配置文件路径并添加代码1brew list mysql //显示其文件路径  1find /usr -name &amp;quot;my.cnf&amp;quot; //也可以用这个命令查询/usr下的文件  其中有一个路径显示是在一下路劲，也要进行修改 1/usr/local/etc/my.cnf  重启数据库服务1brew">
-<meta name="twitter:image" content="http://yoursite.com/image/mispasswordonmysql.png">
+<meta name="twitter:title" content="LeetCode算法">
+<meta name="twitter:description" content="算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。Add Two Numbers题目链接  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their">
 
   
 
@@ -163,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#当忘记数据库密码的时候"><span class="toc-text">当忘记数据库密码的时候</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看配置文件路径并添加代码"><span class="toc-text">查看配置文件路径并添加代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重启数据库服务"><span class="toc-text">重启数据库服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开启数据库服务"><span class="toc-text">开启数据库服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭数据库服务"><span class="toc-text">关闭数据库服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进入数据库中"><span class="toc-text">进入数据库中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除之前添加的命令"><span class="toc-text">删除之前添加的命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#当知道本地密码的时候，要修改密码"><span class="toc-text">当知道本地密码的时候，要修改密码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。"><span class="toc-text">算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Add-Two-Numbers"><span class="toc-text">Add Two Numbers</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题意"><span class="toc-text">题意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的思路"><span class="toc-text">我的思路</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-对mysql的数据库密码修改" class="article article-type-post" itemprop="blogPost">
+   <article id="post-LeetCode算法" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">对mysql的数据库密码修改</h1>
+    <h1 class="post-title">LeetCode算法</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.06.16</span>
+        <span>2019.06.23</span>
       </span>
 
       
@@ -204,38 +202,19 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="当忘记数据库密码的时候"><a href="#当忘记数据库密码的时候" class="headerlink" title="当忘记数据库密码的时候"></a>当忘记数据库密码的时候</h1><p>我的数据库下载为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mysql</span><br></pre></td></tr></table></figure>
-
-<h1 id="查看配置文件路径并添加代码"><a href="#查看配置文件路径并添加代码" class="headerlink" title="查看配置文件路径并添加代码"></a>查看配置文件路径并添加代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list mysql //显示其文件路径</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /usr -name &quot;my.cnf&quot; //也可以用这个命令查询/usr下的文件</span><br></pre></td></tr></table></figure>
-
-<p>其中有一个路径显示是在一下路劲，也要进行修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
-
-<h1 id="重启数据库服务"><a href="#重启数据库服务" class="headerlink" title="重启数据库服务"></a>重启数据库服务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart mysql //重启数据库服务</span><br></pre></td></tr></table></figure>
-
-<h2 id="开启数据库服务"><a href="#开启数据库服务" class="headerlink" title="开启数据库服务"></a>开启数据库服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mysql</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭数据库服务"><a href="#关闭数据库服务" class="headerlink" title="关闭数据库服务"></a>关闭数据库服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew service stop mysql</span><br></pre></td></tr></table></figure>
-
-<h1 id="进入数据库中"><a href="#进入数据库中" class="headerlink" title="进入数据库中"></a>进入数据库中</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<p>直接回车</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;123&apos; ; //123为你要修改的密码</span><br></pre></td></tr></table></figure>
-
-<p>显示报错<br><img src="/image/mispasswordonmysql.png" alt></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;123&apos;;</span><br></pre></td></tr></table></figure>
-
-<p>退出数据库</p>
-<h1 id="删除之前添加的命令"><a href="#删除之前添加的命令" class="headerlink" title="删除之前添加的命令"></a>删除之前添加的命令</h1><p>再把my.cnf上面的skip-grant-tables的去掉<br>全部去掉</p>
-<p>接下来进入数据库就需要输入密码了</p>
-<h1 id="当知道本地密码的时候，要修改密码"><a href="#当知道本地密码的时候，要修改密码" class="headerlink" title="当知道本地密码的时候，要修改密码"></a>当知道本地密码的时候，要修改密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
-
-<p>123456为你要修改的密码</p>
+      <h1 id="算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。"><a href="#算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。" class="headerlink" title="算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。"></a>算法集合，想把一些日常写的算法进行归纳总结，多思考一下自己的思路，并巩固自己的基础。</h1><h1 id="Add-Two-Numbers"><a href="#Add-Two-Numbers" class="headerlink" title="Add Two Numbers"></a>Add Two Numbers</h1><p><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener">题目链接</a></p>
+<blockquote>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+</blockquote>
+<blockquote>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+</blockquote>
+<p><strong>Example</strong></p>
+<blockquote>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8<br>Explanation: 342 + 465 = 807.</p>
+</blockquote>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>大致题目意思，ListNode是一个链表，将这两个链表的数值进行相加，最后得到结果也是一个链表。</p>
+<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>把这两个链表的值转为整型，然后再相加，将相加的结果转化为链表，但是</p>
 
     
   </div>
@@ -273,10 +252,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/06/15/iterm2的一些设置和zsh的安装介绍/">
+    <a class="show pull-left" href="/2019/06/16/对mysql的数据库密码修改/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/06/23/LeetCode算法/">
+    <a class="show pull-right" href="/2019/07/05/在mac中安装oracle，以及将navicat实现图形化/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
