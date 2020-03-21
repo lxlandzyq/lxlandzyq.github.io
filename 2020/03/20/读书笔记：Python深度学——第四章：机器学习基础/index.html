@@ -7,32 +7,29 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>读书笔记：Python深度学习—-深度学习简述 | Hexo</title>
+  <title>读书笔记：Python深度学习——第四章：机器学习基础 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="keras,深度学习一些概念,">
+    <meta name="keywords" content="keras,深度学习,">
   
 
-  <meta name="description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
-<meta name="keywords" content="keras,深度学习一些概念">
+  <meta name="description" content="前述概括  对深度学习的一些概念的理解，深度学习中专有名词的介绍以及解析在深度学习中的作用和范围。对于一些深度学习中出现的问题，也会列举一些解决的办法。 数据预处理  我们都知道在数据中要分为训练集、验证集和测试集。在分配好训练集、验证集和测试集之前要进行数据的预处理1.向量化：神经网络的所有输入目标都是浮点型的2.值标准化：  a.取值大小：大部分在0~1的范围内（如泰坦尼克号中生存预测，根据其">
+<meta name="keywords" content="keras,深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读书笔记：Python深度学习—-深度学习简述">
-<meta property="og:url" content="http://yoursite.com/2020/03/20/读书笔记：Python深度学习——深度学习简述/index.html">
+<meta property="og:title" content="读书笔记：Python深度学习——第四章：机器学习基础">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/读书笔记：Python深度学——第四章：机器学习基础/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
+<meta property="og:description" content="前述概括  对深度学习的一些概念的理解，深度学习中专有名词的介绍以及解析在深度学习中的作用和范围。对于一些深度学习中出现的问题，也会列举一些解决的办法。 数据预处理  我们都知道在数据中要分为训练集、验证集和测试集。在分配好训练集、验证集和测试集之前要进行数据的预处理1.向量化：神经网络的所有输入目标都是浮点型的2.值标准化：  a.取值大小：大部分在0~1的范围内（如泰坦尼克号中生存预测，根据其">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/image/2020_3_20_1.png">
-<meta property="og:image" content="http://yoursite.com/image/2020_3_20_2.png">
-<meta property="og:image" content="http://yoursite.com/image/2020_3_20_3.png">
-<meta property="og:image" content="http://yoursite.com/image/2020_3_20_4.png">
-<meta property="og:image" content="http://yoursite.com/image/2020_3_20_5.png">
-<meta property="og:updated_time" content="2020-03-20T14:11:01.653Z">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_21_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_21_2.png">
+<meta property="og:updated_time" content="2020-03-21T05:49:54.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读书笔记：Python深度学习—-深度学习简述">
-<meta name="twitter:description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
-<meta name="twitter:image" content="http://yoursite.com/image/2020_3_20_1.png">
+<meta name="twitter:title" content="读书笔记：Python深度学习——第四章：机器学习基础">
+<meta name="twitter:description" content="前述概括  对深度学习的一些概念的理解，深度学习中专有名词的介绍以及解析在深度学习中的作用和范围。对于一些深度学习中出现的问题，也会列举一些解决的办法。 数据预处理  我们都知道在数据中要分为训练集、验证集和测试集。在分配好训练集、验证集和测试集之前要进行数据的预处理1.向量化：神经网络的所有输入目标都是浮点型的2.值标准化：  a.取值大小：大部分在0~1的范围内（如泰坦尼克号中生存预测，根据其">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_3_21_1.png">
 
   
 
@@ -167,15 +164,15 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前述"><span class="toc-text">前述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深度学习"><span class="toc-text">深度学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深度学习过程"><span class="toc-text">深度学习过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#权值的作用"><span class="toc-text">权值的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何找到这些权重"><span class="toc-text">如何找到这些权重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过损失值来分配权值"><span class="toc-text">通过损失值来分配权值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#大白话总结"><span class="toc-text">大白话总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前述概括"><span class="toc-text">前述概括</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据预处理"><span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#过拟合与欠拟合"><span class="toc-text">过拟合与欠拟合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#防止过拟合"><span class="toc-text">防止过拟合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#减少网络大小"><span class="toc-text">减少网络大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加权重正则化"><span class="toc-text">添加权重正则化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dropout正则化"><span class="toc-text">dropout正则化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结尾"><span class="toc-text">结尾</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-读书笔记：Python深度学习——深度学习简述" class="article article-type-name" itemprop="blogPost">
+   <article id="name-读书笔记：Python深度学——第四章：机器学习基础" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">读书笔记：Python深度学习—-深度学习简述</h1>
+    <h1 class="post-title">读书笔记：Python深度学习——第四章：机器学习基础</h1>
 
     <div class="article-meta">
       <span>
@@ -208,15 +205,15 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="前述"><a href="#前述" class="headerlink" title="前述"></a>前述</h1><p>  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。</p>
-<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><p>  机器学习是将输入的数据（比如图像）——&gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。<br>  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入到目标的映射</p>
-<h1 id="深度学习过程"><a href="#深度学习过程" class="headerlink" title="深度学习过程"></a>深度学习过程</h1><h2 id="权值的作用"><a href="#权值的作用" class="headerlink" title="权值的作用"></a>权值的作用</h2><p>  每一层在输入的数据上找到其权重，即为最符合其对应标签，则其权重则越大。在每一层分配好其适应的权重的时候。最后一层中，输出值越大即为其符合的标签。</p>
-<p><img src="/image/2020_3_20_1.png" alt><br>神经网络是由其权重来参数化</p>
-<h2 id="如何找到这些权重"><a href="#如何找到这些权重" class="headerlink" title="如何找到这些权重"></a>如何找到这些权重</h2><p>  对于这些权值，不是凭空捏造的，需要进行不断训练才可以得到其每一层对应的参数的权值。如何找到这些权值，就是在训练中通过神经网络的<strong>损失函数</strong>来衡量当前输出值与预期值之间的距离。<br><img src="/image/2020_3_20_2.png" alt><br>损失函数用来衡量网络输出结果的质量<br>  通过上图可以知道，就是在通过损失还是来计算出预测值与真实目标值之间的距离</p>
-<h2 id="通过损失值来分配权值"><a href="#通过损失值来分配权值" class="headerlink" title="通过损失值来分配权值"></a>通过损失值来分配权值</h2><p>  有了损失值，则对每一层神经元之间的权重就要进行调节，调节到使其损失值最小。通过距离最为反馈信号对每层权重进行微调，用以降低当前对应的损失值，此调节有优化器完成。即为方向传播。<br><img src="/image/2020_3_20_3.png" alt><br>将损失值作为反馈信号来调节权重</p>
-<p>  一开始的权重是随机赋值的，不断进行权重的微调，损失值降低将这些数值循环重复足够多次数，得到权重值可以使损失函数最小。使其输出目标值尽可能的接近目标值。</p>
-<h1 id="大白话总结"><a href="#大白话总结" class="headerlink" title="大白话总结"></a>大白话总结</h1><p>  此次总结也是网上的一个例子。<br>  好比每一层，每一个神经元为一个水龙头你，通过水龙头放水的多少来设为其权值的大小，最后一层输出层其水最多的即为其标签值。下图所示。<br><img src="/image/2020_3_20_4.png" alt><br><img src="/image/2020_3_20_5.png" alt></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>参考链接：<br><a href="https://easyai.tech/ai-definition/deep-learning/" target="_blank" rel="noopener">https://easyai.tech/ai-definition/deep-learning/</a><br>参考书籍：<br>Python深度学习</p>
+      <h1 id="前述概括"><a href="#前述概括" class="headerlink" title="前述概括"></a>前述概括</h1><p>  对深度学习的一些概念的理解，深度学习中专有名词的介绍以及解析在深度学习中的作用和范围。对于一些深度学习中出现的问题，也会列举一些解决的办法。</p>
+<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>  我们都知道在数据中要分为训练集、验证集和测试集。在分配好训练集、验证集和测试集之前要进行数据的预处理<br>1.向量化：神经网络的所有输入目标都是浮点型的<br>2.值标准化：<br>  a.取值大小：大部分在0~1的范围内（如泰坦尼克号中生存预测，根据其顾客的参数，但是每一个顾客本身的参数，如其身份，座位等信息指标都不一样，要统一化成一个标准）<br>  b.同质性：特征取值都在大致范围内<br>3.处理缺失值：对于要输入的数据，但是其数据缺省一些内容要按照标准来填充，可以是填写平均值或其他。</p>
+<h1 id="过拟合与欠拟合"><a href="#过拟合与欠拟合" class="headerlink" title="过拟合与欠拟合"></a>过拟合与欠拟合</h1><p>1.优化<br>  优化是值在调节模型以在训练中得到最佳的性能（即为机器学习中的学习)<br>2.泛化<br>  指在训练好的模型上对从未见过的数据处理的好坏程度</p>
+<p>欠拟合：<br>训练数据上的损失越小，测试数据上的损失越小，即为欠拟合，表示仍有改进空间。<br>可以从下图查看其之间的性质。<br><img src="/image/2020_3_21_1.png" alt><br>上图显示的分别为<strong>欠拟合</strong>，<strong>适拟合</strong>，<strong>过拟合</strong>，其中<strong>红色</strong>代表拟合的函数，<strong>蓝色</strong>代表训练集<br>欠拟合即为拟合函数和训练集误差还是很大，还有改进的地方。<br>适拟合即为拟合正好，误差比较少，这是我们需要的。<br>过拟合即为函数完美匹配训练集的数据，这样模型只是对训练数据有很好的判断，但是对从未见过的数据处理就不友好，这不是我们需要的。</p>
+<p>模型：从欠拟合——&gt;过拟合（此时模型开始学习训练数据有关的模型，这些训练数据对新数据是无关紧要的）</p>
+<h1 id="防止过拟合"><a href="#防止过拟合" class="headerlink" title="防止过拟合"></a>防止过拟合</h1><h2 id="减少网络大小"><a href="#减少网络大小" class="headerlink" title="减少网络大小"></a>减少网络大小</h2><p>  即为减少学习的参数（由层数与单元个数决定），参数更多的模型具有更大的记忆容量。<br>这样的会对于训练数据有较强的记忆能力，可能会造成过拟合。但是，当参数过低会造成欠拟合，所以模型就是要建立在一个折中的点上。<br>建议：建立模型就是要从少层开始，然后再慢慢的加层和加参数。</p>
+<h2 id="添加权重正则化"><a href="#添加权重正则化" class="headerlink" title="添加权重正则化"></a>添加权重正则化</h2><p>  简单模型比复杂模型更不易过拟合<br>  简单模型是指参数值分布的熵更小的模型（或参数更少的模型）</p>
+<h2 id="dropout正则化"><a href="#dropout正则化" class="headerlink" title="dropout正则化"></a>dropout正则化</h2><p>  这是最常用的方法之一，即随机对输出的特征舍弃（设为0）<br>通过下图：（看例子不要看字<br><img src="/image/2020_3_21_2.png" alt><br>从这个矩阵中，随机将其设为0。但是有什么用呢，通过下面一个例子了解这个原理，并加以思考。<br>我去银行办理业务。柜台不停的换人，于是我问其中一人为什么要这样。他说他也不知道，但是他们经常换来换去。我猜想，<strong>银行工作人员要想成功欺诈银行</strong>，他们之间要合作才行。这样我才意识到，在每个样本中随机删除不同的部分神经元，可以组织他们的阴谋，因此可以降低过拟合。—例子来自Hinton<br>思考：即时通过随机减少神经元的值，防止他们对训练数据的过度依赖造成的过拟合。</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>  了解大致思路要从例子中得到概念的具体实施。</p>
 
     
   </div>
@@ -254,10 +251,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/03/13/记录：在windows下载Tensorflow-GPU/">
+    <a class="show pull-left" href="/2020/03/20/读书笔记：Python深度学习——深度学习简述/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/03/20/读书笔记：Python深度学——第四章：机器学习基础/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
