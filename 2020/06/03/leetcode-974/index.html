@@ -7,26 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-1010 | Hexo</title>
+  <title>leetcode-974 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="数组,">
+    <meta name="keywords" content="数组,前缀和,">
   
 
-  <meta name="description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
-<meta name="keywords" content="数组">
+  <meta name="description" content="题目 和可被 K 整除的子数组给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。  示例： 输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -">
+<meta name="keywords" content="数组,前缀和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-1010">
-<meta property="og:url" content="http://yoursite.com/2020/06/03/leetcode-1010/index.html">
+<meta property="og:title" content="leetcode-974">
+<meta property="og:url" content="http://yoursite.com/2020/06/03/leetcode-974/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
+<meta property="og:description" content="题目 和可被 K 整除的子数组给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。  示例： 输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-03T01:53:11.386Z">
+<meta property="og:updated_time" content="2020-06-03T02:06:26.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-1010">
-<meta name="twitter:description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
+<meta name="twitter:title" content="leetcode-974">
+<meta name="twitter:description" content="题目 和可被 K 整除的子数组给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。  示例： 输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -">
 
   
 
@@ -161,15 +161,15 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题中解答"><span class="toc-text">题中解答</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题解（前缀和）"><span class="toc-text">题解（前缀和）</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-1010" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-974" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-1010</h1>
+    <h1 class="post-title">leetcode-974</h1>
 
     <div class="article-meta">
       <span>
@@ -202,18 +202,21 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。</p>
-<p>返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &lt; j 且有 (time[i] + time[j]) % 60 == 0。</p>
-<p>示例 1：</p>
-<p>输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30, time[2] = 150): 总持续时间 180 (time[1] = 20, time[3] = 100): 总持续时间 120 (time[1] = 20, time[4] = 40): 总持续时间 60 示例 2：</p>
-<p>输入：[60,60,60] 输出：3 解释：所有三对的总持续时间都是 120，可以被 60 整数。<br>题目链接：<a href="https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/</a></p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>1)题目中，数组中每一个数通过%60得到一个其对应的余数的位置。<br>2)余数之间相加得到六十则满足要求。<br>3)则只需要计算其余数与对应的另外的余数的个数即可。<br>4)先讨论边界的个数，即为0与30.<br>5)通过相乘的个数得到该类余数能组成的个数。（30之后不再计算，再进行计算则重复了，方向不可向反）</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def numPairsDivisibleBy60(time) -&gt; int:</span><br><span class="line">    count = [0]*60  #设置一个长为60的数组,，初试值为0</span><br><span class="line">    xx = 0</span><br><span class="line">    for t in time:</span><br><span class="line">        x = t%60</span><br><span class="line">        count[x] = count[x]+1</span><br><span class="line">    xx = xx+int((count[0]*(count[0]-1))/2)</span><br><span class="line">    xx = xx+int((count[30]*(count[30]-1))/2)</span><br><span class="line">    for i in range(1,30,1):</span><br><span class="line">        if(count[i]==0):</span><br><span class="line">            continue</span><br><span class="line">        xx = xx+count[i]*count[60-i]</span><br><span class="line">    return xx</span><br></pre></td></tr></table></figure>
+      <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol start="974">
+<li>和可被 K 整除的子数组<br>给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。</li>
+</ol>
+<p>示例：</p>
+<p>输入：A = [4,5,0,-2,-3,1], K = 5<br>输出：7<br>解释：<br>有 7 个子数组满足其元素之和可被 K = 5 整除：<br>[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>在本题中，我首先认为应该要算出所有的小序列的值，再将得到的值去求余数余数为0则满足。<br>(ps：我的思路比较传统，没有从题目的小技巧分析，定性认为一定要求出所有值才可以，这个缺陷会导致时间超时)</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def subarraysDivByK(self, A: List[int], K: int) -&gt; int:</span><br><span class="line">        length,index = len(A),len(A)</span><br><span class="line">        B = [0]*length </span><br><span class="line">        C = [0]*length #与A打匹配</span><br><span class="line">        E = [0]*length #与B打匹配</span><br><span class="line">        flag = 0</span><br><span class="line">        count = 0</span><br><span class="line">        for i in range(length):</span><br><span class="line">            if flag == 0:</span><br><span class="line">                for j in range(index-1):</span><br><span class="line">                    if A[j]%K == 0:</span><br><span class="line">                        count +=1</span><br><span class="line">                    B[j] = A[j]+A[j+1]-E[j+1]</span><br><span class="line">                    C[j] = A[j]</span><br><span class="line">                if A[index-1]%K == 0:</span><br><span class="line">                    count +=1</span><br><span class="line">                flag = 1</span><br><span class="line">            else:</span><br><span class="line">                for j in range(index-1):</span><br><span class="line">                    if B[j]%K == 0:</span><br><span class="line">                        count +=1</span><br><span class="line">                    A[j] = B[j]+B[j+1]-C[j+1]</span><br><span class="line">                    E[j] = B[j]</span><br><span class="line">                if B[index-1]%K == 0:</span><br><span class="line">                    count +=1</span><br><span class="line">                flag = 0</span><br><span class="line">            index -= 1</span><br><span class="line">        return count</span><br></pre></td></tr></table></figure>
 
-<h1 id="题中解答"><a href="#题中解答" class="headerlink" title="题中解答"></a>题中解答</h1><p>下面的代码中思路是一样的，只是表达方式不一样。其减少了乘法的运算，通过每一个数计算的值，将其与对应的余数的个数进行相加，即为得到其对应的个数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">needs = [0]*60</span><br><span class="line">res = 0</span><br><span class="line">for i in time:</span><br><span class="line">    if i%60==0:</span><br><span class="line">        res += needs[0]</span><br><span class="line">    else:</span><br><span class="line">        res += needs[60-(i%60)]</span><br><span class="line">    needs[i%60] += 1</span><br><span class="line">return res</span><br></pre></td></tr></table></figure>
+<h1 id="题解（前缀和）"><a href="#题解（前缀和）" class="headerlink" title="题解（前缀和）"></a>题解（前缀和）</h1><p>前缀和s【i】 表示数组中前a【0：i】 相加的总和，任意一个长度sum【i，j】 = s【j】-s【i】得出。如果s【i】与s【j】的余数相等，则表明得出的sum【i，j】可以被k整除。</p>
+<n>
+结论：即先计算每一个前缀和，再将前缀和求余，再将同余的代码两两组合（ps：但是顺序不变，即为A,B,C,D:可以组成A:B,A:C,A:D,B:C,B:D,C:D,我的理解是这个样子的，因为求全排列会重复子数组）
+（ps：每一个求和的时候还必须注意余数为0的时候，即已经求出为0的时候，从代码中体现）
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">A = [4,5,0,-2,-3,1]</span><br><span class="line">#前缀和</span><br><span class="line">K = 5</span><br><span class="line">length = len(A)</span><br><span class="line">temp = [0]*length</span><br><span class="line">temp2 = [0]*K</span><br><span class="line">temp_sum = 0</span><br><span class="line">for i in range(length):</span><br><span class="line">    temp_sum += A[i]</span><br><span class="line">    temp[i] = temp_sum #记录前缀和</span><br><span class="line">    temp2[temp_sum%K] +=1 #记录个数</span><br><span class="line">count = temp2[0]</span><br><span class="line">for i in temp2:</span><br><span class="line">    count += i*(i-1)//2</span><br><span class="line">print(count)</span><br><span class="line">print(temp2)</span><br></pre></td></tr></table></figure>
 
-
+</n>
     
   </div>
 
@@ -250,10 +253,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/04/13/老聃的金字塔原理—冯唐/">
+    <a class="show pull-left" href="/2020/06/03/leetcode-1011/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/06/03/leetcode-1011/">
+    <a class="show pull-right" href="/2020/06/03/leetcode-560/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>

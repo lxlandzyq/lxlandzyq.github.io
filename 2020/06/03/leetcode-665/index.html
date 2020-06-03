@@ -7,7 +7,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-1010 | Hexo</title>
+  <title>leetcode-665 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,18 +15,18 @@
     <meta name="keywords" content="数组,">
   
 
-  <meta name="description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
+  <meta name="description" content="题目给你一个长度为 n 的整数数组，请你判断在 最多 改变 1 个元素的情况下，该数组能否变成一个非递减数列。 我们是这样定义一个非递减数列的： 对于数组中所有的 i (0 &amp;lt;= i &amp;lt;= n-2)，总满足 nums[i] &amp;lt;= nums[i + 1]。 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/non-decreasi">
 <meta name="keywords" content="数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-1010">
-<meta property="og:url" content="http://yoursite.com/2020/06/03/leetcode-1010/index.html">
+<meta property="og:title" content="leetcode-665">
+<meta property="og:url" content="http://yoursite.com/2020/06/03/leetcode-665/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
+<meta property="og:description" content="题目给你一个长度为 n 的整数数组，请你判断在 最多 改变 1 个元素的情况下，该数组能否变成一个非递减数列。 我们是这样定义一个非递减数列的： 对于数组中所有的 i (0 &amp;lt;= i &amp;lt;= n-2)，总满足 nums[i] &amp;lt;= nums[i + 1]。 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/non-decreasi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-03T01:53:11.386Z">
+<meta property="og:updated_time" content="2020-06-03T02:13:06.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-1010">
-<meta name="twitter:description" content="题目在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &amp;lt; j 且有 (time[i] + time[j]) % 60 == 0。 示例 1： 输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30,">
+<meta name="twitter:title" content="leetcode-665">
+<meta name="twitter:description" content="题目给你一个长度为 n 的整数数组，请你判断在 最多 改变 1 个元素的情况下，该数组能否变成一个非递减数列。 我们是这样定义一个非递减数列的： 对于数组中所有的 i (0 &amp;lt;= i &amp;lt;= n-2)，总满足 nums[i] &amp;lt;= nums[i + 1]。 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/non-decreasi">
 
   
 
@@ -161,15 +161,15 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题中解答"><span class="toc-text">题中解答</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-1010" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-665" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-1010</h1>
+    <h1 class="post-title">leetcode-665</h1>
 
     <div class="article-meta">
       <span>
@@ -202,16 +202,11 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。</p>
-<p>返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i 和 j 满足 i &lt; j 且有 (time[i] + time[j]) % 60 == 0。</p>
-<p>示例 1：</p>
-<p>输入：[30,20,150,100,40] 输出：3 解释：这三对的总持续时间可被 60 整数： (time[0] = 30, time[2] = 150): 总持续时间 180 (time[1] = 20, time[3] = 100): 总持续时间 120 (time[1] = 20, time[4] = 40): 总持续时间 60 示例 2：</p>
-<p>输入：[60,60,60] 输出：3 解释：所有三对的总持续时间都是 120，可以被 60 整数。<br>题目链接：<a href="https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/</a></p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>1)题目中，数组中每一个数通过%60得到一个其对应的余数的位置。<br>2)余数之间相加得到六十则满足要求。<br>3)则只需要计算其余数与对应的另外的余数的个数即可。<br>4)先讨论边界的个数，即为0与30.<br>5)通过相乘的个数得到该类余数能组成的个数。（30之后不再计算，再进行计算则重复了，方向不可向反）</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def numPairsDivisibleBy60(time) -&gt; int:</span><br><span class="line">    count = [0]*60  #设置一个长为60的数组,，初试值为0</span><br><span class="line">    xx = 0</span><br><span class="line">    for t in time:</span><br><span class="line">        x = t%60</span><br><span class="line">        count[x] = count[x]+1</span><br><span class="line">    xx = xx+int((count[0]*(count[0]-1))/2)</span><br><span class="line">    xx = xx+int((count[30]*(count[30]-1))/2)</span><br><span class="line">    for i in range(1,30,1):</span><br><span class="line">        if(count[i]==0):</span><br><span class="line">            continue</span><br><span class="line">        xx = xx+count[i]*count[60-i]</span><br><span class="line">    return xx</span><br></pre></td></tr></table></figure>
-
-<h1 id="题中解答"><a href="#题中解答" class="headerlink" title="题中解答"></a>题中解答</h1><p>下面的代码中思路是一样的，只是表达方式不一样。其减少了乘法的运算，通过每一个数计算的值，将其与对应的余数的个数进行相加，即为得到其对应的个数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">needs = [0]*60</span><br><span class="line">res = 0</span><br><span class="line">for i in time:</span><br><span class="line">    if i%60==0:</span><br><span class="line">        res += needs[0]</span><br><span class="line">    else:</span><br><span class="line">        res += needs[60-(i%60)]</span><br><span class="line">    needs[i%60] += 1</span><br><span class="line">return res</span><br></pre></td></tr></table></figure>
+      <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个长度为 n 的整数数组，请你判断在 最多 改变 1 个元素的情况下，该数组能否变成一个非递减数列。</p>
+<p>我们是这样定义一个非递减数列的： 对于数组中所有的 i (0 &lt;= i &lt;= n-2)，总满足 nums[i] &lt;= nums[i + 1]。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/non-decreasing-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/non-decreasing-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>先分析题可能出现的情况<br>凸形状： 2，3，6，4 （其中6为凸起现状）<br>凹形状： 3，4，1，4 （其中1为需要修改的数值<br>判断凹或凸最多出现一次，即为true，否则为false<br>如何判断凹或凸需要三个值<br>当前值 index<br>index的前一个值 pre-index<br>pre-index的前一个值 p-pre-index<br>若index&gt;pre-index 则continue<br>若index&lt;pre-index<br>  【若p-pre-index&gt;index 即前两个值都大于index 则为凹需要修改index为pre-index 即修改一次 】<br>  【若p-pre-index&lt;index 即前-前一个值小于index，则表明是pre-index的值高出了，则将pre-index修改为index，修改一次 为凸】</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def checkPossibility(self, nums: List[int]) -&gt; bool:</span><br><span class="line">        #插入排序</span><br><span class="line">        if len(nums)==1:</span><br><span class="line">            return True</span><br><span class="line">        flag = 0</span><br><span class="line">        for i in range(1,len(nums)):</span><br><span class="line">            if nums[i]&lt;nums[i-1]:</span><br><span class="line">                flag +=1</span><br><span class="line">                if i&gt;=2 and nums[i-2]&gt;nums[i]:#凹的情况 </span><br><span class="line">                    nums[i] = nums[i-1]</span><br><span class="line">                else: #凸的情况 中间值为凸</span><br><span class="line">                    nums[i-1] = nums[i]</span><br><span class="line">                if flag == 2:</span><br><span class="line">                    return False</span><br><span class="line">        return True</span><br></pre></td></tr></table></figure>
 
 
     
@@ -250,10 +245,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/04/13/老聃的金字塔原理—冯唐/">
+    <a class="show pull-left" href="/2020/06/03/leetcode-560/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/06/03/leetcode-1011/">
+    <a class="show pull-right" href="/2020/06/03/leetcode-918/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
