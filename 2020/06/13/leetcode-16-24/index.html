@@ -7,26 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-926 | Hexo</title>
+  <title>leetcode-16.24 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="leetcode数组,leetcode动态规划,">
+    <meta name="keywords" content="数组,hashmap,">
   
 
-  <meta name="description" content="926如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。 我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。 返回使 S 单调递增的最小翻转次数。 示例 1： 输入：”00110”输出：1解释：我们翻转最后">
-<meta name="keywords" content="leetcode数组,leetcode动态规划">
+  <meta name="description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
+<meta name="keywords" content="数组,hashmap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-926">
-<meta property="og:url" content="http://yoursite.com/2020/06/10/leetcode-926/index.html">
+<meta property="og:title" content="leetcode-16.24">
+<meta property="og:url" content="http://yoursite.com/2020/06/13/leetcode-16-24/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="926如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。 我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。 返回使 S 单调递增的最小翻转次数。 示例 1： 输入：”00110”输出：1解释：我们翻转最后">
+<meta property="og:description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-10T01:28:20.480Z">
+<meta property="og:updated_time" content="2020-06-13T01:38:44.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-926">
-<meta name="twitter:description" content="926如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。 我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。 返回使 S 单调递增的最小翻转次数。 示例 1： 输入：”00110”输出：1解释：我们翻转最后">
+<meta name="twitter:title" content="leetcode-16.24">
+<meta name="twitter:description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
 
   
 
@@ -161,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#926"><span class="toc-text">926</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#答案分析（动态规划）"><span class="toc-text">答案分析（动态规划）</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#16-24"><span class="toc-text">16.24</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-926" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-16-24" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-926</h1>
+    <h1 class="post-title">leetcode-16.24</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.06.10</span>
+        <span>2020.06.13</span>
       </span>
 
       
@@ -202,15 +202,16 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="926"><a href="#926" class="headerlink" title="926"></a>926</h1><p>如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。</p>
-<p>我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。</p>
-<p>返回使 S 单调递增的最小翻转次数。</p>
-<p>示例 1：</p>
-<p>输入：”00110”<br>输出：1<br>解释：我们翻转最后一位得到 00111.<br>示例 2：</p>
-<p>输入：”010110”<br>输出：2<br>解释：我们翻转得到 011111，或者是 000111。<br>示例 3：</p>
-<p>输入：”00011000”<br>输出：2<br>解释：我们翻转得到 00000000。</p>
-<h1 id="答案分析（动态规划）"><a href="#答案分析（动态规划）" class="headerlink" title="答案分析（动态规划）"></a>答案分析（动态规划）</h1><p>设置一个数组dp[i][0]表示，变化为数值0之后最少需要转变多少次<br>          dp[i][1]表示，变化为数值1之后最少需要转变多少次<br>当当前的数值为1时候：不转变的时候，即dp[i][1]=min(dp[i-1][0],dp[i-1][1]) #即查看前面序列最少来代替当前<br>当当前的数值为1时候：转变为0的时候，即dp[i][0] = dp[i-1][0]+1 # 翻转次数加1<br>当当前的数值为0时候：不转变的时候，即dp[i][0] = dp[i-1][0]<br>当当前的数值为0时候：转变为1的时候，即dp[i][1] = min(dp[i-1][1]+1,dp[i-1][0]+1) #即都翻转一次，查看哪一个最小<br>最后min(dp[i][0],dp[i][1])即为其长度i所需翻转的最小值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minFlipsMonoIncr(self, S: str) -&gt; int:</span><br><span class="line">        one,zero = 0,0 #最少表示1的最少个数，0的最少个数</span><br><span class="line">        for s in S:</span><br><span class="line">            if s ==&apos;1&apos;:#需要变为0</span><br><span class="line">                one,zero = min(one,zero),zero+1</span><br><span class="line">            else:</span><br><span class="line">                one = min(one+1,zero+1)</span><br><span class="line">        return min(one,zero)</span><br></pre></td></tr></table></figure>
+      <h1 id="16-24"><a href="#16-24" class="headerlink" title="16.24"></a>16.24</h1><p>设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。</p>
+<p>示例 1:</p>
+<p>输入: nums = [5,6,5], target = 11<br>输出: [[5,6]]<br>示例 2:</p>
+<p>输入: nums = [5,6,5,6], target = 11<br>输出: [[5,6],[5,6]]</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/pairs-with-sum-lcci" target="_blank" rel="noopener">https://leetcode-cn.com/problems/pairs-with-sum-lcci</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>利用hashmap，key为数值中的元素，value为其元素的个数，通过比较长度，value最小的则为其匹配的个数，再进行详细的判断<br>缺点：我还是这样，根据各个问题进行分析会出现的错误，很难用统一的算法处理一类问题，代码还是有一些冗余。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def pairSums(self, nums: List[int], target: int) -&gt; List[List[int]]:</span><br><span class="line">        has = &#123;&#125;</span><br><span class="line">        for i in nums:</span><br><span class="line">            if i in has:</span><br><span class="line">                has[i] = has.get(i)+1</span><br><span class="line">            else:</span><br><span class="line">                has[i] = 1</span><br><span class="line">        out = []</span><br><span class="line">        temp = target//2</span><br><span class="line">        if has.__contains__(temp) and target%2==0:#还需要考虑相同的数值</span><br><span class="line">            for i in range(has.get(temp)//2):</span><br><span class="line">                out.append([temp,temp])</span><br><span class="line">            has[temp]=0</span><br><span class="line">        for i in has: </span><br><span class="line">            if has.__contains__(target-i) and has.get(i) &gt; has.get(target-i) :#记录最长的，并且有数值</span><br><span class="line">                for t in range(has.get(target-i)):</span><br><span class="line">                    out.append([i,target-i])</span><br><span class="line">            elif has.__contains__(target-i):</span><br><span class="line">                for t in range(has.get(i)):</span><br><span class="line">                    out.append([i,target-i])</span><br><span class="line">            else:</span><br><span class="line">                continue</span><br><span class="line">            has[target-i]=0</span><br><span class="line">        return out</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>在答案代码中，思想虽然是一样的，可是这个算法更加短小精悍，减少了for语句的使用<br>思路：从头开始如果可以匹配就用一次数值，如果没有匹配就将其添加到字典里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def pairSums(self, nums: List[int], target: int) -&gt; List[List[int]]:</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        res = []</span><br><span class="line">        for i in nums:</span><br><span class="line">            if target - i in dic and dic[target-i] &gt; 0:</span><br><span class="line">                res.append([i,target-i])</span><br><span class="line">                dic[target-i] -= 1</span><br><span class="line">            else:</span><br><span class="line">                if i not in dic:</span><br><span class="line">                    dic[i] = 1</span><br><span class="line">                else:</span><br><span class="line">                    dic[i]+=1</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
 
 
     
@@ -249,10 +250,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/06/07/leetcode-238/">
+    <a class="show pull-left" href="/2020/06/10/leetcode-926/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/06/13/leetcode-16-24/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
