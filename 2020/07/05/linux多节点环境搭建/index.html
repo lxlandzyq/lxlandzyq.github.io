@@ -7,26 +7,29 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-16.24 | Hexo</title>
+  <title>linux多节点环境搭建 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="数组,hashmap,">
+    <meta name="keywords" content="远程,">
   
 
-  <meta name="description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
-<meta name="keywords" content="数组,hashmap">
+  <meta name="description" content="目的  在虚拟机上，对远程操作对服务，属性其配置，主要是为了下次再需要安装对时候节省时间。参考：https://www.bilibili.com/video/BV1bA411b7vs 系统处理  复制这段内容后打开百度网盘手机App，操作更方便哦链接：https://pan.baidu.com/s/1j_-QfvMTuWFicTTqTCk3lg 提取码：k729  在虚拟机上，系统会给它配一个ip">
+<meta name="keywords" content="远程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-16.24">
-<meta property="og:url" content="http://yoursite.com/2020/06/13/leetcode-16-24/index.html">
+<meta property="og:title" content="linux多节点环境搭建">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/linux多节点环境搭建/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
+<meta property="og:description" content="目的  在虚拟机上，对远程操作对服务，属性其配置，主要是为了下次再需要安装对时候节省时间。参考：https://www.bilibili.com/video/BV1bA411b7vs 系统处理  复制这段内容后打开百度网盘手机App，操作更方便哦链接：https://pan.baidu.com/s/1j_-QfvMTuWFicTTqTCk3lg 提取码：k729  在虚拟机上，系统会给它配一个ip">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-13T01:38:44.406Z">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_5_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_5_2.png">
+<meta property="og:updated_time" content="2020-07-05T04:36:23.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-16.24">
-<meta name="twitter:description" content="16.24设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。 示例 1: 输入: nums = [5,6,5], target = 11输出: [[5,6]]示例 2: 输入: nums = [5,6,5,6], target = 11输出: [[5,6],[5,6]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems">
+<meta name="twitter:title" content="linux多节点环境搭建">
+<meta name="twitter:description" content="目的  在虚拟机上，对远程操作对服务，属性其配置，主要是为了下次再需要安装对时候节省时间。参考：https://www.bilibili.com/video/BV1bA411b7vs 系统处理  复制这段内容后打开百度网盘手机App，操作更方便哦链接：https://pan.baidu.com/s/1j_-QfvMTuWFicTTqTCk3lg 提取码：k729  在虚拟机上，系统会给它配一个ip">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_7_5_1.png">
 
   
 
@@ -161,20 +164,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#16-24"><span class="toc-text">16.24</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目的"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#系统处理"><span class="toc-text">系统处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ip配置"><span class="toc-text">ip配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#宿主机连接虚拟机"><span class="toc-text">宿主机连接虚拟机</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-16-24" class="article article-type-name" itemprop="blogPost">
+   <article id="name-linux多节点环境搭建" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-16.24</h1>
+    <h1 class="post-title">linux多节点环境搭建</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.06.13</span>
+        <span>2020.07.05</span>
       </span>
 
       
@@ -202,17 +205,26 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="16-24"><a href="#16-24" class="headerlink" title="16.24"></a>16.24</h1><p>设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。</p>
-<p>示例 1:</p>
-<p>输入: nums = [5,6,5], target = 11<br>输出: [[5,6]]<br>示例 2:</p>
-<p>输入: nums = [5,6,5,6], target = 11<br>输出: [[5,6],[5,6]]</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/pairs-with-sum-lcci" target="_blank" rel="noopener">https://leetcode-cn.com/problems/pairs-with-sum-lcci</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>利用hashmap，key为数值中的元素，value为其元素的个数，通过比较长度，value最小的则为其匹配的个数，再进行详细的判断<br>缺点：我还是这样，根据各个问题进行分析会出现的错误，很难用统一的算法处理一类问题，代码还是有一些冗余。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def pairSums(self, nums: List[int], target: int) -&gt; List[List[int]]:</span><br><span class="line">        has = &#123;&#125;</span><br><span class="line">        for i in nums:</span><br><span class="line">            if i in has:</span><br><span class="line">                has[i] = has.get(i)+1</span><br><span class="line">            else:</span><br><span class="line">                has[i] = 1</span><br><span class="line">        out = []</span><br><span class="line">        temp = target//2</span><br><span class="line">        if has.__contains__(temp) and target%2==0:#还需要考虑相同的数值</span><br><span class="line">            for i in range(has.get(temp)//2):</span><br><span class="line">                out.append([temp,temp])</span><br><span class="line">            has[temp]=0</span><br><span class="line">        for i in has: </span><br><span class="line">            if has.__contains__(target-i) and has.get(i) &gt; has.get(target-i) :#记录最长的，并且有数值</span><br><span class="line">                for t in range(has.get(target-i)):</span><br><span class="line">                    out.append([i,target-i])</span><br><span class="line">            elif has.__contains__(target-i):</span><br><span class="line">                for t in range(has.get(i)):</span><br><span class="line">                    out.append([i,target-i])</span><br><span class="line">            else:</span><br><span class="line">                continue</span><br><span class="line">            has[target-i]=0</span><br><span class="line">        return out</span><br></pre></td></tr></table></figure>
+      <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>  在虚拟机上，对远程操作对服务，属性其配置，主要是为了下次再需要安装对时候节省时间。参考：<a href="https://www.bilibili.com/video/BV1bA411b7vs" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1bA411b7vs</a></p>
+<h1 id="系统处理"><a href="#系统处理" class="headerlink" title="系统处理"></a>系统处理</h1><p>  复制这段内容后打开百度网盘手机App，操作更方便哦<br>链接：<a href="https://pan.baidu.com/s/1j_-QfvMTuWFicTTqTCk3lg" target="_blank" rel="noopener">https://pan.baidu.com/s/1j_-QfvMTuWFicTTqTCk3lg</a> 提取码：k729<br>  在虚拟机上，系统会给它配一个ip地址，命令可以查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
 
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>在答案代码中，思想虽然是一样的，可是这个算法更加短小精悍，减少了for语句的使用<br>思路：从头开始如果可以匹配就用一次数值，如果没有匹配就将其添加到字典里。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def pairSums(self, nums: List[int], target: int) -&gt; List[List[int]]:</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        res = []</span><br><span class="line">        for i in nums:</span><br><span class="line">            if target - i in dic and dic[target-i] &gt; 0:</span><br><span class="line">                res.append([i,target-i])</span><br><span class="line">                dic[target-i] -= 1</span><br><span class="line">            else:</span><br><span class="line">                if i not in dic:</span><br><span class="line">                    dic[i] = 1</span><br><span class="line">                else:</span><br><span class="line">                    dic[i]+=1</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+<p><img src="/image/2020_7_5_1.png" alt><br>10.211.55.7 为分配对ip地址<br>为了让其在同一个局域网下，修改虚拟机上的设置如图<br><img src="/image/2020_7_5_2.png" alt><br>最后再利用ifconfig命令可以发现其与宿主主机之间的是在一个局域网下的</p>
+<h1 id="ip配置"><a href="#ip配置" class="headerlink" title="ip配置"></a>ip配置</h1><p>  重启虚拟机之后，虚拟机的ip地址就会改变，所以为了将其ip地址固定不变。<br>首先查看利用命令查看是哪一个网卡的ip，例如本次的就是eth0这个网卡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts</span><br></pre></td></tr></table></figure>
 
+<p>进入目录下，设置网卡配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Generated by parse-kickstart</span><br><span class="line">DEVICE=&quot;eth0&quot;</span><br><span class="line">IPV6INIT=&quot;yes&quot;</span><br><span class="line">BOOTPROTO=&quot;static&quot; #设置为ip地址不改变</span><br><span class="line">UUID=&quot;dfe8f191-ecc6-4b2f-8099-25edf0d91335&quot;</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">IPADDR=172.20.10.5   #命令ifconfig下的ip地址 </span><br><span class="line">NETMASK=255.255.255.0 #子网掩码</span><br><span class="line">GATEWAY=172.20.10.1 #网关</span><br><span class="line">DNS1=119.29.29.29  #dns</span><br></pre></td></tr></table></figure>
+
+<p>修改和添加前面五个注释的内容</p>
+<p>重启网络服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network.service</span><br></pre></td></tr></table></figure>
+
+<p>下次打开虚拟机的时候就是和现在同一个ip在宿主机上就不用修改了<br>在宿主机上ping虚拟机可以ping得同，在虚拟机ping宿主机也可以ping得通</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>使得可以进行ssh连接</p>
+<h1 id="宿主机连接虚拟机"><a href="#宿主机连接虚拟机" class="headerlink" title="宿主机连接虚拟机"></a>宿主机连接虚拟机</h1><p>  打开secureCRT软件，进行连接，在此处要注意用户名为其虚拟机上面命令行中用户名，不是虚拟机的用户名。</p>
 
     
   </div>
@@ -250,10 +262,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/06/10/leetcode-926/">
+    <a class="show pull-left" href="/2020/06/13/leetcode-16-24/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/07/05/linux多节点环境搭建/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
