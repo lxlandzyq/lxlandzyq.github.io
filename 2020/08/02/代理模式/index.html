@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="代理对象：出版社，书店，买书人此时书店就是代理，通过从出版社里面拿书卖给买书人。 代理模式 静态代理模式 动态代理模式静态代理模式通过上面出版社，书店，的例子来描述静态代理模式定义一个接口123public interface Subject &amp;#123;    void sellBook();&amp;#125;    出版社实现该接口，出版社只生产书本 12345678 //出版社public cla">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-08-03T08:57:03.506Z">
+<meta property="og:updated_time" content="2020-08-03T09:29:33.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代理模式">
 <meta name="twitter:description" content="代理对象：出版社，书店，买书人此时书店就是代理，通过从出版社里面拿书卖给买书人。 代理模式 静态代理模式 动态代理模式静态代理模式通过上面出版社，书店，的例子来描述静态代理模式定义一个接口123public interface Subject &amp;#123;    void sellBook();&amp;#125;    出版社实现该接口，出版社只生产书本 12345678 //出版社public cla">
@@ -161,7 +161,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代理"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代理模式"><span class="toc-text">代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#静态代理模式"><span class="toc-text">静态代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动态代理模式"><span class="toc-text">动态代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动态代理代码介绍"><span class="toc-text">动态代理代码介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proxy"><span class="toc-text">Proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InvocationHandler"><span class="toc-text">InvocationHandler</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代理"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代理模式"><span class="toc-text">代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#静态代理模式"><span class="toc-text">静态代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动态代理模式"><span class="toc-text">动态代理模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动态代理代码介绍"><span class="toc-text">动态代理代码介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proxy"><span class="toc-text">Proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InvocationHandler"><span class="toc-text">InvocationHandler</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用途"><span class="toc-text">用途</span></a></li></ol>
   </div>
 
 
@@ -266,6 +266,20 @@ ga('send', 'pageview');
 </li>
 </ul>
 <p>对目标realSubject进行反射，实现其方法。就做到了代理的目的，不可以将realSubject该为方法参数中的proxy，我认为是因为proxy在缓存中，会不断的调用这个方法，而不是一次调用，可以通过debug进行查看。【只是我认为而已，不知道是否准确】</p>
+<h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><p>其对于Spring Boot中的AOP概念就是利用了动态代理进行描述的。<br>举例子：<br>传统的JDBC连接需要步骤： </p>
+<ul>
+<li>打开数据库连接，对属性进行设置</li>
+<li>执行SQL语句</li>
+<li>如果无异常，则提交事务</li>
+<li>如果有异常，则回滚事务</li>
+<li>关闭数据库连接<br>对于传统操作要增加很多不必要的步骤，其实我们只想连接数据库和将其执行，其他步骤都想将其省略，此时就可以利用动态代理模式。<br>举例子：<br>假设该方法为select数据库的内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subject.sell();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>那么在invoke方法中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">discount();</span><br><span class="line">give();</span><br></pre></td></tr></table></figure>
+
+<p>即可看做数据库是否异常和关闭数据库等繁琐的操作。减少不必要的代码量，这就是动态代理。</p>
 
     
   </div>
