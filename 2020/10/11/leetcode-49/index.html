@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="题目描述给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。 示例: 输入: [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]输出:[  [“ate”,”eat”,”tea”],  [“nat”,”tan”],  [“bat”]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problem">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-10-11T03:05:38.990Z">
+<meta property="og:updated_time" content="2020-10-11T03:08:52.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-49">
 <meta name="twitter:description" content="题目描述给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。 示例: 输入: [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]输出:[  [“ate”,”eat”,”tea”],  [“nat”,”tan”],  [“bat”]] 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problem">
@@ -207,8 +207,22 @@ ga('send', 'pageview');
 <p>输入: [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>输出:<br>[<br>  [“ate”,”eat”,”tea”],<br>  [“nat”,”tan”],<br>  [“bat”]<br>]</p>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/group-anagrams" target="_blank" rel="noopener">https://leetcode-cn.com/problems/group-anagrams</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><ul>
-<li>题解1：<pre><code>将给出的字符串数组中的字符串进行排序（即为转化为字符数组，将字符数组排序完再转化为字符串），利用字典对每一个排序完的字符串进行存储。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">      HashMap&lt;String,ArrayList&lt;String&gt;&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">      for(String s:strs)&#123;</span><br><span class="line">          char[] temp = s.toCharArray();</span><br><span class="line">          Arrays.sort(temp);</span><br><span class="line">          String s_temp = String.valueOf(temp);</span><br><span class="line">          if(!map.containsKey(s_temp))&#123;</span><br><span class="line">              map.put(s_temp, new ArrayList&lt;&gt;());</span><br><span class="line">          &#125;</span><br><span class="line">          map.get(s_temp).add(s);</span><br><span class="line">      &#125;</span><br><span class="line">      return new ArrayList(map.values());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>题解1：</p>
+<pre><code>将给出的字符串数组中的字符串进行排序（即为转化为字符数组，将字符数组排序完再转化为字符串），利用字典对每一个排序完的字符串进行存储。
+
+public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) {
+HashMap&lt;String,ArrayList&lt;String&gt;&gt; map = new HashMap&lt;&gt;();
+for(String s:strs){
+    char[] temp = s.toCharArray();
+    Arrays.sort(temp);
+    String s_temp = String.valueOf(temp);
+    if(!map.containsKey(s_temp)){
+        map.put(s_temp, new ArrayList&lt;&gt;());
+    }
+    map.get(s_temp).add(s);
+}
+return new ArrayList(map.values());</code></pre><p>  }</p>
+</li>
 </ul>
 
     
