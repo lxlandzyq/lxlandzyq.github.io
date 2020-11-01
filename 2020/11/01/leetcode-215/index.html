@@ -7,26 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-524 | Hexo</title>
+  <title>leetcode-215 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="双指针,">
+    <meta name="keywords" content="排序,">
   
 
-  <meta name="description" content="通过删除字母匹配到字典里最长单词题目链接https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/ 题目思路在本题中也是一个双指针问题，主字符串中的索引和字典中的字符串的索引进行比较判断，同时剪枝掉一些多余不需要判断的字符串即可。 代码1234567891011121314151617181920212">
-<meta name="keywords" content="双指针">
+  <meta name="description" content="数组中的第k个最大元素题目链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/ 题目思路首先就是排序，将排序好的进行选择即可。再者利用快速排序，同时再快速排序的同时，将得到的中间元素与要得到的第k个最大的元素进行比较。进行剪去多余需要排的序列。  代码12345678910111213141516171819202">
+<meta name="keywords" content="排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-524">
-<meta property="og:url" content="http://yoursite.com/2020/10/25/leetcode-524/index.html">
+<meta property="og:title" content="leetcode-215">
+<meta property="og:url" content="http://yoursite.com/2020/11/01/leetcode-215/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="通过删除字母匹配到字典里最长单词题目链接https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/ 题目思路在本题中也是一个双指针问题，主字符串中的索引和字典中的字符串的索引进行比较判断，同时剪枝掉一些多余不需要判断的字符串即可。 代码1234567891011121314151617181920212">
+<meta property="og:description" content="数组中的第k个最大元素题目链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/ 题目思路首先就是排序，将排序好的进行选择即可。再者利用快速排序，同时再快速排序的同时，将得到的中间元素与要得到的第k个最大的元素进行比较。进行剪去多余需要排的序列。  代码12345678910111213141516171819202">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-10-25T07:17:17.805Z">
+<meta property="og:updated_time" content="2020-11-01T02:03:30.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-524">
-<meta name="twitter:description" content="通过删除字母匹配到字典里最长单词题目链接https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/ 题目思路在本题中也是一个双指针问题，主字符串中的索引和字典中的字符串的索引进行比较判断，同时剪枝掉一些多余不需要判断的字符串即可。 代码1234567891011121314151617181920212">
+<meta name="twitter:title" content="leetcode-215">
+<meta name="twitter:description" content="数组中的第k个最大元素题目链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array/ 题目思路首先就是排序，将排序好的进行选择即可。再者利用快速排序，同时再快速排序的同时，将得到的中间元素与要得到的第k个最大的元素进行比较。进行剪去多余需要排的序列。  代码12345678910111213141516171819202">
 
   
 
@@ -161,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#通过删除字母匹配到字典里最长单词"><span class="toc-text">通过删除字母匹配到字典里最长单词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目思路"><span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数组中的第k个最大元素"><span class="toc-text">数组中的第k个最大元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目思路"><span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-524" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-215" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-524</h1>
+    <h1 class="post-title">leetcode-215</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.10.25</span>
+        <span>2020.11.01</span>
       </span>
 
       
@@ -202,9 +202,9 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="通过删除字母匹配到字典里最长单词"><a href="#通过删除字母匹配到字典里最长单词" class="headerlink" title="通过删除字母匹配到字典里最长单词"></a>通过删除字母匹配到字典里最长单词</h1><p>题目链接<br><a href="https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/</a></p>
-<h1 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h1><p>在本题中也是一个双指针问题，主字符串中的索引和字典中的字符串的索引进行比较判断，同时剪枝掉一些多余不需要判断的字符串即可。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String findLongestWord(String s, List&lt;String&gt; d) &#123;</span><br><span class="line">        String re_str = &quot;&quot;;</span><br><span class="line">        for(String str: d)&#123;</span><br><span class="line">            int i = re_str.length();</span><br><span class="line">            int j = str.length();</span><br><span class="line">            if(i&lt;j||(i==j&amp;&amp;re_str.compareTo(str)&gt;0))&#123;</span><br><span class="line">                if(func(s,str))&#123;</span><br><span class="line">                    re_str = str;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return re_str;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean func(String s1,String s2)&#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int j = 0;</span><br><span class="line">        int len = s1.length();</span><br><span class="line">        while(i&lt;len)&#123;</span><br><span class="line">            if(s1.charAt(i)==s2.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">                if(j==s2.length())&#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <h1 id="数组中的第k个最大元素"><a href="#数组中的第k个最大元素" class="headerlink" title="数组中的第k个最大元素"></a>数组中的第k个最大元素</h1><p>题目链接：<br><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/kth-largest-element-in-an-array/</a></p>
+<h1 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h1><p>首先就是排序，将排序好的进行选择即可。<br>再者利用快速排序，同时再快速排序的同时，将得到的中间元素与要得到的第k个最大的元素进行比较。进行剪去多余需要排的序列。 </p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findKthLargest(int[] nums, int k) &#123;</span><br><span class="line">        k = nums.length-k;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int j = nums.length-1;</span><br><span class="line">        int temp;</span><br><span class="line">        while(i&lt;j)&#123;</span><br><span class="line">            temp = quick_sort(nums, i, j);</span><br><span class="line">            if(temp==k)&#123;</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(temp&gt;k)&#123;</span><br><span class="line">                </span><br><span class="line">                j = temp-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                i=temp+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nums[k];</span><br><span class="line">    &#125;</span><br><span class="line">    public  int quick_sort(int[] nums,int i,int j)&#123;</span><br><span class="line">        int index = nums[i];</span><br><span class="line">        while(i&lt;j)&#123;</span><br><span class="line">            while(i&lt;j&amp;&amp;nums[j]&gt;=index)&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            while(i&lt;j&amp;&amp;nums[i]&lt;=index)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            nums[j] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        nums[i]=index;</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
@@ -243,10 +243,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/10/24/leetcode-141/">
+    <a class="show pull-left" href="/2020/10/25/leetcode-524/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/11/01/leetcode-215/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
