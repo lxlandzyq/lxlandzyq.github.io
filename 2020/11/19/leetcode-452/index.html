@@ -7,7 +7,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-435 | Hexo</title>
+  <title>leetcode-452 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,18 +15,18 @@
     <meta name="keywords" content="贪心算法,">
   
 
-  <meta name="description" content="无重叠区间题目链接https://leetcode-cn.com/problems/non-overlapping-intervals/ 思路（head，end）主要元素为end，首先按照end对数组进行排序。通过得到的end与接下来的元素的head进行比较   如果end的值小于等于接下来元素的head，则表示为不重叠，不重叠则修改器end，cnt++即为不重叠的个数。 如果end的值大于接下来">
+  <meta name="description" content="用最少数量的箭引爆气球题目链接：https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/ 解题思路与上一题的解题思路其实是差不多的：上一题的链接https://lxlandzyq.github.io/2020/11/18/leetcode-435/上一题是删掉最少的重复边，而这一题是计算有多少重复边 代">
 <meta name="keywords" content="贪心算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-435">
-<meta property="og:url" content="http://yoursite.com/2020/11/18/leetcode-435/index.html">
+<meta property="og:title" content="leetcode-452">
+<meta property="og:url" content="http://yoursite.com/2020/11/19/leetcode-452/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="无重叠区间题目链接https://leetcode-cn.com/problems/non-overlapping-intervals/ 思路（head，end）主要元素为end，首先按照end对数组进行排序。通过得到的end与接下来的元素的head进行比较   如果end的值小于等于接下来元素的head，则表示为不重叠，不重叠则修改器end，cnt++即为不重叠的个数。 如果end的值大于接下来">
+<meta property="og:description" content="用最少数量的箭引爆气球题目链接：https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/ 解题思路与上一题的解题思路其实是差不多的：上一题的链接https://lxlandzyq.github.io/2020/11/18/leetcode-435/上一题是删掉最少的重复边，而这一题是计算有多少重复边 代">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-18T05:38:45.697Z">
+<meta property="og:updated_time" content="2020-11-19T08:47:59.490Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-435">
-<meta name="twitter:description" content="无重叠区间题目链接https://leetcode-cn.com/problems/non-overlapping-intervals/ 思路（head，end）主要元素为end，首先按照end对数组进行排序。通过得到的end与接下来的元素的head进行比较   如果end的值小于等于接下来元素的head，则表示为不重叠，不重叠则修改器end，cnt++即为不重叠的个数。 如果end的值大于接下来">
+<meta name="twitter:title" content="leetcode-452">
+<meta name="twitter:description" content="用最少数量的箭引爆气球题目链接：https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/ 解题思路与上一题的解题思路其实是差不多的：上一题的链接https://lxlandzyq.github.io/2020/11/18/leetcode-435/上一题是删掉最少的重复边，而这一题是计算有多少重复边 代">
 
   
 
@@ -161,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#无重叠区间"><span class="toc-text">无重叠区间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用最少数量的箭引爆气球"><span class="toc-text">用最少数量的箭引爆气球</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-435" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-452" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-435</h1>
+    <h1 class="post-title">leetcode-452</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.11.18</span>
+        <span>2020.11.19</span>
       </span>
 
       
@@ -202,16 +202,9 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="无重叠区间"><a href="#无重叠区间" class="headerlink" title="无重叠区间"></a>无重叠区间</h1><p>题目链接<br><a href="https://leetcode-cn.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/non-overlapping-intervals/</a></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>（head，end）主要元素为end，首先按照end对数组进行排序。<br>通过得到的end与接下来的元素的head进行比较 </p>
-<ul>
-<li>如果end的值小于等于接下来元素的head，则表示为不重叠，不重叠则修改器end，cnt++即为不重叠的个数。</li>
-<li>如果end的值大于接下来元素的head，则表示有重叠的，继续continue；<br>最后将数组长度减去cnt即可。<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int eraseOverlapIntervals(int[][] intervals) &#123;</span><br><span class="line">        if(intervals.length==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(intervals, Comparator.comparingInt(o -&gt; o[1]));//按照数组中第二个元素进行排序</span><br><span class="line">        int cnt = 1;//即为存储了一个</span><br><span class="line">        int end = intervals[0][1]; //用作结尾</span><br><span class="line">        for(int i=1;i&lt;intervals.length;i++)&#123;</span><br><span class="line">            if(intervals[i][0]&lt;end)&#123;//如果</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            end = intervals[i][1];//以另外一个结尾</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        return intervals.length-cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>使用 lambda 表示式创建 Comparator 会导致算法运行时间过长，如果注重运行时间，可以修改为普通创建 Comparator 语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int eraseOverlapIntervals(int[][] intervals) &#123;</span><br><span class="line">        if(intervals.length==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(intervals, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">     @Override</span><br><span class="line">     public int compare(int[] o1, int[] o2) &#123;</span><br><span class="line">         return (o1[1] &lt; o2[1]) ? -1 : ((o1[1] == o2[1]) ? 0 : 1);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;);//按照数组中第二个元素进行排序</span><br><span class="line">        int cnt = 1;//即为存储了一个</span><br><span class="line">        int end = intervals[0][1]; //用作结尾</span><br><span class="line">        for(int i=1;i&lt;intervals.length;i++)&#123;</span><br><span class="line">            if(intervals[i][0]&lt;end)&#123;//如果</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            end = intervals[i][1];//以另外一个结尾</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        return intervals.length-cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <h1 id="用最少数量的箭引爆气球"><a href="#用最少数量的箭引爆气球" class="headerlink" title="用最少数量的箭引爆气球"></a>用最少数量的箭引爆气球</h1><p>题目链接：<br><a href="https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/</a></p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>与上一题的解题思路其实是差不多的：上一题的链接<a href="https://lxlandzyq.github.io/2020/11/18/leetcode-435/" target="_blank" rel="noopener">https://lxlandzyq.github.io/2020/11/18/leetcode-435/</a><br>上一题是删掉最少的重复边，而这一题是计算有多少重复边</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findMinArrowShots(int[][] points) &#123;</span><br><span class="line">        if(points.length==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(points, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public int compare(int[] o1, int[] o2) &#123;</span><br><span class="line">                    return (o1[1] &lt; o2[1]) ? -1 : ((o1[1] == o2[1]) ? 0 : 1);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;); //按照第二个元素进行排序</span><br><span class="line">        int cnt = 1;</span><br><span class="line">        int end = points[0][1];</span><br><span class="line">        for(int i=1;i&lt;points.length;i++)&#123;</span><br><span class="line">            if(points[i][0]&lt;=end)&#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt++;</span><br><span class="line">            end = points[i][1];</span><br><span class="line">        &#125;</span><br><span class="line">        return cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
@@ -250,10 +243,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/11/16/leetcode-75/">
+    <a class="show pull-left" href="/2020/11/18/leetcode-435/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/11/19/leetcode-452/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
