@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="买卖股票的最佳时机题目链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/ 题目思路min值用于找数值中的最小值max则为得到的最后的结果从前开始查找：  判断当前的结果max与当前值prices[i]-min的值谁最大 判读min与prices[i]哪个值最小代码123456789101112public int">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-22T05:05:23.292Z">
+<meta property="og:updated_time" content="2020-11-22T05:39:48.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-121">
 <meta name="twitter:description" content="买卖股票的最佳时机题目链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/ 题目思路min值用于找数值中的最小值max则为得到的最后的结果从前开始查找：  判断当前的结果max与当前值prices[i]-min的值谁最大 判读min与prices[i]哪个值最小代码123456789101112public int">
@@ -211,7 +211,7 @@ ga('send', 'pageview');
 </li>
 </ul>
 <p><strong>代码二：速度运行更快</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int n = prices.length;</span><br><span class="line">    if (n == 0) return 0;</span><br><span class="line">    int soFarMin = prices[0];</span><br><span class="line">    int max = 0;</span><br><span class="line">    for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">        if (soFarMin &gt; prices[i]) soFarMin = prices[i];</span><br><span class="line">        else max = Math.max(max, prices[i] - soFarMin);</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int n = prices.length;</span><br><span class="line">    if (n == 0) return 0;</span><br><span class="line">    int soFarMin = prices[0];</span><br><span class="line">    int max = 0;</span><br><span class="line">    for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">        if (soFarMin &gt; prices[i]) soFarMin = prices[i];//找最小的</span><br><span class="line">        else max = Math.max(max, prices[i] - soFarMin);</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
