@@ -7,26 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-122 | Hexo</title>
+  <title>leetcode-53 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="贪心算法,">
+    <meta name="keywords" content="动态规划,">
   
 
-  <meta name="description" content="买卖股票的最佳时机 II题目链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/ 算法思路[a,b,c,d] 如果a&amp;lt;=b&amp;lt;=c&amp;lt;=d的话，则最大值即为d-a，同时d-a = (d-c)+(c-b)+(b-a)得到即如果是上坡形式的话，从坡的最高坡减去其最低，即得值，每一个坡都是如此。  代">
-<meta name="keywords" content="贪心算法">
+  <meta name="description" content="最大子序列和题目链接：https://leetcode-cn.com/problems/maximum-subarray/ 解题思路需要一个premax，以及max   premax：用于记录前段的数值，段长度的距离主要是判断其值是否大于0premax大于0的话，则premax+nums[i]一定大于nums[i]，继续premax+nums[i]开始premax小于0的话，则premax+num">
+<meta name="keywords" content="动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-122">
-<meta property="og:url" content="http://yoursite.com/2020/11/23/leetcode-122/index.html">
+<meta property="og:title" content="leetcode-53">
+<meta property="og:url" content="http://yoursite.com/2020/11/28/leetcode-53/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="买卖股票的最佳时机 II题目链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/ 算法思路[a,b,c,d] 如果a&amp;lt;=b&amp;lt;=c&amp;lt;=d的话，则最大值即为d-a，同时d-a = (d-c)+(c-b)+(b-a)得到即如果是上坡形式的话，从坡的最高坡减去其最低，即得值，每一个坡都是如此。  代">
+<meta property="og:description" content="最大子序列和题目链接：https://leetcode-cn.com/problems/maximum-subarray/ 解题思路需要一个premax，以及max   premax：用于记录前段的数值，段长度的距离主要是判断其值是否大于0premax大于0的话，则premax+nums[i]一定大于nums[i]，继续premax+nums[i]开始premax小于0的话，则premax+num">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-23T02:13:56.605Z">
+<meta property="og:updated_time" content="2020-11-28T02:45:35.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-122">
-<meta name="twitter:description" content="买卖股票的最佳时机 II题目链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/ 算法思路[a,b,c,d] 如果a&amp;lt;=b&amp;lt;=c&amp;lt;=d的话，则最大值即为d-a，同时d-a = (d-c)+(c-b)+(b-a)得到即如果是上坡形式的话，从坡的最高坡减去其最低，即得值，每一个坡都是如此。  代">
+<meta name="twitter:title" content="leetcode-53">
+<meta name="twitter:description" content="最大子序列和题目链接：https://leetcode-cn.com/problems/maximum-subarray/ 解题思路需要一个premax，以及max   premax：用于记录前段的数值，段长度的距离主要是判断其值是否大于0premax大于0的话，则premax+nums[i]一定大于nums[i]，继续premax+nums[i]开始premax小于0的话，则premax+num">
 
   
 
@@ -161,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#买卖股票的最佳时机-II"><span class="toc-text">买卖股票的最佳时机 II</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法思路"><span class="toc-text">算法思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最大子序列和"><span class="toc-text">最大子序列和</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-122" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-53" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-122</h1>
+    <h1 class="post-title">leetcode-53</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.11.23</span>
+        <span>2020.11.28</span>
       </span>
 
       
@@ -202,9 +202,17 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="买卖股票的最佳时机-II"><a href="#买卖股票的最佳时机-II" class="headerlink" title="买卖股票的最佳时机 II"></a>买卖股票的最佳时机 II</h1><p>题目链接：<br><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/</a></p>
-<h1 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h1><p>[a,b,c,d] 如果a&lt;=b&lt;=c&lt;=d的话，则最大值即为d-a，同时d-a = (d-c)+(c-b)+(b-a)得到<br>即如果是上坡形式的话，从坡的最高坡减去其最低，即得值，每一个坡都是如此。 </p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        if(prices.length==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int count=0;</span><br><span class="line">        for(int i=1;i&lt;prices.length;i++)&#123;</span><br><span class="line">            if(prices[i]&gt;prices[i-1])&#123;</span><br><span class="line">                count += (prices[i]-prices[i-1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <h1 id="最大子序列和"><a href="#最大子序列和" class="headerlink" title="最大子序列和"></a>最大子序列和</h1><p>题目链接：<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-subarray/</a></p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>需要一个premax，以及max </p>
+<ul>
+<li>premax：用于记录前段的数值，段长度的距离主要是判断其值是否大于0<br>premax大于0的话，则premax+nums[i]一定大于nums[i]，继续premax+nums[i]开始<br>premax小于0的话，则premax+nums[i]一定小于nums[i]，此时premax从这个nums[i]开始 </li>
+<li>max：判断premax与当前的max谁大就存谁。<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1></li>
+</ul>
+<p><strong>代码一</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">        if(nums.length==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int premax = nums[0];</span><br><span class="line">        int max = premax;</span><br><span class="line">        for(int i=1;i&lt;nums.length;i++)&#123;</span><br><span class="line">            premax = premax&gt;0?premax+nums[i]:nums[i];//只要premax数值是正数，那么premax+nums[i]都要大于nums[i]，</span><br><span class="line">                                                    //只要premax数值是负数，那么premax+nums[i]都要小于nums[i]</span><br><span class="line">            max = Math.max(max, premax);</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码二</strong><br>空间利用减少了，但是思路是一样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">        int p=0;</span><br><span class="line">        int max = nums[p];//nums此时用于进行前缀的相加</span><br><span class="line">        while(p&lt;nums.length-1)&#123;</span><br><span class="line">            max = Math.max(nums[p], max);</span><br><span class="line">            if(nums[p]&gt;0)&#123;//即表明此时在前面的相加序列中，还是正数的，即还大于值</span><br><span class="line">                nums[p+1] = nums[p+1]+nums[p];</span><br><span class="line">                max = Math.max(nums[p+1],max);</span><br><span class="line">            &#125;</span><br><span class="line">            p++;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
     
@@ -243,10 +251,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/11/22/leetcode-121/">
+    <a class="show pull-left" href="/2020/11/23/leetcode-122/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/11/28/leetcode-53/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
