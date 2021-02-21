@@ -7,26 +7,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>leetcode-416 | Hexo</title>
+  <title>leetcode-337 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="动态规划,背包问题,">
+    <meta name="keywords" content="动态规划,树,">
   
 
-  <meta name="description" content="分割等和子集给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。 注意: 每个数组中的元素不会超过 100数组的大小不会超过 200示例 1: 12345输入: [1, 5, 11, 5]输出: true解释: 数组可以分割成 [1, 5, 5] 和 [11].  实例 2： 12345输入: [1, 2, 3, 5]输出: false解释: 数组不能分割成">
-<meta name="keywords" content="动态规划,背包问题">
+  <meta name="description" content="打家劫舍在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。 计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。  1234567891011">
+<meta name="keywords" content="动态规划,树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-416">
-<meta property="og:url" content="http://yoursite.com/2021/01/06/leetcode-416/index.html">
+<meta property="og:title" content="leetcode-337">
+<meta property="og:url" content="http://yoursite.com/2021/02/21/leetcode-337/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="分割等和子集给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。 注意: 每个数组中的元素不会超过 100数组的大小不会超过 200示例 1: 12345输入: [1, 5, 11, 5]输出: true解释: 数组可以分割成 [1, 5, 5] 和 [11].  实例 2： 12345输入: [1, 2, 3, 5]输出: false解释: 数组不能分割成">
+<meta property="og:description" content="打家劫舍在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。 计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。  1234567891011">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-01-06T11:26:56.056Z">
+<meta property="og:updated_time" content="2021-02-21T04:15:00.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-416">
-<meta name="twitter:description" content="分割等和子集给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。 注意: 每个数组中的元素不会超过 100数组的大小不会超过 200示例 1: 12345输入: [1, 5, 11, 5]输出: true解释: 数组可以分割成 [1, 5, 5] 和 [11].  实例 2： 12345输入: [1, 2, 3, 5]输出: false解释: 数组不能分割成">
+<meta name="twitter:title" content="leetcode-337">
+<meta name="twitter:description" content="打家劫舍在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。 计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。  1234567891011">
 
   
 
@@ -161,20 +161,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#分割等和子集"><span class="toc-text">分割等和子集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目思路"><span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#打家劫舍"><span class="toc-text">打家劫舍</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="name-leetcode-416" class="article article-type-name" itemprop="blogPost">
+   <article id="name-leetcode-337" class="article article-type-name" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">leetcode-416</h1>
+    <h1 class="post-title">leetcode-337</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.01.06</span>
+        <span>2021.02.21</span>
       </span>
 
       
@@ -202,37 +202,33 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h1 id="分割等和子集"><a href="#分割等和子集" class="headerlink" title="分割等和子集"></a>分割等和子集</h1><p>给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
-<p>注意:</p>
-<p>每个数组中的元素不会超过 100<br>数组的大小不会超过 200<br><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [1, 5, 11, 5]</span><br><span class="line"></span><br><span class="line">输出: true</span><br><span class="line"></span><br><span class="line">解释: 数组可以分割成 [1, 5, 5] 和 [11].</span><br></pre></td></tr></table></figure>
+      <h1 id="打家劫舍"><a href="#打家劫舍" class="headerlink" title="打家劫舍"></a>打家劫舍</h1><p>在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。</p>
+<p>计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [3,2,3,null,3,null,1]</span><br><span class="line"></span><br><span class="line">     3  </span><br><span class="line">    / \  </span><br><span class="line">   2   3  </span><br><span class="line">    \   \   </span><br><span class="line">     3   1  </span><br><span class="line">  </span><br><span class="line">输出: 7 </span><br><span class="line">解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.  </span><br><span class="line">```</span><br></pre></td></tr></table></figure>
 
-<p><strong>实例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [1, 2, 3, 5]</span><br><span class="line"></span><br><span class="line">输出: false</span><br><span class="line"></span><br><span class="line">解释: 数组不能分割成两个元素和相等的子集.</span><br></pre></td></tr></table></figure>
-
-<h1 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h1><p>这是一个背包问题，且是0-1背包问题 </p>
-<ul>
-<li>0-1背包问题就是每个数值其只有一次</li>
-<li>完全背包问题就是每个数值有无限次次数。例如无限个硬币  </li>
-</ul>
-<p>分析问题：</p>
-<ul>
-<li><p>如果是暴力，则需要将每一个子数值判断其是否为总数的一半。</p>
-</li>
-<li><p>利用动态规划，需要知道其子问题。</p>
-<ul>
-<li><p>1.定义数组dp[w+1] w为总数的一半，用来记录每一个值能否由数组组成</p>
-</li>
-<li><p>2.因为每个数组的数值只能用一次，则外部循环为数组的记录。</p>
-</li>
-<li><p>3.主要代码  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(int num:nums)&#123;</span><br><span class="line">           for(int i=w;i&gt;=num;i--)&#123;</span><br><span class="line">               dp[i] = dp[i]||dp[i-num];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    class Solution &#123;</span><br><span class="line">    public boolean canPartition(int[] nums) &#123;</span><br><span class="line">        int sum = computeArraySum(nums);</span><br><span class="line">        if (sum % 2 != 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int w = sum/2;</span><br><span class="line">        boolean[] dp = new boolean[w+1]; //初始化为false</span><br><span class="line">        dp[0] = true;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            for(int i=w;i&gt;=num;i--)&#123;</span><br><span class="line">                dp[i] = dp[i]||dp[i-num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[w];</span><br><span class="line">    &#125;</span><br><span class="line">    private int computeArraySum(int[] nums) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            sum += num;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-
+<p>示例 2:</p>
+<p>输入: [3,4,5,1,3,null,1]</p>
+<pre><code> 3
+/ \</code></pre><p>   4   5<br>  / \   \ 
+ 1   3   1</p>
+<p>输出: 9<br>解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.  </p>
+<pre><code># 题目思路
+- 递归思路  
+在当下这个节点的时候，max(当下的节点的值+下一层再下一层的节点的值,当下节点的下一层的值)  
+- 动态规划  
+每到一个节点的时候就要判断该节点需不需要偷。  
+定义数组res  
+Left为左边节点中偷与不偷的判断  
+Right为右节点中偷与不偷的判断  
+当拿下该节点的时候，则root.val+left[1]+right[1]; 偷当前节点，左右节点不偷  
+当不拿下该节点的时候，则为
+0+Math.max(left[0], left[1])+Math.max(right[0], right[1]);
+# 代码
+- 递归  
+</code></pre><p>class Solution {<br>    public int rob(TreeNode root) {<br>        if(root==null) return 0;<br>        int val1 = root.val;<br>        if(root.left!=null) val1+= rob(root.left.left)+rob(root.left.right);<br>        if(root.right!=null) val1 += rob(root.right.left)+rob(root.right.right);<br>        int val2 = rob(root.left)+rob(root.right);<br>        return Math.max(val1, val2);<br>    }<br>}</p>
+<pre><code>- 动态规划  
+</code></pre><p>class Solution {<br>    public int rob(TreeNode root) {<br>        int[] res = dp(root);<br>        return Math.max(res[0], res[1]);<br>    }<br>    public int[] dp(TreeNode root){<br>        if(root==null) return new int[2];<br>        int[] left = dp(root.left);<br>        int[] right = dp(root.right);<br>        int[] res = new int[2];<br>        //rob<br>        res[0] = root.val+left[1]+right[1];<br>        //no rob<br>        res[1] = 0+Math.max(left[0], left[1])+Math.max(right[0], right[1]);<br>        return res;<br>    }<br>} </p>
+<pre><code></code></pre>
     
   </div>
 
@@ -269,10 +265,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2021/01/06/leetcode-1334/">
+    <a class="show pull-left" href="/2021/01/06/leetcode-416/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2021/02/21/leetcode-337/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
