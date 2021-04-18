@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/image/offer4_2.png">
 <meta property="og:image" content="http://yoursite.com/image/offer4_3.png">
 <meta property="og:image" content="http://yoursite.com/image/offer4_4.png">
-<meta property="og:updated_time" content="2021-04-18T08:46:07.718Z">
+<meta property="og:updated_time" content="2021-04-18T08:49:35.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指offer题解">
 <meta name="twitter:description" content="前言将剑指offer的题目中的算法解题思路作为笔记记录下来。题目来自《何海涛. 剑指 Offer[M]. 电子工业出版社, 2012.》，刷题网站推荐：牛客网leetcode   数组与矩阵3.数组中重复的数字题目描述找出数组中重复的数字。 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找">
@@ -232,12 +232,17 @@ ga('send', 'pageview');
 <p>给定target = 5， 返回true<br>给定target = 20， 返回false<br><strong>解题思路</strong><br>由题目知道，从左到右递增，从上到下也为递增。如果从左上角出发判断的话，无法确定具体是走右边还是走下边可以找到其值，因此从右上角出发。<br>右上角出发： </p>
 <ul>
 <li><p>当该值大于target值的时候，表明target值左边，向左移动，如图所示，寻target = 5，15大于5。  </p>
-<img src="/image/offer4_1.png" width="100" height="100" alt="图片名称" align="left">
-<img src="/image/offer4_2.png" width="100" height="100" alt="图片名称" align="right">  
+<img src="/image/offer4_1.png" width="100" height="100" alt="图片名称" align="left">   
+<img src="/image/offer4_2.png" width="100" height="100" alt="图片名称" align="right">   
 </li>
-<li><p>当该值小于target值的时候，表明target值在右边，向下移动，如图所示。<br><img src="/image/offer4_3.png" alt>   <img src="/image/offer4_4.png" alt><br>具体代码  </p>
+<li><p>当该值小于target值的时候，表明target值在右边，向下移动，如图所示。  </p>
 </li>
 </ul>
+<img src="/image/offer4_3.png" width="100" height="100" alt="图片名称" align="left">  
+<img src="/image/offer4_4.png" width="100" height="100" alt="图片名称" align="left">    
+
+
+<p>具体代码  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean findNumberIn2DArray(int[][] matrix, int target) &#123;</span><br><span class="line">        if (matrix.length==0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int colum = matrix.length;</span><br><span class="line">        int row = matrix[0].length;</span><br><span class="line">        int indexrow = row-1;</span><br><span class="line">        int indexcolum = 0;</span><br><span class="line">        while(indexrow &gt;= 0 &amp;&amp; indexcolum &lt; colum)&#123;</span><br><span class="line">            if (matrix[indexcolum][indexrow] &gt; target)&#123;</span><br><span class="line">                indexrow--;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (matrix[indexcolum][indexrow] &lt; target)&#123;</span><br><span class="line">                indexcolum++;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return  false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
