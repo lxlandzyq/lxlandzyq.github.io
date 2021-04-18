@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="前言将剑指offer的题目中的算法解题思路作为笔记记录下来。题目来自《何海涛. 剑指 Offer[M]. 电子工业出版社, 2012.》，刷题网站推荐：牛客网leetcode   数组与矩阵3.数组中重复的数字题目描述找出数组中重复的数字。 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/image/offer3_6.png">
+<meta property="og:image" content="http://yoursite.com/image/offer3_6.jpg">
 <meta property="og:image" content="http://yoursite.com/image/offer3_2.png">
 <meta property="og:image" content="http://yoursite.com/image/offer3_3.png">
 <meta property="og:image" content="http://yoursite.com/image/offer3_4.png">
 <meta property="og:image" content="http://yoursite.com/image/offer3_5.png">
-<meta property="og:updated_time" content="2021-04-18T02:38:14.275Z">
+<meta property="og:updated_time" content="2021-04-18T02:40:57.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指offer题解">
 <meta name="twitter:description" content="前言将剑指offer的题目中的算法解题思路作为笔记记录下来。题目来自《何海涛. 剑指 Offer[M]. 电子工业出版社, 2012.》，刷题网站推荐：牛客网leetcode   数组与矩阵3.数组中重复的数字题目描述找出数组中重复的数字。 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找">
-<meta name="twitter:image" content="http://yoursite.com/image/offer3_6.png">
+<meta name="twitter:image" content="http://yoursite.com/image/offer3_6.jpg">
 
   
 
@@ -216,9 +216,9 @@ ga('send', 'pageview');
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目要求数字的范围是在0 ~ n-1的范围内，则表示：</p>
 <ul>
 <li>当数组中没有重复数字的时候，每个索引的值是对应其索引下标值的。  </li>
-<li>当数组有重复的时候，有些索引下是有多个值，有些索引下是无值的，具体如下图。<br><img src="/image/offer3_6.png" alt><br>为表达这种形式，我们开始排列这个数组<br>index = 0，value = 2 则去到index = 2 中将其修改为2<br><img src="/image/offer3_2.png" alt><br>index = 2，value = 1 则去到index = 1 中将其修改为1<br><img src="/image/offer3_3.png" alt><br>index = 1，value = 3 则去到index = 3 中将其修改为3<br><img src="/image/offer3_4.png" alt><br>index = 3，value = 0 则去到index = 0 中将其修改为0<br><img src="/image/offer3_5.png" alt><br>形成闭环，此时都没有出现重复数字，0 到 3的索引都为一次<br>当下标索引指向4的时候<br>index = 4 ,value = 2 此时index = 2中已经为 2，则表明2重复了，输出其值<br>具体代码如下  </li>
+<li>当数组有重复的时候，有些索引下是有多个值，有些索引下是无值的，具体如下图。<br><img src="/image/offer3_6.jpg" alt><br>为表达这种形式，我们开始排列这个数组<br>index = 0，value = 2 则去到index = 2 中将其修改为2<br><img src="/image/offer3_2.png" alt><br>index = 2，value = 1 则去到index = 1 中将其修改为1<br><img src="/image/offer3_3.png" alt><br>index = 1，value = 3 则去到index = 3 中将其修改为3<br><img src="/image/offer3_4.png" alt><br>index = 3，value = 0 则去到index = 0 中将其修改为0<br><img src="/image/offer3_5.png" alt><br>形成闭环，此时都没有出现重复数字，0 到 3的索引都为一次<br>当下标索引指向4的时候<br>index = 4 ,value = 2 此时index = 2中已经为 2，则表明2重复了，输出其值<br>具体代码如下  </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public int findRepeatNumber(int[] nums) &#123;</span><br><span class="line">int length = nums.length;</span><br><span class="line">for (int i = 0 ; i &lt; length; i++)&#123;</span><br><span class="line">while (nums[i]!= i)&#123;</span><br><span class="line">if (nums[i]==nums[nums[i]])&#123;</span><br><span class="line">return nums[i];</span><br><span class="line">&#125;</span><br><span class="line">swap(nums,i,nums[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return -1;</span><br><span class="line">&#125;</span><br><span class="line">public void swap(int[] num,int i,int j)&#123;</span><br><span class="line">int t = num[i];</span><br><span class="line">num[i] = num[j];</span><br><span class="line">num[j] = t;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findRepeatNumber(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        for (int i = 0 ; i &lt; length; i++)&#123;</span><br><span class="line">            while (nums[i]!= i)&#123;</span><br><span class="line">                if (nums[i]==nums[nums[i]])&#123;</span><br><span class="line">                    return nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums,i,nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void swap(int[] num,int i,int j)&#123;</span><br><span class="line">        int t = num[i];</span><br><span class="line">        num[i] = num[j];</span><br><span class="line">        num[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
