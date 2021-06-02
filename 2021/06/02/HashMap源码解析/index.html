@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_2.jpg">
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_3.jpg">
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_4.jpg">
-<meta property="og:updated_time" content="2021-06-02T07:11:37.752Z">
+<meta property="og:updated_time" content="2021-06-02T07:32:15.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap源码解析">
 <meta name="twitter:description" content="Java7 HashMap采用的是冲突链表表达方式。Java8 数组+链表+红黑树 Java7 HashMapJava7采用的结构从上图可以知道，如果选择合适的哈希函数，put()和get()方法可以在常数时间内完成。   但在对HashMap进行迭代时，需要遍历整个table以及后面的冲突链表。因此对于迭代比较频繁的场景，不宜将HashMap的初始化大小设置过大。 有两个参数可以影响HashMa">
@@ -232,7 +232,12 @@ ga('send', 'pageview');
 <h2 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h2><p>查找是否有这个元素，查找过程类似于<code>getEntry()</code>，如果存在则将其移除。<br><img src="/image/2021_6_2_4.jpg" alt>  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//removeEntryForKey()</span><br><span class="line">final Entry&lt;K,V&gt; removeEntryForKey(Object key) &#123;</span><br><span class="line">	......</span><br><span class="line">	int hash = (key == null) ? 0 : hash(key);</span><br><span class="line">    int i = indexFor(hash, table.length);//hash&amp;(table.length-1)</span><br><span class="line">    Entry&lt;K,V&gt; prev = table[i];//得到冲突链表</span><br><span class="line">    Entry&lt;K,V&gt; e = prev;</span><br><span class="line">    while (e != null) &#123;//遍历冲突链表</span><br><span class="line">        Entry&lt;K,V&gt; next = e.next;</span><br><span class="line">        Object k;</span><br><span class="line">        if (e.hash == hash &amp;&amp;</span><br><span class="line">            ((k = e.key) == key || (key != null &amp;&amp; key.equals(k)))) &#123;//找到要删除的entry</span><br><span class="line">            modCount++; size--;</span><br><span class="line">            if (prev == e) table[i] = next;//删除的是冲突链表的第一个entry</span><br><span class="line">            else prev.next = next;</span><br><span class="line">            return e;</span><br><span class="line">        &#125;</span><br><span class="line">        prev = e; e = next;</span><br><span class="line">    &#125;</span><br><span class="line">    return e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Java8-HashMap"><a href="#Java8-HashMap" class="headerlink" title="Java8 HashMap"></a>Java8 HashMap</h1>
+<h1 id="Java8-HashMap"><a href="#Java8-HashMap" class="headerlink" title="Java8 HashMap"></a>Java8 HashMap</h1><p>初始化长度默认是16。<br>散列表不是new HashMap()的时候创建的，是put的时候才开始创建的。<br>负载因子，默认为0.75。<br>比如16 * 0.75 = 12 就是它的扩容阈值。<br>链表转为红黑树的两个指标：  </p>
+<ul>
+<li>链表长度达到8</li>
+<li>散列表长度达到64。<br>散列表的长度必须是2的次方数，比如16，32，64。<br>寻址算法为hash&amp;(table.length - 1)<br>Node 中的hash字段就是高地位异或后增大寻址的随机性，减少哈希冲突</li>
+</ul>
+
     
   </div>
 
@@ -272,7 +277,7 @@ ga('send', 'pageview');
     <a class="show pull-left" href="/2021/04/18/剑指offer题解/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="hide pull-right" href="/">
+    <a class="show pull-right" href="/2021/06/02/红黑树/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
