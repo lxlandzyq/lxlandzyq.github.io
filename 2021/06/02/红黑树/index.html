@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_6.png">
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_9.png">
 <meta property="og:image" content="http://yoursite.com/image/2021_6_2_10.png">
-<meta property="og:updated_time" content="2021-06-02T13:40:01.278Z">
+<meta property="og:updated_time" content="2021-06-03T01:23:25.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="红黑树">
 <meta name="twitter:description" content="什么是红黑树二叉搜索树：  左儿子数比父节点小。 右儿子数比父节点大。此时的搜索就可以减少查阅所有的节点来寻找自己需要找的节点了，如果是从小到大插入数值。就会使得二叉搜索树变成链表一样。    为了解决这个问题就出现了以下两种树：  平衡二叉数（AVL） 红黑树红黑树满足的规律红黑树有以下的规律：   1.任何一个节点都是颜色，黑色或者红色。 2.根节点是黑色。 3.父子节点之间不能出现两个连续的">
@@ -167,7 +167,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是红黑树"><span class="toc-text">什么是红黑树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树满足的规律"><span class="toc-text">红黑树满足的规律</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的查找"><span class="toc-text">红黑树的查找</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的旋转"><span class="toc-text">红黑树的旋转</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的插入"><span class="toc-text">红黑树的插入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#情况1"><span class="toc-text">情况1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#情况2"><span class="toc-text">情况2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#情况3"><span class="toc-text">情况3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入例子"><span class="toc-text">插入例子</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是红黑树"><span class="toc-text">什么是红黑树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树满足的规律"><span class="toc-text">红黑树满足的规律</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的查找"><span class="toc-text">红黑树的查找</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的旋转"><span class="toc-text">红黑树的旋转</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的插入"><span class="toc-text">红黑树的插入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#情况1"><span class="toc-text">情况1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#情况2"><span class="toc-text">情况2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#情况3"><span class="toc-text">情况3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入例子"><span class="toc-text">插入例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树的删除"><span class="toc-text">红黑树的删除</span></a></li></ol>
   </div>
 
 
@@ -238,7 +238,8 @@ ga('send', 'pageview');
 </ul>
 <h2 id="情况2"><a href="#情况2" class="headerlink" title="情况2"></a>情况2</h2><p>向右旋转，并且互换颜色，进行旋转。<br><img src="/image/2021_6_2_9.png" alt>  </p>
 <h2 id="情况3"><a href="#情况3" class="headerlink" title="情况3"></a>情况3</h2><p>将情况3 变为情况2，然后再进行替换。<br><img src="/image/2021_6_2_10.png" alt></p>
-<h2 id="插入例子"><a href="#插入例子" class="headerlink" title="插入例子"></a>插入例子</h2>
+<h2 id="插入例子"><a href="#插入例子" class="headerlink" title="插入例子"></a>插入例子</h2><p>根据上述的情况插入，可以参考这个例子：<br><a href="https://blog.csdn.net/cout_sev/article/details/24628903" target="_blank" rel="noopener">https://blog.csdn.net/cout_sev/article/details/24628903</a></p>
+<h1 id="红黑树的删除"><a href="#红黑树的删除" class="headerlink" title="红黑树的删除"></a>红黑树的删除</h1>
     
   </div>
 
