@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>利用JMeter测试TCP服务器性能 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript">
+  
+
+  <meta name="description" content="介绍在阿里云服务器上重写了多线程服务器，需要测试其性能，在测试服务器性能的时候不能在一台机子上进行服务器运行与测试运行。因为这样会消耗一些文件描述符，测试不准确。 JMeter是一个测试工具，其需要先安装JDK8或者以上才可以运行。它是一个测试工具，可以用来测HTTP也可以用来测TCP，本文将其用来测TCP即为SOCKET。 安装下载运行本文以MAC为环境：下载地址：http://jmeter.a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用JMeter测试TCP服务器性能">
+<meta property="og:url" content="http://yoursite.com/2021/12/30/利用JMeter测试TCP服务器性能/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="介绍在阿里云服务器上重写了多线程服务器，需要测试其性能，在测试服务器性能的时候不能在一台机子上进行服务器运行与测试运行。因为这样会消耗一些文件描述符，测试不准确。 JMeter是一个测试工具，其需要先安装JDK8或者以上才可以运行。它是一个测试工具，可以用来测HTTP也可以用来测TCP，本文将其用来测TCP即为SOCKET。 安装下载运行本文以MAC为环境：下载地址：http://jmeter.a">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_2.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_3.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_4.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_5.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_6.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_7.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_8.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_10.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_9.png">
+<meta property="og:image" content="http://yoursite.com/image/2021_12_30_11.png">
+<meta property="og:updated_time" content="2021-12-30T02:43:08.218Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用JMeter测试TCP服务器性能">
+<meta name="twitter:description" content="介绍在阿里云服务器上重写了多线程服务器，需要测试其性能，在测试服务器性能的时候不能在一台机子上进行服务器运行与测试运行。因为这样会消耗一些文件描述符，测试不准确。 JMeter是一个测试工具，其需要先安装JDK8或者以上才可以运行。它是一个测试工具，可以用来测HTTP也可以用来测TCP，本文将其用来测TCP即为SOCKET。 安装下载运行本文以MAC为环境：下载地址：http://jmeter.a">
+<meta name="twitter:image" content="http://yoursite.com/image/2021_12_30_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JMeter"><span class="toc-text">JMeter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装下载运行"><span class="toc-text">安装下载运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行一个TCP条目"><span class="toc-text">运行一个TCP条目</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行内容"><span class="toc-text">运行内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-利用JMeter测试TCP服务器性能" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">利用JMeter测试TCP服务器性能</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.12.30</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>在阿里云服务器上重写了多线程服务器，需要测试其性能，在测试服务器性能的时候不能在一台机子上进行服务器运行与测试运行。因为这样会消耗一些文件描述符，测试不准确。</p>
+<h1 id="JMeter"><a href="#JMeter" class="headerlink" title="JMeter"></a>JMeter</h1><p>是一个测试工具，其需要先安装JDK8或者以上才可以运行。它是一个测试工具，可以用来测HTTP也可以用来测TCP，本文将其用来测TCP即为SOCKET。</p>
+<h2 id="安装下载运行"><a href="#安装下载运行" class="headerlink" title="安装下载运行"></a>安装下载运行</h2><p>本文以MAC为环境：<br>下载地址：<a href="http://jmeter.apache.org/download_jmeter.cgi" target="_blank" rel="noopener">http://jmeter.apache.org/download_jmeter.cgi</a><br><img src="/image/2021_12_30_1.png" alt><br>本文下载的为字节类型的，下载安装包之后进行解压。<br>本文中存放的路径为，需要进入其bin目录下  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/mac/JMeter/apache-jmeter-5.4.3/bin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh jmeter</span><br></pre></td></tr></table></figure>
+
+<p>即会展示其可视化窗口  </p>
+<h3 id="运行一个TCP条目"><a href="#运行一个TCP条目" class="headerlink" title="运行一个TCP条目"></a>运行一个TCP条目</h3><p>打开之后新建一个线程组<br><img src="/image/2021_12_30_2.png" alt><br>配置JMeter线程组<br><img src="/image/2021_12_30_3.png" alt><br>添加JMeter TCP请求<br><img src="/image/2021_12_30_4.png" alt><br>设置TCP内容<br><img src="/image/2021_12_30_5.png" alt><br>主要参数为TCPClient classname:  </p>
+<ul>
+<li>org.apache.jmeter.protocol.tcp.sampler.TCPClientImpl（以文本编辑器中的纯文本做为内容发送）</li>
+<li>org.apache.jmeter.protocol.tcp.sampler.BinaryTCPClientImpl（以文本编辑器中所编辑的16进制字符（hex）内容为基础转换为二进制的字节内容进行发送）</li>
+<li>org.apache.jmeter.protocol.tcp.sampler.LengthPrefixedBinaryTCPClientImpl（在BinaryTCPClientImpl基础上默认以发送内容的长度以字节前缀进行填充）  </li>
+</ul>
+<p>本文只用过org.apache.jmeter.protocol.tcp.sampler.TCPClientImpl，所以将此内容填入到TCPClient classname中。<br>服务器端口，由于本文使用的是阿里云服务器，本来打算通过想自定义端口号，比如8000，但是一直telnet连接不通，最后查阅得知，其阿里云开放的端口号为3389。<br>End of line(EOL) byte value: 这个参数与服务器返回的参数有关，是数据服务流结束的一个标识。如果没有这个结束标识将会一直读到输入流结束位置。本文中，向服务器发送文本testTcp，服务器要返回一个字符串，abc}，其中符号}在ascii码表中对应的10进制为125，这里填写的就为125。<br>具体内容就是上面的内容。</p>
+<h1 id="运行内容"><a href="#运行内容" class="headerlink" title="运行内容"></a>运行内容</h1><p><img src="/image/2021_12_30_6.png" alt><br><img src="/image/2021_12_30_7.png" alt><br>开启结果树：<br><img src="/image/2021_12_30_8.png" alt><br>生成汇总报告：<br><img src="/image/2021_12_30_10.png" alt><br>然后点击头顶绿色按钮方可运行，接下来在结果树中显示的内容。<br><img src="/image/2021_12_30_9.png" alt><br>汇总报告显示的内容<br><img src="/image/2021_12_30_11.png" alt><br>汇总报告介绍：  </p>
+<ul>
+<li>示例 - 发送的请求数量</li>
+<li>平均值 - 所有响应的算术平均值（所有次数/计数的总和）</li>
+<li>最小响应时间（毫秒）</li>
+<li>最大响应时间（毫秒）</li>
+<li>偏差 - </li>
+<li>错误率 - 失败测试的百分比</li>
+<li><strong>吞吐量 - 您的服务器每秒处理多少个请求。越大越好。（主要这个）</strong></li>
+<li>KB / Sec  - 自我介绍</li>
+<li>平均。字节 - 平均响应大小</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://www.sojson.com/blog/264.html" target="_blank" rel="noopener">https://www.sojson.com/blog/264.html</a><br><a href="https://www.shangmayuan.com/a/c2dfb7a21ccd4949b1b37718.html" target="_blank" rel="noopener">https://www.shangmayuan.com/a/c2dfb7a21ccd4949b1b37718.html</a><br><a href="https://blog.csdn.net/ZJU_fish1996/article/details/71379150" target="_blank" rel="noopener">https://blog.csdn.net/ZJU_fish1996/article/details/71379150</a><br><a href="https://cloud.tencent.com/developer/ask/113360" target="_blank" rel="noopener">https://cloud.tencent.com/developer/ask/113360</a>  </p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2021/08/01/gdb的线程调试示例/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

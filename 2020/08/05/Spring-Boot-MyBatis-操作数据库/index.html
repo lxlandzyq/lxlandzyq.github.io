@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Spring Boot+MyBatis 操作数据库 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Spring boot,">
+  
+
+  <meta name="description" content="介绍用小demo来进行介绍此次的操作。 MyBatis 易上手 映射为主 普通java映射成数据库的操作前期准备建立数据库结构如下图所示，表格名字为user_table加载依赖pom.xml中的依赖，以及资源文件的加载xml等配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta name="keywords" content="Spring boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot+MyBatis 操作数据库">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/Spring-Boot-MyBatis-操作数据库/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="介绍用小demo来进行介绍此次的操作。 MyBatis 易上手 映射为主 普通java映射成数据库的操作前期准备建立数据库结构如下图所示，表格名字为user_table加载依赖pom.xml中的依赖，以及资源文件的加载xml等配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/2020_8_5_1.png">
+<meta property="og:updated_time" content="2020-08-04T17:57:33.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot+MyBatis 操作数据库">
+<meta name="twitter:description" content="介绍用小demo来进行介绍此次的操作。 MyBatis 易上手 映射为主 普通java映射成数据库的操作前期准备建立数据库结构如下图所示，表格名字为user_table加载依赖pom.xml中的依赖，以及资源文件的加载xml等配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_8_5_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MyBatis"><span class="toc-text">MyBatis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前期准备"><span class="toc-text">前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#建立数据库"><span class="toc-text">建立数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加载依赖"><span class="toc-text">加载依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#业务"><span class="toc-text">业务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pojo"><span class="toc-text">pojo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dao与mapper"><span class="toc-text">dao与mapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#service与service下的impl"><span class="toc-text">service与service下的impl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#controller"><span class="toc-text">controller</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication"><span class="toc-text">SpringBootApplication</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-Spring-Boot-MyBatis-操作数据库" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Spring Boot+MyBatis 操作数据库</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.08.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>用小demo来进行介绍此次的操作。</p>
+<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><ul>
+<li>易上手</li>
+<li>映射为主</li>
+<li>普通java映射成数据库的操作<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="建立数据库"><a href="#建立数据库" class="headerlink" title="建立数据库"></a>建立数据库</h2>结构如下图所示，表格名字为user_table<br><img src="/image/2020_8_5_1.png" alt><h2 id="加载依赖"><a href="#加载依赖" class="headerlink" title="加载依赖"></a>加载依赖</h2>pom.xml中的依赖，以及资源文件的加载xml等配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.3.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;exclusions&gt;</span><br><span class="line">            &lt;exclusion&gt;</span><br><span class="line">                &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;</span><br><span class="line">            &lt;/exclusion&gt;</span><br><span class="line">        &lt;/exclusions&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">        &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src/main/java&lt;/directory&gt;</span><br><span class="line">        &lt;includes&gt;</span><br><span class="line">            &lt;include&gt;**/*.xml&lt;/include&gt;</span><br><span class="line">        &lt;/includes&gt;</span><br><span class="line">        &lt;/resource&gt;</span><br><span class="line">    &lt;/resources&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>配置application.properties的内容如下列所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/chapter5 #数据库连接</span><br><span class="line">spring.datasource.username=root #账号</span><br><span class="line">spring.datasource.password=123456 #密码</span><br><span class="line">spring.datasource.tomcat.max-idle=10</span><br><span class="line">spring.datasource.tomcat.max-active=50</span><br><span class="line">spring.datasource.tomcat.max-wait=10000</span><br><span class="line">spring.datasource.tomcat.initial-size=5</span><br><span class="line"></span><br><span class="line">#mybatis映射文件配置</span><br><span class="line">mybatis.mapper-locations=classpath:com/springboot/chapter5/mapper/*.xml</span><br><span class="line">#Mybatis 扫描别名，和注解Alias联用</span><br><span class="line">mybatis.type-aliases-package=com.springboot.chapter5.pojo</span><br><span class="line">#配置typehandler的扫描包</span><br><span class="line">mybatis.type-handlers-package=com.springboot.chapter5.typehandler</span><br><span class="line">#日志配置</span><br><span class="line">logging.level.root=DEBUG</span><br><span class="line">logging.level.org.springframework=DEBUG</span><br><span class="line">logging.level.org.org.mybatis=DEBUG</span><br></pre></td></tr></table></figure>
+
+<h1 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h1><h2 id="pojo"><a href="#pojo" class="headerlink" title="pojo"></a>pojo</h2><p>编写User类，该类与数据库中表user_table类型是相互对应的。<br>@Alias(value = “user”) 即为了使其xml文件可以识别出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5.pojo;</span><br><span class="line"></span><br><span class="line">import org.apache.ibatis.type.Alias;</span><br><span class="line"></span><br><span class="line">@Alias(value = &quot;user&quot;) //mabatis指定别名</span><br><span class="line">public class User &#123;</span><br><span class="line">    private Long id = null;</span><br><span class="line">    private String userName = null;</span><br><span class="line">    private String note = null;</span><br><span class="line">    private String sex = null;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Long id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUserName() &#123;</span><br><span class="line">        return userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUserName(String userName) &#123;</span><br><span class="line">        this.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getNote() &#123;</span><br><span class="line">        return note;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setNote(String note) &#123;</span><br><span class="line">        this.note = note;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="dao与mapper"><a href="#dao与mapper" class="headerlink" title="dao与mapper"></a>dao与mapper</h2><p>dao下的接口，分别对表格增删改查。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5.dao;</span><br><span class="line"></span><br><span class="line">import com.springboot.chapter5.pojo.User;</span><br><span class="line"></span><br><span class="line">public interface MyBatisUserDao &#123;</span><br><span class="line">    public User getUser(Long id);</span><br><span class="line">    public void insertUser(User user);</span><br><span class="line">    public void updateUser(User user);</span><br><span class="line">    public void deleteUser(Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mapper下的映射xml文件，将接口MyBatisUserDao需要的操作映射到xml文件中，进行操作。<br>dao与mapper在同一级别</p>
+<ul>
+<li>namespace=”com.springboot.chapter5.dao.MyBatisUserDao”即为上述接口，进行映射</li>
+<li>id为映射的方法</li>
+<li>parameterType为传入的参数，即通过id查询，则传入long型</li>
+<li>resultType为查询的返回值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">    PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">    &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.springboot.chapter5.dao.MyBatisUserDao&quot;&gt; &lt;!--MyBatis会自动进行映射--&gt;</span><br><span class="line">    &lt;select id=&quot;getUser&quot; parameterType=&quot;long&quot; resultType=&quot;user&quot;&gt;</span><br><span class="line">        select id, user_name as userName, sex, note from user_table where id = #&#123;id&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;insert id=&quot;insertUser&quot; parameterType=&quot;user&quot;  &gt;</span><br><span class="line">        insert into user_table (id,user_Name,sex,note) value (#&#123;id&#125;, #&#123;userName&#125;, #&#123;sex&#125;,#&#123;note&#125;)</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    &lt;update id=&quot;updateUser&quot; parameterType=&quot;user&quot; &gt;</span><br><span class="line">        update user_table set user_Name = #&#123;userName&#125;,sex = #&#123;sex&#125;,note = #&#123;note&#125; where id = #&#123;id&#125;</span><br><span class="line">    &lt;/update&gt;</span><br><span class="line">    &lt;delete id=&quot;deleteUser&quot; parameterType=&quot;long&quot; &gt;</span><br><span class="line">        delete from user_table where id = #&#123;id&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="service与service下的impl"><a href="#service与service下的impl" class="headerlink" title="service与service下的impl"></a>service与service下的impl</h2><p>该接口即为业务需要实现的接口，下面会进行描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5.service;</span><br><span class="line"></span><br><span class="line">import com.springboot.chapter5.pojo.User;</span><br><span class="line"></span><br><span class="line">public interface MyBatisUserService &#123;</span><br><span class="line">    public User getUser(Long id);</span><br><span class="line">    public void insertUser(User user);</span><br><span class="line">    public void updateUser(User user);</span><br><span class="line">    public void deleteUser(Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现上述接口MyBatisUserService，并进行业务操作，通过MyBatisUserDao，对数据库进行操作，从而进行映射。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5.service.impl;</span><br><span class="line"></span><br><span class="line">import com.springboot.chapter5.dao.MyBatisUserDao;</span><br><span class="line">import com.springboot.chapter5.pojo.User;</span><br><span class="line">import com.springboot.chapter5.service.MyBatisUserService;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class MyBatisUserServiceImpl implements MyBatisUserService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private MyBatisUserDao myBatisUserDao = null; //mybatis映射的接口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getUser(Long id) &#123;</span><br><span class="line">        return myBatisUserDao.getUser(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void insertUser(User user) &#123;</span><br><span class="line">        myBatisUserDao.insertUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void updateUser(User user) &#123;</span><br><span class="line">        myBatisUserDao.updateUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void deleteUser(Long id) &#123;</span><br><span class="line">        myBatisUserDao.deleteUser(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><p>实现服务MyBatisUserService，并根据路径实现相应的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5.controller;</span><br><span class="line"></span><br><span class="line">import com.springboot.chapter5.pojo.User;</span><br><span class="line">import com.springboot.chapter5.service.MyBatisUserService;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.stereotype.Controller;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">@RequestMapping(&quot;/mybatis&quot;)</span><br><span class="line">public class MyBatisController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private MyBatisUserService myBatisUserService = null;//连接 数据库的接口，会实例化其实现的类</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/getUser&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public User getUser(Long id)&#123;</span><br><span class="line">        return myBatisUserService.getUser(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/insertUser&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public void insertUser(User user)&#123;</span><br><span class="line">        myBatisUserService.insertUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/updateUser&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public void updateUser(User user)&#123;</span><br><span class="line">        myBatisUserService.updateUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/deleteUser&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public void deleteUser(Long id)&#123;</span><br><span class="line">        myBatisUserService.deleteUser(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="SpringBootApplication"></a>SpringBootApplication</h2><p>这里使用了SqlSessionFactory是spring boot自动为我们生成的，然后直接使用MapperFactoryBean来定义MyBatisUserDao接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.chapter5;</span><br><span class="line"></span><br><span class="line">import com.springboot.chapter5.dao.MyBatisUserDao;</span><br><span class="line">import org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line">import org.mybatis.spring.mapper.MapperFactoryBean;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication(scanBasePackages = &#123;&quot;com.springboot.chapter5&quot;&#125;)</span><br><span class="line">public class Chapter5Application &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    SqlSessionFactory sqlSessionFactory = null;</span><br><span class="line">    //定义一个mabatis的mapper接口</span><br><span class="line">    @Bean</span><br><span class="line">    public MapperFactoryBean&lt;MyBatisUserDao&gt; initMyBatisUserDao()&#123;</span><br><span class="line">        MapperFactoryBean&lt;MyBatisUserDao&gt; bean = new MapperFactoryBean&lt;&gt;();</span><br><span class="line">        bean.setMapperInterface(MyBatisUserDao.class);</span><br><span class="line">        bean.setSqlSessionFactory(sqlSessionFactory);</span><br><span class="line">        return bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Chapter5Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>通过链接</p>
+<ul>
+<li>插入：<a href="http://localhost:8080/mybatis/insertUser?id=4&amp;userName=小连&amp;sex=女&amp;note=aaaaaa（根据自己定义修改）" target="_blank" rel="noopener">http://localhost:8080/mybatis/insertUser?id=4&amp;userName=小连&amp;sex=女&amp;note=aaaaaa（根据自己定义修改）</a></li>
+<li>修改：<a href="http://localhost:8080/mybatis/updateUser?id=4&amp;userName=小周&amp;sex=女&amp;note=aaaaaa" target="_blank" rel="noopener">http://localhost:8080/mybatis/updateUser?id=4&amp;userName=小周&amp;sex=女&amp;note=aaaaaa</a> （根据id进行修改内容）</li>
+<li>查询：<a href="http://localhost:8080/mybatis/getUser?id=4" target="_blank" rel="noopener">http://localhost:8080/mybatis/getUser?id=4</a> （根据id进行查找）</li>
+<li>删除：<a href="http://localhost:8080/mybatis/deleteUser?id=4" target="_blank" rel="noopener">http://localhost:8080/mybatis/deleteUser?id=4</a> （根据id进行删除）<br>如若错误，希望指出。</li>
+</ul>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/08/02/代理模式/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/08/06/Redis介绍以及在SpringBoot的操作/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

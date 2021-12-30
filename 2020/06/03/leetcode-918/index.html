@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>leetcode-918 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="数组,kadane,">
+  
+
+  <meta name="description" content="题目 环形子数组的最大和给定一个由整数数组 A 表示的环形数组 C，求 C 的非空子数组的最大可能和。  在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 &amp;lt;= i &amp;lt; A.length 时 C[i] = A[i]，而当 i &amp;gt;= 0 时 C[i+A.length] = C[i]） 此外，子数组最多只能包含固定缓冲区 A 中的每个元素一次。（形式上，对于子数组">
+<meta name="keywords" content="数组,kadane">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-918">
+<meta property="og:url" content="http://yoursite.com/2020/06/03/leetcode-918/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目 环形子数组的最大和给定一个由整数数组 A 表示的环形数组 C，求 C 的非空子数组的最大可能和。  在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 &amp;lt;= i &amp;lt; A.length 时 C[i] = A[i]，而当 i &amp;gt;= 0 时 C[i+A.length] = C[i]） 此外，子数组最多只能包含固定缓冲区 A 中的每个元素一次。（形式上，对于子数组">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-06-10T01:29:51.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-918">
+<meta name="twitter:description" content="题目 环形子数组的最大和给定一个由整数数组 A 表示的环形数组 C，求 C 的非空子数组的最大可能和。  在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 &amp;lt;= i &amp;lt; A.length 时 C[i] = A[i]，而当 i &amp;gt;= 0 时 C[i+A.length] = C[i]） 此外，子数组最多只能包含固定缓冲区 A 中的每个元素一次。（形式上，对于子数组">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析（前缀和）"><span class="toc-text">分析（前缀和）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解答（kadane）"><span class="toc-text">解答（kadane）</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-leetcode-918" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">leetcode-918</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.06.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol start="918">
+<li>环形子数组的最大和<br>给定一个由整数数组 A 表示的环形数组 C，求 C 的非空子数组的最大可能和。</li>
+</ol>
+<p>在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 &lt;= i &lt; A.length 时 C[i] = A[i]，而当 i &gt;= 0 时 C[i+A.length] = C[i]）</p>
+<p>此外，子数组最多只能包含固定缓冲区 A 中的每个元素一次。（形式上，对于子数组 C[i], C[i+1], …, C[j]，不存在 i &lt;= k1, k2 &lt;= j 其中 k1 % A.length = k2 % A.length）</p>
+<p>示例 1：</p>
+<p>输入：[1,-2,3,-2]<br>输出：3<br>解释：从子数组 [3] 得到最大和 3<br>示例 2：</p>
+<p>输入：[5,-3,5]<br>输出：10<br>解释：从子数组 [5,5] 得到最大和 5 + 5 = 10<br>示例 3：</p>
+<p>输入：[3,-1,2,-1]<br>输出：4<br>解释：从子数组 [2,-1,3] 得到最大和 2 + (-1) + 3 = 4<br>示例 4：</p>
+<p>输入：[3,-2,2,-3]<br>输出：3<br>解释：从子数组 [3] 和 [3,-2,2] 都可以得到最大和 3<br>示例 5：</p>
+<p>输入：[-2,-3,-1]<br>输出：-1<br>解释：从子数组 [-1] 得到最大和 -1</p>
+<h1 id="分析（前缀和）"><a href="#分析（前缀和）" class="headerlink" title="分析（前缀和）"></a>分析（前缀和）</h1><p>需求：求出每一段数组的长度，再判断其是否为最大值<br>因为固定思想，出现子数组就想到的是前缀和，最后还是利用了前缀和<br>s数组为前缀和<br>sum[i,j]=s[j]-s[i] 为原数组<br>sum(A)-sum[i,j]  为其环型数组<br>结果：不出意料，果然超时</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxSubarraySumCircular(self, A: List[int]) -&gt; int:</span><br><span class="line">        sum_temp = [0]*(len(A)) #为了得出索引值</span><br><span class="line">        temp = 0</span><br><span class="line">        for i in range(len(A)):</span><br><span class="line">            temp += A[i]</span><br><span class="line">            sum_temp[i] += temp</span><br><span class="line">        max_temp = max(sum_temp)</span><br><span class="line">        all_sum = sum(A)</span><br><span class="line">        for i in range(0,len(sum_temp)):</span><br><span class="line">            for j in range(i+1,len(sum_temp)):</span><br><span class="line">                s = sum_temp[j]-sum_temp[i]</span><br><span class="line">                temp = all_sum - s </span><br><span class="line">                if max_temp&lt;s:</span><br><span class="line">                    max_temp=s</span><br><span class="line">                elif max_temp&lt;temp:</span><br><span class="line">                    max_temp=temp</span><br><span class="line">        return max_temp</span><br></pre></td></tr></table></figure>
+
+<h1 id="解答（kadane）"><a href="#解答（kadane）" class="headerlink" title="解答（kadane）"></a>解答（kadane）</h1><p>kadane为求数组中子数组最大值<br>kadane的思路，当前值current_max 为当前的最大子数组，global_max为全局最大子数组，当current_max = max(current_max+a[i],a[i])进行比较，global_max = max(current_max,global_max)即得出最大子数组为global_max<br>具体教程可以查看youtube视频，看起最后的例子比较好理解：<br><a href="https://www.youtube.com/watch?v=86CQq3pKSUw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=86CQq3pKSUw</a><br>解题：<br>在此数组中，有两种情况：<br>1.最大global_max在原数组上<br>2.最大global_max在环数组上<br>1原数组知道怎么求，只为求2，2即为总数组sum(a)-global_min即可得在环上的global_max 具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxSubarraySumCircular(self, A: List[int]) -&gt; int:</span><br><span class="line">        if len(A)==1:</span><br><span class="line">            return A[0]</span><br><span class="line">        current_max = global_max = A[0]</span><br><span class="line">        #从此处找到最大数组</span><br><span class="line">        for i in range(1,len(A)):</span><br><span class="line">            current_max = max(current_max+A[i],A[i])</span><br><span class="line">            if current_max &gt;global_max:</span><br><span class="line">                global_max = current_max</span><br><span class="line">        #从此处找到最小数组</span><br><span class="line">        current_min = global_min = A[0]</span><br><span class="line">        for i in range(1,len(A)):</span><br><span class="line">            current_min = min(current_min+A[i],A[i])</span><br><span class="line">            if current_min&lt;global_min:</span><br><span class="line">                global_min = current_min</span><br><span class="line">        if sum(A)-global_min ==0:#相等说明总值最小，即全为负数</span><br><span class="line">            return global_max</span><br><span class="line">        else:</span><br><span class="line">            return max(global_max,sum(A)-global_min)</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/06/03/leetcode-665/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/06/07/leetcode-238/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>工厂模式 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设计模式,">
+  
+
+  <meta name="description" content="工厂模式在工厂模式下有三种模式，分别为简单工厂模式，工厂方法模式以及抽象工厂模式，其中工厂方法模式就是常说的工厂模式，同时使用也是最频繁的 简单工厂模式定义简单工厂模式是一种编程习惯，并非是一种设计模式。其主要内容为通过一个类来负责创建其他类的实例，且被创建的类通常都具有共同的父类或接口 具体实例创建一个家具接口 123456789/*** 定义家具接口*/public interface Fur">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工厂模式">
+<meta property="og:url" content="http://yoursite.com/2020/08/01/工厂模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="工厂模式在工厂模式下有三种模式，分别为简单工厂模式，工厂方法模式以及抽象工厂模式，其中工厂方法模式就是常说的工厂模式，同时使用也是最频繁的 简单工厂模式定义简单工厂模式是一种编程习惯，并非是一种设计模式。其主要内容为通过一个类来负责创建其他类的实例，且被创建的类通常都具有共同的父类或接口 具体实例创建一个家具接口 123456789/*** 定义家具接口*/public interface Fur">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-08-01T06:07:02.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工厂模式">
+<meta name="twitter:description" content="工厂模式在工厂模式下有三种模式，分别为简单工厂模式，工厂方法模式以及抽象工厂模式，其中工厂方法模式就是常说的工厂模式，同时使用也是最频繁的 简单工厂模式定义简单工厂模式是一种编程习惯，并非是一种设计模式。其主要内容为通过一个类来负责创建其他类的实例，且被创建的类通常都具有共同的父类或接口 具体实例创建一个家具接口 123456789/*** 定义家具接口*/public interface Fur">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#工厂模式"><span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简单工厂模式"><span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体实例"><span class="toc-text">具体实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工厂方法模式"><span class="toc-text">工厂方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单工厂的局限性"><span class="toc-text">简单工厂的局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义-1"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体实例-1"><span class="toc-text">具体实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要的两个内容"><span class="toc-text">主要的两个内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体物件"><span class="toc-text">具体物件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#main"><span class="toc-text">main</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优势"><span class="toc-text">优势</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-工厂模式" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">工厂模式</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.08.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>在工厂模式下有三种模式，分别为<strong>简单工厂模式</strong>，<strong>工厂方法模式</strong>以及<strong>抽象工厂模式</strong>，其中<strong>工厂方法模式</strong>就是常说的工厂模式，同时使用也是最频繁的</p>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简单工厂模式是一种编程习惯，并非是一种设计模式。其主要内容为<strong>通过一个类来负责创建其他类的实例，且被创建的类通常都具有共同的父类或接口</strong></p>
+<h2 id="具体实例"><a href="#具体实例" class="headerlink" title="具体实例"></a>具体实例</h2><p>创建一个家具接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 定义家具接口</span><br><span class="line">*/</span><br><span class="line">public interface Furniture &#123;</span><br><span class="line">    /**</span><br><span class="line">    * 显示具体家具</span><br><span class="line">    */</span><br><span class="line">    void display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三个实体类分别实现这个接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Sofa implements Furniture &#123;</span><br><span class="line">    public Sofa() &#123;</span><br><span class="line">        System.out.println(&quot;沙发实体被建立&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;显示沙发&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Chair implements Furniture &#123;</span><br><span class="line">    public Chair() &#123;</span><br><span class="line">        System.out.println(&quot;椅子实体被建立&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;显示椅子&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Desk implements Furniture &#123;</span><br><span class="line">    public Desk() &#123;</span><br><span class="line">        System.out.println(&quot;桌子实体被建立&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;显示桌子&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>专门定义一个类来负责创建其他类的实例，即为工厂来创建这些家具</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 用于生产产品的类</span><br><span class="line">*/</span><br><span class="line">public class FurnitureFactory &#123;</span><br><span class="line">    /**</span><br><span class="line">    * 根据具体业务进行处理</span><br><span class="line">    * @param name</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">    public Furniture getInstance(String name)&#123;</span><br><span class="line">        Furniture furniture = null;</span><br><span class="line">        switch (name)&#123;</span><br><span class="line">            case &quot;Sofa&quot;:</span><br><span class="line">                furniture = new Sofa();</span><br><span class="line">                break;</span><br><span class="line">            case &quot;Chair&quot; :</span><br><span class="line">                furniture = new Chair();</span><br><span class="line">                break;</span><br><span class="line">            case &quot;Desk&quot;:</span><br><span class="line">                furniture = new Desk();</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return  furniture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FurnitureFactory factory = new FurnitureFactory();</span><br><span class="line">Furniture sofa =  factory.getInstance(&quot;Sofa&quot;);</span><br><span class="line">Furniture chair = factory.getInstance(&quot;Chair&quot;);</span><br><span class="line">Furniture desk = factory.getInstance(&quot;Desk&quot;);</span><br><span class="line">sofa.display();</span><br><span class="line">chair.display();</span><br><span class="line">desk.display();</span><br></pre></td></tr></table></figure>
+
+<p>分别对各个实体的调用。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>用户可以根据工厂类去创建所需要的实例，而无需了解工厂内部是如何创建的，如用户直接调用getInstance方法就可以了。</li>
+<li>适用于需要创建的对象较少。<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2></li>
+<li>带来了局限性，当种类多的时候，会对getInstance方法内部的处理比较麻烦<br>比如多了几个实体，箱子，空调等实体的类的时候，还要重新处理getInstance方法。</li>
+</ul>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>工厂方法模式是简单工厂的进一步深化，</p>
+<h2 id="简单工厂的局限性"><a href="#简单工厂的局限性" class="headerlink" title="简单工厂的局限性"></a>简单工厂的局限性</h2><p>在简单工厂中，其缺点如上述缺点所示，在添加新的实体的时候需要修改原先的代码（需要修改getInstance方法），不符合<strong>开放-封闭原则</strong>，<strong>开放</strong>在原有的代码上可以扩展，<strong>封闭</strong>不改变原有的代码。</p>
+<h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>（大白话）即为创建属性为接口（Furniture），以及工厂为接口（FurnitureFactory），每一个实体都有其相应的工厂类，即为Chair（实现了Furniture）类，主要为该类的一些<strong>特征</strong>，以及ChairFactory（实现了FurnitureFactory）类，主要为<strong>对Chair类做什么操作</strong>。通过下面展示。</p>
+<h2 id="具体实例-1"><a href="#具体实例-1" class="headerlink" title="具体实例"></a>具体实例</h2><h3 id="主要的两个内容"><a href="#主要的两个内容" class="headerlink" title="主要的两个内容"></a>主要的两个内容</h3><p>属性接口（家具为一种属性，沙发和椅子都属于这一种属性）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 定义家具接口</span><br><span class="line">*/</span><br><span class="line">public interface Furniture &#123;</span><br><span class="line">    /**</span><br><span class="line">    * 显示具体家具</span><br><span class="line">    */</span><br><span class="line">    void display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>属性工厂接口（即为对实现这个接口的类进行操作）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface FurnitureFactory &#123;</span><br><span class="line"></span><br><span class="line">public Furniture getInstance();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给getInstance方法返回的为Frurniture</p>
+<h3 id="具体物件"><a href="#具体物件" class="headerlink" title="具体物件"></a>具体物件</h3><p>两个个实体类分别实现这个两个接口<br><strong>第一个</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Sofa implements Furniture &#123;</span><br><span class="line">    public Sofa() &#123;</span><br><span class="line">        System.out.println(&quot;沙发实体被建立&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;显示沙发&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class SofaFactory implements FurnitureFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Furniture getInstance() &#123;</span><br><span class="line">        return new Sofa();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二个</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Chair implements Furniture &#123;</span><br><span class="line">    public Chair() &#123;</span><br><span class="line">        System.out.println(&quot;椅子实体被建立&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;显示椅子&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class ChairFactory implements FurnitureFactory&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Furniture getInstance() &#123;</span><br><span class="line">        return new Chair();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FurnitureFactory factory1 = new ChairFactory();</span><br><span class="line">Furniture chair = factory1.getInstance();</span><br><span class="line">chair.display();</span><br><span class="line"></span><br><span class="line">FurnitureFactory factory2 = new DeskFactory();</span><br><span class="line">Furniture desk = factory2.getInstance();</span><br><span class="line">desk.display();</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p> 通过此可以看到，如果再加一个类进来，只要相应的类实现相应的接口，再main中，按照这种格式进行调用就可以了，符合开放-封闭的思想。减少了修改代码</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/07/16/vue中命令npm-run-dev的问题/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/08/01/模拟Spring工厂实现/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

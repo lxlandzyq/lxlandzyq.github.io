@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Spring中的IoC | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="spring boot,">
+  
+
+  <meta name="description" content="定义IoC是一种通过描述来生成或者获取对象的技术，初学者都是采用new关键字来创建对象，在spring中则不是。 大白话在一个系统中有多个对象，对象之间并不是孤立存在的，他们之间存在依赖关系。例如老师，学生，班级之间都存在依赖关系，同时也需要一个容器将这些对象存储起来。在Spring中把每一个需要管理的对象成为Spring Bean（简称Bean），Spring管理这些Bean的容器，被称作为Io">
+<meta name="keywords" content="spring boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中的IoC">
+<meta property="og:url" content="http://yoursite.com/2020/08/02/Spring中的IoC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="定义IoC是一种通过描述来生成或者获取对象的技术，初学者都是采用new关键字来创建对象，在spring中则不是。 大白话在一个系统中有多个对象，对象之间并不是孤立存在的，他们之间存在依赖关系。例如老师，学生，班级之间都存在依赖关系，同时也需要一个容器将这些对象存储起来。在Spring中把每一个需要管理的对象成为Spring Bean（简称Bean），Spring管理这些Bean的容器，被称作为Io">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-08-02T01:39:30.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring中的IoC">
+<meta name="twitter:description" content="定义IoC是一种通过描述来生成或者获取对象的技术，初学者都是采用new关键字来创建对象，在spring中则不是。 大白话在一个系统中有多个对象，对象之间并不是孤立存在的，他们之间存在依赖关系。例如老师，学生，班级之间都存在依赖关系，同时也需要一个容器将这些对象存储起来。在Spring中把每一个需要管理的对象成为Spring Bean（简称Bean），Spring管理这些Bean的容器，被称作为Io">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#大白话"><span class="toc-text">大白话</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用途"><span class="toc-text">用途</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean注入到IoC容器"><span class="toc-text">Bean注入到IoC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入"><span class="toc-text">依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-Spring中的IoC" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Spring中的IoC</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.08.02</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>IoC是一种通过<strong>描述</strong>来生成或者获取对象的技术，初学者都是采用<strong>new关键字</strong>来创建对象，在spring中则不是。</p>
+<h2 id="大白话"><a href="#大白话" class="headerlink" title="大白话"></a>大白话</h2><p>在一个系统中有<strong>多个对象</strong>，对象之间并不是孤立存在的，他们之间存在依赖关系。例如老师，学生，班级之间都存在依赖关系，同时也需要一个容器将这些对象存储起来。在Spring中把每一个需要管理的对象成为<strong>Spring Bean（简称Bean）</strong>，Spring管理这些Bean的容器，被称作为<strong>IoC容器</strong>。</p>
+<h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><p>IoC容器具备以下两个功能</p>
+<ul>
+<li>通过描述管理Bean，包括发布和获取Bean；（即老师，班级，学生的创建）</li>
+<li>通过描述完成Bean之间的依赖关系。（即老师，班级，学生之间的依赖）<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="Bean注入到IoC容器"><a href="#Bean注入到IoC容器" class="headerlink" title="Bean注入到IoC容器"></a>Bean注入到IoC容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@Component(&quot;user&quot;) </span><br><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;1&quot;)</span><br><span class="line">    private Long id;</span><br><span class="line">    @Value(&quot;user_name_2&quot;)</span><br><span class="line">    private String userName;</span><br><span class="line">    @Value(&quot;note_1&quot;)</span><br><span class="line">    private String note;</span><br><span class="line"></span><br><span class="line">    public Long getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Long id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUserName() &#123;</span><br><span class="line">        return userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUserName(String userName) &#123;</span><br><span class="line">        this.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getNote() &#123;</span><br><span class="line">        return note;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setNote(String note) &#123;</span><br><span class="line">        this.note = note;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>@Component(“user”) 此注解表明这个类会被spring ioc容器扫描装配，其中字符串user则是作为bean的名称，也可以不使用字符串，默认会将类名第一个字母小写存入到IoC容器中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@ComponentScan(value = &quot;com.springboot.chapter3.*&quot;)  </span><br><span class="line">public class AppConfig &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@ComponentScan(value = “com.springboot.chapter3.*”)  意味着会进行扫描，该包以下所有的类所在的类以及其子类<br>同时也可以利用在括号内添加excludeFilters = {@ComponentScan.Filter(classes = Service.class)})  exclude为排除不需要扫描的类,只扫描带有component的类 </li>
+</ul>
+<p><em>测试*</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);//读取配置，将配置里的bean装配到ioc容器中</span><br><span class="line">    User person = ctx.getBean(User.class);</span><br><span class="line">    System.out.println(person.getUserName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>人类有的时候会让动物做一些事前，比方说让狗看门，让猫抓老鼠，这就使得人与动物之间构成了关系。<br><strong>定义两个接口</strong><br>人类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line"></span><br><span class="line">    //使用动物服务</span><br><span class="line">    public void service();</span><br><span class="line"></span><br><span class="line">    //设置动物</span><br><span class="line">    public void setAnimal(Animal animal);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>动物</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Animal &#123;</span><br><span class="line">    public void use();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>两个实现类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class Dog implements Animal &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void use() &#123;</span><br><span class="line">        System.out.println(&quot;dog[&quot;+Dog.class.getSimpleName()+&quot;] 用来看门&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class BussinessPerson implements Person &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired //会将实现animal的类进行实例化，</span><br><span class="line">    private Animal animal = null;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void service() &#123;</span><br><span class="line">        this.animal.use();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setAnimal(Animal animal) &#123;</span><br><span class="line">        this.animal = animal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>@Autowired 会将实现animal的类进行实例化，即为将dog 实例化，在容器中找到对应的Bean进行注入到BussinessPerson，这样通过Spring IoC容器获取BussinessPerson实例的时候能够使用Dog实例来提供服务了</strong><br><strong>测试代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);/</span><br><span class="line">    Person person = ctx.getBean(BussinessPerson.class);</span><br><span class="line">    person.service();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>当有两个类同时实现了Animal这个接口，可以利用注解@Primary来确定优先级<br>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Primary</span><br><span class="line">public class cat implements Animal &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void use() &#123;</span><br><span class="line">        System.out.println(&quot;cat:[&quot;+cat.class.getSimpleName()+&quot;] catch mouse&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的animal实现的为Cat这个类<br>同时也可以利用@Qualifier(“cat”)来确定animal为哪一个类<br>将代码改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Autowired //会将实现animal的类进行实例化，</span><br><span class="line">@Qualifier(&quot;cat&quot;)</span><br><span class="line">private Animal animal = null;</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/08/01/模拟Spring工厂实现/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/08/02/代理模式/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

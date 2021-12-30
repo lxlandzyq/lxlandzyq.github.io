@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Tensorflow下的keras对泰坦尼克号人员存活率预测 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="tensorflow,keras,">
+  
+
+  <meta name="description" content="前言  keras是TensorFlow下的高级API，通过keras可以减少编程的代码量，在构建模型的时候有很多接口。 此demo主要是通过视频学习的一个小Demo，同时对深度学习加深影响，以及对此demo的一些笔记。 数据的获取123456789101112import urllib.requestimport osdata_file_path = &amp;apos;data/titanic3.xl">
+<meta name="keywords" content="tensorflow,keras">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensorflow下的keras对泰坦尼克号人员存活率预测">
+<meta property="og:url" content="http://yoursite.com/2020/02/26/Tensorflow下的keras对泰坦尼克号人员存活率预测/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言  keras是TensorFlow下的高级API，通过keras可以减少编程的代码量，在构建模型的时候有很多接口。 此demo主要是通过视频学习的一个小Demo，同时对深度学习加深影响，以及对此demo的一些笔记。 数据的获取123456789101112import urllib.requestimport osdata_file_path = &amp;apos;data/titanic3.xl">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/keras_titanic.png">
+<meta property="og:image" content="http://yoursite.com/image/keras_titanic_1.png">
+<meta property="og:image" content="http://yoursite.com/image/keras_titanic_2.png">
+<meta property="og:updated_time" content="2020-02-26T08:48:17.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tensorflow下的keras对泰坦尼克号人员存活率预测">
+<meta name="twitter:description" content="前言  keras是TensorFlow下的高级API，通过keras可以减少编程的代码量，在构建模型的时候有很多接口。 此demo主要是通过视频学习的一个小Demo，同时对深度学习加深影响，以及对此demo的一些笔记。 数据的获取123456789101112import urllib.requestimport osdata_file_path = &amp;apos;data/titanic3.xl">
+<meta name="twitter:image" content="http://yoursite.com/image/keras_titanic.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据的获取"><span class="toc-text">数据的获取</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型建立"><span class="toc-text">模型建立</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型训练"><span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型应用"><span class="toc-text">模型应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练模型可视化"><span class="toc-text">训练模型可视化</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-Tensorflow下的keras对泰坦尼克号人员存活率预测" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Tensorflow下的keras对泰坦尼克号人员存活率预测</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.02.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  keras是TensorFlow下的高级API，通过keras可以减少编程的代码量，在构建模型的时候有很多接口。 此demo主要是通过视频学习的一个小Demo，同时对深度学习加深影响，以及对此demo的一些笔记。</p>
+<h1 id="数据的获取"><a href="#数据的获取" class="headerlink" title="数据的获取"></a>数据的获取</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">data_file_path = &apos;data/titanic3.xls&apos;</span><br><span class="line">&apos;&apos;&apos;读取数据&apos;&apos;&apos;</span><br><span class="line">import numpy </span><br><span class="line">import pandas as pd </span><br><span class="line">#读取文件，结果为DataFrame格式</span><br><span class="line">df_data = pd.read_excel(data_file_path)</span><br><span class="line">#筛选提取需要的特征字段，去掉ticket,cbin等</span><br><span class="line">selected_cols = [&apos;survived&apos;,&apos;name&apos;,&apos;pclass&apos;,&apos;sex&apos;,&apos;age&apos;,&apos;sibsp&apos;,&apos;parch&apos;,&apos;fare&apos;,&apos;embarked&apos;]</span><br><span class="line">selected_df_data = df_data[selected_cols]</span><br></pre></td></tr></table></figure>
+
+<p>  通过pandas来对Excel进行编辑，在此处，我们要提取表格一些有用的列，最后进行对数据的训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import preprocessing</span><br><span class="line"></span><br><span class="line">def prepare_data (df_data):</span><br><span class="line">    df = df_data.drop([&apos;name&apos;],axis=1)#删除姓名列</span><br><span class="line">    age_mean = df[&apos;age&apos;].mean()#取平均值</span><br><span class="line">    df[&apos;age&apos;]=df[&apos;age&apos;].fillna(age_mean) #为确实age记录填充值，因为该表格有一些空缺值</span><br><span class="line">    fare_mean = df[&apos;fare&apos;].mean()</span><br><span class="line">    df[&apos;fare&apos;] = df[&apos;fare&apos;].fillna(fare_mean)</span><br><span class="line">    df[&apos;sex&apos;] = df[&apos;sex&apos;].map(&#123;&apos;female&apos;:0, &apos;male&apos;:1&#125;).astype(int)	# 	把sex的值转化为数字</span><br><span class="line">    df[&apos;embarked&apos;] = df[&apos;embarked&apos;].fillna(&apos;S&apos;)</span><br><span class="line">    df[&apos;embarked&apos;] = df[&apos;embarked&apos;].map(&#123;&apos;C&apos;:0, &apos;Q&apos;:1, &apos;S&apos;:2&#125;).astype(int)</span><br><span class="line">    ndarry_data = df.values 	# 转化为ndarray数组</span><br><span class="line"></span><br><span class="line">	# 第一列是标签值，， 后面都是特征值</span><br><span class="line">    features = ndarry_data[:, 1:]</span><br><span class="line">    label = ndarry_data[:, 0]</span><br><span class="line"></span><br><span class="line">	# 特征值标准化  使用了sklearn 库 ，标准化的意思是为了让数值都有自己的比例，因为原始数值大小比例不一样</span><br><span class="line">    minmax_scale = preprocessing.MinMaxScaler(feature_range=(0,1))</span><br><span class="line">    norm_festures = minmax_scale.fit_transform(features)</span><br><span class="line">    </span><br><span class="line">    return norm_festures,label</span><br></pre></td></tr></table></figure>
+
+<p>  定义一个函数来对数据的基本处理，因为在表格上，有一些值空缺的，所以在空缺的值上填上此列的平均值。同时将字符串进行数值化，此操作是为了方便数据的处理，在对数据训练的时候统一数值。<br>  此处，调用了sklearn中的库来对得到的数据归一化。原本的数值都是大小层次不齐，每一类他们所对应的数值的范围都是不一样的，归一化的目的就是为了让全体数据都按照其内的标准统一起来，所以值都会在0~1范围之间，为了更好的对数据训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shuffled_Df_data = selected_df_data.sample(frac=1)</span><br><span class="line">x_data,y_data = prepare_data(shuffled_Df_data) #得到处理后的数据集</span><br><span class="line">#划分训练集和测试集</span><br><span class="line">train_size = int(len(x_data)*0.8) #选百分之20位测试集</span><br><span class="line">x_train = x_data[:train_size]</span><br><span class="line">y_train = y_data[:train_size]</span><br><span class="line">x_test = x_data[train_size:] </span><br><span class="line">y_test = y_data[train_size:]</span><br></pre></td></tr></table></figure>
+
+<p>  shuffle,打乱数据顺序，通过Pandas的抽样函数sample实现，frac为百分比，这样的操作也是为了让数据不保持原有的记忆顺序进行训练，只是改变数据的训练序号而已，并不改变数据。接写来对训练数据抽取百分之二十设为测试集。</p>
+<h1 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf </span><br><span class="line"></span><br><span class="line">model = tf.keras.models.Sequential()</span><br><span class="line">#加入第一层，输入特征数据为7列，也可以用input_shape(7,)</span><br><span class="line">model.add(tf.keras.layers.Dense(units=64,#输出</span><br><span class="line">                                input_dim = 7, #输入，有七列</span><br><span class="line">                                use_bias=True, #是否有b值</span><br><span class="line">                                kernel_initializer=&apos;uniform&apos;, # 初始化权重使用什么方式</span><br><span class="line">                                bias_initializer=&apos;zeros&apos;,# 对偏置初始化的值</span><br><span class="line">                                activation=&apos;relu&apos;))# 所使用的激活函数</span><br><span class="line">model.add(tf.keras.layers.Dense(units=32,# 第二个隐藏层有32个节点</span><br><span class="line">                                activation=&apos;sigmoid&apos;))</span><br><span class="line"># 指定输出层</span><br><span class="line">model.add(tf.keras.layers.Dense(units=1,</span><br><span class="line">                                activation=&apos;sigmoid&apos;))</span><br><span class="line"></span><br><span class="line"># 设置模型的学习进程</span><br><span class="line">model.compile(</span><br><span class="line">				optimizer = tf.keras.optimizers.Adam(0.003),		# 优化器的名称 0。003为学习率</span><br><span class="line">				loss = &apos;binary_crossentropy&apos;,		</span><br><span class="line">					# loss 是损失函数名</span><br><span class="line">						# 用sigmoid作为激活函数，一般损失函数选用binary_crossentropy</span><br><span class="line">						# softmax作为激活函数，一般损失函数选用categorical_crossentropy</span><br><span class="line">				metrics = [&apos;accuracy&apos;]		# 模型要训练和评估的度量值</span><br><span class="line">				)</span><br></pre></td></tr></table></figure>
+
+<p>  调用TensorFlow下的keras，同时加入全连接层，指定的参数在注释上都进行描述了，第一层的时候是因为我们只需要主要的七列来训练，所以输入值为7</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">train_history = model.fit(</span><br><span class="line">							x = x_train, #输入的特征数据</span><br><span class="line">							y = y_train, #标签数据</span><br><span class="line">							validation_split = 0.2,		# 验证集所占的比例</span><br><span class="line">							epochs = 100,				# 训练周期</span><br><span class="line">							batch_size = 40,			# 一次带多少数据</span><br><span class="line">							verbose = 2		# 训练过后才能显示模式，0：不显示  1：带进度条模型  2：每个epoch显示一行</span><br><span class="line">							)</span><br><span class="line">print(&apos;显示返回的数据字典key值:&apos;,train_history.history.keys())</span><br></pre></td></tr></table></figure>
+
+<p>  这是有返回对象，过程历史对象，包括训练过程的loss和acc数据，以及验证过程的（如果有,此返回数据是为了查看模型的准确率与损失值<br>返回结构为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示返回的数据字典key值: dict_keys([&apos;loss&apos;, &apos;acc&apos;, &apos;val_loss&apos;, &apos;val_acc&apos;])</span><br></pre></td></tr></table></figure>
+
+<h1 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ack_info = [0, &apos;jack&apos;, 3, &apos;male&apos;, 23, 1, 0, 5.000, &apos;S&apos;]</span><br><span class="line">rose_info = [1, &apos;rose&apos;, 1, &apos;female&apos;, 20, 1, 0, 100.000, &apos;S&apos;]</span><br><span class="line">#  创建新的旅客dataframe</span><br><span class="line">new_passenger_pd = pd.DataFrame([jack_info, rose_info], columns=selected_cols)</span><br><span class="line"># 将新创建的旅客信息加入到旧的dataframe</span><br><span class="line">all_passenger_pd = selected_df_data.append(new_passenger_pd)</span><br><span class="line">print(all_passenger_pd[-3:]) #查看是否加入</span><br><span class="line"></span><br><span class="line"># 执行预测</span><br><span class="line"># 准备数据</span><br><span class="line">x_features, y_label = prepare_data(all_passenger_pd)</span><br><span class="line"># 利用模型计算旅客的生存概率</span><br><span class="line">surv_probability = model.predict(x_features)		# 这个 .predict是keras自带的测试方法</span><br><span class="line"></span><br><span class="line"># 在数据表最后插入一列生存概率</span><br><span class="line">all_passenger_pd.insert(len(all_passenger_pd.columns), &apos;surv_probability&apos;, surv_probability)</span><br><span class="line">print(all_passenger_pd[-5:])		# 查看数据的生存概率</span><br></pre></td></tr></table></figure>
+
+<p>  在这里加入jack 和 rose的数据，查看其生存率，通过padans将数据加入其中，最后调用keras下的预测函数来预测数据，将其打印表格中后五行的数据<br><img src="/image/keras_titanic.png" alt></p>
+<h1 id="训练模型可视化"><a href="#训练模型可视化" class="headerlink" title="训练模型可视化"></a>训练模型可视化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt </span><br><span class="line"></span><br><span class="line">def visu_train_history(train_history,train_metric,validation_metric):</span><br><span class="line">    plt.plot(train_history.history[train_metric])</span><br><span class="line">    plt.plot(train_history.history[validation_metric])</span><br><span class="line">    plt.title(&apos;Train History&apos;)</span><br><span class="line">    plt.ylabel(train_metric)</span><br><span class="line">    plt.xlabel(&apos;epoch&apos;)</span><br><span class="line">    plt.legend([&apos;train&apos;,&apos;validation&apos;],loc=&apos;upper left&apos;)</span><br><span class="line">    plt.show()</span><br><span class="line">visu_train_history(train_history,&apos;acc&apos;,&apos;val_acc&apos;)</span><br><span class="line">visu_train_history(train_history,&apos;loss&apos;,&apos;val_loss&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>  在history对数据的测试集和训练集的准确率和损失率在图像上显示。<br>图像显示：<br><img src="/image/keras_titanic_1.png" alt><br><img src="/image/keras_titanic_2.png" alt></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/02/24/Tensorflow手写识别的认识/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/03/13/记录：在windows下载Tensorflow-GPU/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>读书笔记：Python深度学习—-深度学习简述 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="keras,深度学习一些概念,">
+  
+
+  <meta name="description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
+<meta name="keywords" content="keras,深度学习一些概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记：Python深度学习—-深度学习简述">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/读书笔记：Python深度学习——深度学习简述/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_20_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_20_2.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_20_3.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_20_4.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_20_5.png">
+<meta property="og:updated_time" content="2020-03-20T14:11:01.653Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读书笔记：Python深度学习—-深度学习简述">
+<meta name="twitter:description" content="前述  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。 深度学习  机器学习是将输入的数据（比如图像）——&amp;gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_3_20_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前述"><span class="toc-text">前述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深度学习"><span class="toc-text">深度学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深度学习过程"><span class="toc-text">深度学习过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#权值的作用"><span class="toc-text">权值的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何找到这些权重"><span class="toc-text">如何找到这些权重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过损失值来分配权值"><span class="toc-text">通过损失值来分配权值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#大白话总结"><span class="toc-text">大白话总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-读书笔记：Python深度学习——深度学习简述" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">读书笔记：Python深度学习—-深度学习简述</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.03.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="前述"><a href="#前述" class="headerlink" title="前述"></a>前述</h1><p>  主要通过自己的笔记总结，和书上的知识来对概念的理解。此文章主要对深度学习的大致过程进行梳理与总结。</p>
+<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><p>  机器学习是将输入的数据（比如图像）——&gt;目标(标签为猫)，通过映射来将图片与它标签内容进行一一映射。此过程则是通过观察许多的输入和目标的实例来完成的。<br>  深度学习即是通过一些列简单的数据变换（即为层的作用），即为不断对输入的数据对其指定的路线的权值比重增大。通过此来实现输入到目标的映射</p>
+<h1 id="深度学习过程"><a href="#深度学习过程" class="headerlink" title="深度学习过程"></a>深度学习过程</h1><h2 id="权值的作用"><a href="#权值的作用" class="headerlink" title="权值的作用"></a>权值的作用</h2><p>  每一层在输入的数据上找到其权重，即为最符合其对应标签，则其权重则越大。在每一层分配好其适应的权重的时候。最后一层中，输出值越大即为其符合的标签。</p>
+<p><img src="/image/2020_3_20_1.png" alt><br>神经网络是由其权重来参数化</p>
+<h2 id="如何找到这些权重"><a href="#如何找到这些权重" class="headerlink" title="如何找到这些权重"></a>如何找到这些权重</h2><p>  对于这些权值，不是凭空捏造的，需要进行不断训练才可以得到其每一层对应的参数的权值。如何找到这些权值，就是在训练中通过神经网络的<strong>损失函数</strong>来衡量当前输出值与预期值之间的距离。<br><img src="/image/2020_3_20_2.png" alt><br>损失函数用来衡量网络输出结果的质量<br>  通过上图可以知道，就是在通过损失还是来计算出预测值与真实目标值之间的距离</p>
+<h2 id="通过损失值来分配权值"><a href="#通过损失值来分配权值" class="headerlink" title="通过损失值来分配权值"></a>通过损失值来分配权值</h2><p>  有了损失值，则对每一层神经元之间的权重就要进行调节，调节到使其损失值最小。通过距离最为反馈信号对每层权重进行微调，用以降低当前对应的损失值，此调节有优化器完成。即为方向传播。<br><img src="/image/2020_3_20_3.png" alt><br>将损失值作为反馈信号来调节权重</p>
+<p>  一开始的权重是随机赋值的，不断进行权重的微调，损失值降低将这些数值循环重复足够多次数，得到权重值可以使损失函数最小。使其输出目标值尽可能的接近目标值。</p>
+<h1 id="大白话总结"><a href="#大白话总结" class="headerlink" title="大白话总结"></a>大白话总结</h1><p>  此次总结也是网上的一个例子。<br>  好比每一层，每一个神经元为一个水龙头你，通过水龙头放水的多少来设为其权值的大小，最后一层输出层其水最多的即为其标签值。下图所示。<br><img src="/image/2020_3_20_4.png" alt><br><img src="/image/2020_3_20_5.png" alt></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>参考链接：<br><a href="https://easyai.tech/ai-definition/deep-learning/" target="_blank" rel="noopener">https://easyai.tech/ai-definition/deep-learning/</a><br>参考书籍：<br>Python深度学习</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/03/13/记录：在windows下载Tensorflow-GPU/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/03/20/读书笔记：Python深度学——第四章：机器学习基础/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

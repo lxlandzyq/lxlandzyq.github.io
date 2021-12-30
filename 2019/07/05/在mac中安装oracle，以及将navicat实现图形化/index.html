@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>在mac中安装oracle，以及将navicat实现图形化 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="docker,oracle,">
+  
+
+  <meta name="description" content="在mac中按住oracle的大致流程首先下载docker，通过docker获取oracle的镜像，对oracle的操作都是在此镜像中进行。 docker的介绍与下载docker的自我理解对docker的自我理解，docker是一个虚拟机更轻巧虚拟机的话，是要布置其等一系列内存，硬盘大小，图像等界面，当我们只是使用一个软件的时候，但是要安装虚拟机再在虚拟机上安装这个软件的话就会显得很冗余。并且在打开">
+<meta name="keywords" content="docker,oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在mac中安装oracle，以及将navicat实现图形化">
+<meta property="og:url" content="http://yoursite.com/2019/07/05/在mac中安装oracle，以及将navicat实现图形化/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在mac中按住oracle的大致流程首先下载docker，通过docker获取oracle的镜像，对oracle的操作都是在此镜像中进行。 docker的介绍与下载docker的自我理解对docker的自我理解，docker是一个虚拟机更轻巧虚拟机的话，是要布置其等一系列内存，硬盘大小，图像等界面，当我们只是使用一个软件的时候，但是要安装虚拟机再在虚拟机上安装这个软件的话就会显得很冗余。并且在打开">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/docker_perference.png">
+<meta property="og:image" content="http://yoursite.com/image/docker_replace_source.png">
+<meta property="og:image" content="http://yoursite.com/image/docker_run_hello_world.png">
+<meta property="og:image" content="http://yoursite.com/image/docker_search_oracle.png">
+<meta property="og:image" content="http://yoursite.com/image/docker_ps_oracle.png">
+<meta property="og:image" content="http://yoursite.com/image/docker_start_oracle.png">
+<meta property="og:image" content="http://yoursite.com/image/navicat_oracle.png">
+<meta property="og:image" content="http://yoursite.com/image/trigger_package_oracle_navicat.png">
+<meta property="og:image" content="http://yoursite.com/image/which_oracle.png">
+<meta property="og:updated_time" content="2019-07-05T10:05:24.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在mac中安装oracle，以及将navicat实现图形化">
+<meta name="twitter:description" content="在mac中按住oracle的大致流程首先下载docker，通过docker获取oracle的镜像，对oracle的操作都是在此镜像中进行。 docker的介绍与下载docker的自我理解对docker的自我理解，docker是一个虚拟机更轻巧虚拟机的话，是要布置其等一系列内存，硬盘大小，图像等界面，当我们只是使用一个软件的时候，但是要安装虚拟机再在虚拟机上安装这个软件的话就会显得很冗余。并且在打开">
+<meta name="twitter:image" content="http://yoursite.com/image/docker_perference.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#在mac中按住oracle的大致流程"><span class="toc-text">在mac中按住oracle的大致流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker的介绍与下载"><span class="toc-text">docker的介绍与下载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker的自我理解"><span class="toc-text">docker的自我理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker的下载"><span class="toc-text">docker的下载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker的注册"><span class="toc-text">docker的注册</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#切换docker的源"><span class="toc-text">切换docker的源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#验证docker是否安装成功"><span class="toc-text">验证docker是否安装成功</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#先跑hello-world！！"><span class="toc-text">先跑hello world！！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始安装oracle"><span class="toc-text">开始安装oracle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索oracle的镜像"><span class="toc-text">搜索oracle的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拉取镜像"><span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将镜像制作成容器和进入容器"><span class="toc-text">将镜像制作成容器和进入容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进如sql"><span class="toc-text">进如sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#今后使用oracle的时候"><span class="toc-text">今后使用oracle的时候</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用navicat进行对oracle的管理"><span class="toc-text">使用navicat进行对oracle的管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-在mac中安装oracle，以及将navicat实现图形化" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">在mac中安装oracle，以及将navicat实现图形化</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.07.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="在mac中按住oracle的大致流程"><a href="#在mac中按住oracle的大致流程" class="headerlink" title="在mac中按住oracle的大致流程"></a>在mac中按住oracle的大致流程</h1><p>首先下载docker，通过docker获取oracle的镜像，对oracle的操作都是在此镜像中进行。</p>
+<h1 id="docker的介绍与下载"><a href="#docker的介绍与下载" class="headerlink" title="docker的介绍与下载"></a>docker的介绍与下载</h1><h2 id="docker的自我理解"><a href="#docker的自我理解" class="headerlink" title="docker的自我理解"></a>docker的自我理解</h2><p>对docker的自我理解，docker是一个虚拟机更轻巧<br>虚拟机的话，是要布置其等一系列内存，硬盘大小，图像等界面，当我们只是使用一个软件的时候，但是要安装虚拟机再在虚拟机上安装这个软件的话就会显得很冗余。并且在打开一个虚拟机也是相当的慢。<br>所以有docker在容器的基础上进行了封装，将一切需要的软件封装成一个镜像，获取这个镜像，再对这个镜像里面的软件进行操作，相比于虚拟机，更轻巧，更快捷，打开速度更快。</p>
+<h2 id="docker的下载"><a href="#docker的下载" class="headerlink" title="docker的下载"></a>docker的下载</h2><p>下载的话去官网就可以下载<br><a href="https://hub.docker.com/account/signup/" target="_blank" rel="noopener">https://hub.docker.com/account/signup/</a></p>
+<h1 id="docker的注册"><a href="#docker的注册" class="headerlink" title="docker的注册"></a>docker的注册</h1><p>在docker官网上进行注册。</p>
+<h1 id="切换docker的源"><a href="#切换docker的源" class="headerlink" title="切换docker的源"></a>切换docker的源</h1><p>由于docker的源是在国外的，所以拉取镜像的时候会相当的慢，所以要切换源<br><img src="/image/docker_perference.png" alt><br><img src="/image/docker_replace_source.png" alt><br>添加源，这个源贼快<br>将下面源添加进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docker.mirrors.ustc.edu.cn</span><br></pre></td></tr></table></figure>
+
+<h1 id="验证docker是否安装成功"><a href="#验证docker是否安装成功" class="headerlink" title="验证docker是否安装成功"></a>验证docker是否安装成功</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v      //查看版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info   //查看docker的信息</span><br></pre></td></tr></table></figure>
+
+<h1 id="先跑hello-world！！"><a href="#先跑hello-world！！" class="headerlink" title="先跑hello world！！"></a>先跑hello world！！</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<p>运行以上命令，首先在本地找不到就会去获取其镜像<br>获取成功之后再跑一遍上面的命令，就会显示hello-world的内容了，并且镜像也下载到本地了。<br><img src="/image/docker_run_hello_world.png" alt><br>通过下面命令可以查看你下载的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>大致都了解了！</p>
+<h1 id="开始安装oracle"><a href="#开始安装oracle" class="headerlink" title="开始安装oracle"></a>开始安装oracle</h1><p>首先先登录docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login</span><br></pre></td></tr></table></figure>
+
+<p>输入自己的账号密码，在官网注册的账号密码</p>
+<h2 id="搜索oracle的镜像"><a href="#搜索oracle的镜像" class="headerlink" title="搜索oracle的镜像"></a>搜索oracle的镜像</h2><p>当验证都成功的时候就开始安装oracle了，首先要学会搜索镜像<br>搜索名字叫oracle的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search oracle</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/docker_search_oracle.png" alt><br>显示的是所有的oracle的镜像，你也可以在docker.hub上进行搜索镜像</p>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>选择要拉取的镜像，可以自行选择一个start比较多的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull  oracleinanutshell/oracle-xe-11g</span><br></pre></td></tr></table></figure>
+
+<h2 id="将镜像制作成容器和进入容器"><a href="#将镜像制作成容器和进入容器" class="headerlink" title="将镜像制作成容器和进入容器"></a>将镜像制作成容器和进入容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -h &quot;oraclehost&quot; --name &quot;oracle&quot; -d -p 1521:1521 oracleinanutshell/oracle-xe-11g     //开始创建容器</span><br></pre></td></tr></table></figure>
+
+<p>-h “oraclehost”：指定容器的hostname为oracle<br>–name “oracle”：将容器命名为oracle<br>-d：在后台运行<br>-p: 端口映射，格式为：主机(宿主)端口:容器端口</p>
+<p>制作完之后查看其容器的id号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/docker_ps_oracle.png" alt></p>
+<p>找到其容器id号，然后在终端进入容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 861854d6dc3b /bin/bash   //在终端进入容器</span><br></pre></td></tr></table></figure>
+
+<h2 id="进如sql"><a href="#进如sql" class="headerlink" title="进如sql"></a>进如sql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus system/oracle   //使用普通身份登录</span><br></pre></td></tr></table></figure>
+
+<p>就可以进行一系列的操作了</p>
+<h2 id="今后使用oracle的时候"><a href="#今后使用oracle的时候" class="headerlink" title="今后使用oracle的时候"></a>今后使用oracle的时候</h2><p>开启oracle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start oracle</span><br></pre></td></tr></table></figure>
+
+<p>进入容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 861854d6dc3b /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>运行sqlplus</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus system/oracle</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/docker_start_oracle.png" alt></p>
+<p>当不需要的时候则将其关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop oracle</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用navicat进行对oracle的管理"><a href="#使用navicat进行对oracle的管理" class="headerlink" title="使用navicat进行对oracle的管理"></a>使用navicat进行对oracle的管理</h1><p>在oracle上也可以使用图形化界面，在这里我们使用的是navicat进行打开oracle<br>主要内容,在使用图像化界面之前，首先要把oracle容器打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start oracle</span><br></pre></td></tr></table></figure>
+
+<p>SID=为xe<br>密码为 oracle<br><img src="/image/navicat_oracle.png" alt><br>然后就可以通过图像化界面来进行操作oracle了<br>主要操作<br><img src="/image/trigger_package_oracle_navicat.png" alt><br>但是！我不知道表空间在图像化什么地方创建，我是通过sqlplus进行创建表空间的<br>在进入容器的时候，可以查看oracle的存储路径在哪里具体命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which &quot;oracle&quot;</span><br></pre></td></tr></table></figure>
+
+<p>显示<br><img src="/image/which_oracle.png" alt><br>这样就知道表空间存在什么位置，通过排查知道路径存在位置为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/u01/app/oracle/oradata/</span><br></pre></td></tr></table></figure>
+
+<p>创建表空间的时候，你就可以写这个路径了</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>下面的命令是查看哪个容器开启了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>如果你已经将其开启start，但是不显示的时候，可以通过下面的命令查看其错误原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs id号  //此id为docker ps上的id</span><br></pre></td></tr></table></figure>
+
+<p>通过下面的命令可以查看全部的容器，打开和没有打开的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p>对镜像的删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi image的名字</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/06/23/LeetCode算法/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/02/15/近期有关opencv的学习笔记/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

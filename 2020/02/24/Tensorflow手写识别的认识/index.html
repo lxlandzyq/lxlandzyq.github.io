@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Tensorflow手写识别的认识 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="tensorflow,深度学习,">
+  
+
+  <meta name="description" content="简述  本demo主要是调用TensorFlow中的手写数据集，以及对一个深度学习的一个初步学习，通过此demo可以了解深度学习的大致原理以及各个结构上面的作用 术语介绍机器学习系统  通过学习如何组合输入信息，来对未见过的数据，做出有用的预测1） 标签：是我们要预测的真实事务，即为y线性回归中的y变量2） 特征：是指用于描述数据的输入变量，即x(i)线性回归中的变量 样本  是指数据的特定实例1">
+<meta name="keywords" content="tensorflow,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensorflow手写识别的认识">
+<meta property="og:url" content="http://yoursite.com/2020/02/24/Tensorflow手写识别的认识/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简述  本demo主要是调用TensorFlow中的手写数据集，以及对一个深度学习的一个初步学习，通过此demo可以了解深度学习的大致原理以及各个结构上面的作用 术语介绍机器学习系统  通过学习如何组合输入信息，来对未见过的数据，做出有用的预测1） 标签：是我们要预测的真实事务，即为y线性回归中的y变量2） 特征：是指用于描述数据的输入变量，即x(i)线性回归中的变量 样本  是指数据的特定实例1">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/tensorflow_mnist.png">
+<meta property="og:updated_time" content="2020-02-24T04:21:33.258Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tensorflow手写识别的认识">
+<meta name="twitter:description" content="简述  本demo主要是调用TensorFlow中的手写数据集，以及对一个深度学习的一个初步学习，通过此demo可以了解深度学习的大致原理以及各个结构上面的作用 术语介绍机器学习系统  通过学习如何组合输入信息，来对未见过的数据，做出有用的预测1） 标签：是我们要预测的真实事务，即为y线性回归中的y变量2） 特征：是指用于描述数据的输入变量，即x(i)线性回归中的变量 样本  是指数据的特定实例1">
+<meta name="twitter:image" content="http://yoursite.com/image/tensorflow_mnist.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简述"><span class="toc-text">简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#术语介绍"><span class="toc-text">术语介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习系统"><span class="toc-text">机器学习系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样本"><span class="toc-text">样本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练"><span class="toc-text">训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-text">监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失"><span class="toc-text">损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降和学习率"><span class="toc-text">梯度下降和学习率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合"><span class="toc-text">过拟合</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensorflow算法设计与训练的核心步骤"><span class="toc-text">Tensorflow算法设计与训练的核心步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体代码展示与介绍"><span class="toc-text">具体代码展示与介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入数据集"><span class="toc-text">导入数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建模型"><span class="toc-text">构建模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练模型"><span class="toc-text">训练模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用模型"><span class="toc-text">应用模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#笔记"><span class="toc-text">笔记</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-Tensorflow手写识别的认识" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Tensorflow手写识别的认识</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.02.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>  本demo主要是调用TensorFlow中的手写数据集，以及对一个深度学习的一个初步学习，通过此demo可以了解深度学习的大致原理以及各个结构上面的作用</p>
+<h1 id="术语介绍"><a href="#术语介绍" class="headerlink" title="术语介绍"></a>术语介绍</h1><h2 id="机器学习系统"><a href="#机器学习系统" class="headerlink" title="机器学习系统"></a>机器学习系统</h2><p>  通过学习如何组合输入信息，来对未见过的数据，做出有用的预测<br>1） 标签：是我们要预测的真实事务，即为y线性回归中的y变量<br>2） 特征：是指用于描述数据的输入变量，即x(i)线性回归中的变量</p>
+<h2 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h2><p>  是指数据的特定实例<br>1）有标签的样本：具有【特征，标签】：【x，y】用于训练模型<br>2）无标签样本具有【特征，？】：【x，？】用于对新数据做出预测</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>  可将样本预设到预测标签：y 由模型的内部参数定义，这些内部参数是通过学习得到的</p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>  训练模型表示通过（有标签样本）来学习，确定所有的（权重）和（偏差）的理想值『其实就是确定w和b 回归函数』<br>即每一个神经元与他相连的神经元都有对应的权重w<br>如下图<br><img src="/image/tensorflow_mnist.png" alt></p>
+<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>  在监督学习中，机器学习算法就是通过检测多个样本并尝试找出最大限度地减少损失的模型，这一个过程称为经验风险最小化</p>
+<h2 id="损失"><a href="#损失" class="headerlink" title="损失"></a>损失</h2><p>  损失是对糟糕预测的惩罚，损失是一个数值，表示对于单个样本而言模型预测的准确程度，如果模型的预测完全准确，则损失为零，否则损失会较大，训练模型的目标就是从所有样本中找出一组平均损失‘较小’的权重和偏差</p>
+<h2 id="梯度下降和学习率"><a href="#梯度下降和学习率" class="headerlink" title="梯度下降和学习率"></a>梯度下降和学习率</h2><p>  通过梯度下降法和学习率（lr）来找到权重的最低点，学习率太小，那就训练太慢，学习率太大那就找不到最低点。</p>
+<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>  通过训练数据的训练，可能模型可以达到一个很高的准确率，但是当导入模型从未见过的数据的时候，却得不到一个很高的准确率，这就是过拟合，导致模型只对训练的数据可以很高的准确率。</p>
+<h1 id="Tensorflow算法设计与训练的核心步骤"><a href="#Tensorflow算法设计与训练的核心步骤" class="headerlink" title="Tensorflow算法设计与训练的核心步骤"></a>Tensorflow算法设计与训练的核心步骤</h1><p>1）准备数据<br>2）构建模型<br>3）训练模型<br>4）进行测试</p>
+<h1 id="具体代码展示与介绍"><a href="#具体代码展示与介绍" class="headerlink" title="具体代码展示与介绍"></a>具体代码展示与介绍</h1><h2 id="导入数据集"><a href="#导入数据集" class="headerlink" title="导入数据集"></a>导入数据集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf </span><br><span class="line">import tensorflow.examples.tutorials.mnist.input_data as input_data</span><br><span class="line">mnist = input_data.read_data_sets(&apos;MNIST_data&apos;,one_hot=True) #d</span><br><span class="line">print(&apos;训练集train数量：&apos;,mnist.train.num_examples,&apos;验证集validation数量：&apos;,mnist.validation.num_examples,&apos;测试集test数量&apos;,mnist.test.num_examples) #将数据集分为三个子集</span><br><span class="line">print(&apos;train images shape:&apos;,mnist.train.images.shape,&apos;labels shape:&apos;,mnist.train.labels.shape) #训练集</span><br><span class="line">print(&apos;test images shape:&apos;,mnist.test.images.shape,&apos;labels shape:&apos;,mnist.test.labels.shape) #测试集</span><br><span class="line">print(&apos;validation images shape&apos;,mnist.validation.images.shape,&apos;validation shape:&apos;,mnist.validation.labels.shape) #验证集</span><br></pre></td></tr></table></figure>
+
+<p>调用tensorflow库中的数据集，在此处将数据集分为训练集，验证集和测试集，通过将数据集划分为三个子集，可以大幅度降低过拟合的发生几率，使用训练集训练模型，使用验证集评估模型，通过评估的模型来进行对模型的调参（实际就是修改lr等参数），获得最佳模型再使用测试集确认模型的效果<br>独热编码：<br>一种稀疏向量，其中：<br>    一个元素设为1<br>    所有其他元素均设为0<br>独热编码常用于表示拥有有限个可能值的字符串或标识<br>（也就是说用独热编码，对于特定的事物做标记）<br>一般用于分类</p>
+<h2 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;定义待输入数据的占位符&apos;&apos;&apos;</span><br><span class="line">#mnis 中每张图片共用28*28=784个像素点</span><br><span class="line">x = tf.placeholder(tf.float32,[None,784],name=&apos;X&apos;)</span><br><span class="line">#0-9 一共10个数字=》10个类别</span><br><span class="line">y = tf.placeholder(tf.float32,[None,10],name=&apos;Y&apos;)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;定义模型变量&apos;&apos;&apos;</span><br><span class="line">#在本案例中，以正态分布的随机数初始化权重W，以常数0初始化偏置b</span><br><span class="line">#定义变量</span><br><span class="line">w= tf.Variable(tf.random_normal([784,10]),name=&apos;W&apos;)</span><br><span class="line">b=tf.Variable(tf.zeros([10]),name=&apos;b&apos;)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;用单个神经元构建神经网络&apos;&apos;&apos;</span><br><span class="line">forward = tf.matmul(x,w)+b #矩阵运算，得出y值</span><br><span class="line"></span><br><span class="line">#关于softmax regression 当我们处理多任务时，通常需要使用softmax regression模型，会对每一类别算出一个概率</span><br><span class="line">pred = tf.nn.softmax(forward)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;训练模型参数&apos;&apos;&apos;</span><br><span class="line">train_epoch = 50 #训练论述</span><br><span class="line">batch_size = 100 #单次训练样本数（批次大小</span><br><span class="line">total_batch = int(mnist.train.num_examples/batch_size) #一轮训练有多少个批次</span><br><span class="line">display_step = 1 #显示粒度 ,后面会汇报精确率和损失是多少</span><br><span class="line">leraning_rate = 0.01 #学习率</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;定义损失函数&apos;&apos;&apos;</span><br><span class="line">#定义交叉熵损失函数</span><br><span class="line">loss_function = tf.reduce_mean(-tf.reduce_sum(y*tf.log(pred),reduction_indices=1))</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;选择优化器&apos;&apos;&apos;</span><br><span class="line">#梯度下降优化器</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(leraning_rate).minimize(loss_function)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;定义准确率&apos;&apos;&apos;</span><br><span class="line">#检测预测类别tf.argmax(pred,1)与实际类别tf.atgmax(y,1)的匹配情况</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(pred,1),tf.argmax(y,1))#1的意思为按列来选取其最大值，判断两个值是否匹配</span><br><span class="line">#准确率，将布尔值转换为浮点数，并计算平均值</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32)) </span><br><span class="line">sess = tf.Session()#声明会话</span><br><span class="line">init = tf.global_variables_initializer()#变量初始化</span><br><span class="line">sess.run(init)</span><br></pre></td></tr></table></figure>
+
+<p>通过定义的一个权重w和噪音b来让模型不断调参，达到最优，同时用matmul函数来对输入的数据集来对每一个神经元调节适合的权重w<br>其中softmax就是对得出的y值来进行判断其每一个的准确率，通俗解释就是，数字识别，有0<del>9，同时标签的输出值也是0</del>9，为了判断这个图片是哪个一个数字的时候，通过softmax来将这十个数与这个图片的匹配程度的百分比，同时这十个数的比例相加为1.0<br>优化器：即为对于训练的模型来自动的调剂其权重等参数（自我理解，不知道是不是</p>
+<h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;训练模型&apos;&apos;&apos;</span><br><span class="line">for epoch in range(train_epoch):</span><br><span class="line">    for batch in range(total_batch):</span><br><span class="line">        xs,ys = mnist.train.next_batch(batch_size) #读取批次数据</span><br><span class="line">        sess.run (optimizer,feed_dict=&#123;x:xs,y:ys&#125;) #执行批次训练</span><br><span class="line">    </span><br><span class="line">    #total_batch个批次训练完成后，使用验证数据计算误差和准确率；验证集没有分批</span><br><span class="line">    loss,acc = sess.run([loss_function,accuracy],feed_dict=&#123;x:mnist.validation.images,y:mnist.validation.labels&#125;)</span><br><span class="line">    #打印训练过程中的详细信息</span><br><span class="line">    if (epoch+1) %display_step==0:</span><br><span class="line">        print(&apos;train epoch:&apos;,&apos;%02d&apos;%(epoch+1),&apos;loss=&apos;,&apos;&#123;:.9&#125;&apos;.format(loss),&apos;Accuracy=&apos;,&apos;&#123;:.4f&#125;&apos;.format(acc))</span><br><span class="line"></span><br><span class="line">print(&apos;train finished&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>对数据集进行train_epoch次训练，不断进行优化</p>
+<h1 id="应用模型"><a href="#应用模型" class="headerlink" title="应用模型"></a>应用模型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#完成训练后，在测试集上评估模型的准确率</span><br><span class="line">accu_test = sess.run(accuracy,feed_dict=&#123;x:mnist.test.images,y:mnist.test.labels&#125;)</span><br><span class="line">print(&apos;Test Accuracy:&apos;,accu_test)</span><br><span class="line">#在建立模型并进行训练后，若认为准确率可以接受，则可以使用此模型进行预测</span><br><span class="line">#由于pred预测结果是one-hot编码格式，所以需要转换0~9数字</span><br><span class="line">prediction_result = sess.run(tf.argmax(pred,1),feed_dict=&#123;x:mnist.test.images&#125;)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;查看预测结果&apos;&apos;&apos;</span><br><span class="line">#查看前十项</span><br><span class="line">print(prediction_result[0:10])</span><br></pre></td></tr></table></figure>
+
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><p>  逻辑回归：<br>许多问题的预测结果是一个在连续空间的数值，比如房价预测问题，可以用线性模型来描述：<br>Y = x1<em>w1+x2</em>w2+…+xn*wn+b<br>但也有很多场景需要输出的是概率估算值，例如：<br>1.根据邮件内容判断是垃圾邮件的可能性<br>2.根据医学影像判断肿瘤是恶性的可能性<br>3.手写数字分别是0，1，2，3，4.。。8，9的可能性（概率<br>这时候需要将预测输出值控制在【0，1】区间内<br>二元分类问题的目标是正确预测两个可能的标签中的一个<br>逻辑回归可以用于处理这类问题<br>在多类别问题中，softmax会将每一个类别分配一个用小数表示的概率，这些用小数表示的概率相加之和必须是1.0</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/02/15/近期有关opencv的学习笔记/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/02/26/Tensorflow下的keras对泰坦尼克号人员存活率预测/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

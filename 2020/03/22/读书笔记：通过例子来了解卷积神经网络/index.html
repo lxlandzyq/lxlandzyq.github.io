@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>读书笔记：通过例子来了解卷积神经网络 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="keras,卷积神经网络,">
+  
+
+  <meta name="description" content="前言  本文是对卷积神经网络的认识，对于之前的认识太过笼统，经过这些时间的学习来认思路好卷积神经网络是什么，和有什么作用。  卷积神经网络在图像识别上具有很大的作用，他解决了全连接层参数繁多的局限性，也可能会因为参数的多而过拟合的局限性，卷积神经网络是通过过滤器提取每一张图像的主要信息进行一层一层的最终提取得来的，从下面的例子开始主要阐述。 MNIST手写数字识别构建模型实例化一个小型的卷积神经网">
+<meta name="keywords" content="keras,卷积神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记：通过例子来了解卷积神经网络">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/读书笔记：通过例子来了解卷积神经网络/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言  本文是对卷积神经网络的认识，对于之前的认识太过笼统，经过这些时间的学习来认思路好卷积神经网络是什么，和有什么作用。  卷积神经网络在图像识别上具有很大的作用，他解决了全连接层参数繁多的局限性，也可能会因为参数的多而过拟合的局限性，卷积神经网络是通过过滤器提取每一张图像的主要信息进行一层一层的最终提取得来的，从下面的例子开始主要阐述。 MNIST手写数字识别构建模型实例化一个小型的卷积神经网">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_22_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_22_2.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20160707204048899">
+<meta property="og:image" content="http://yoursite.com/image/2020_3_22_3.png">
+<meta property="og:updated_time" content="2020-03-22T03:04:36.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读书笔记：通过例子来了解卷积神经网络">
+<meta name="twitter:description" content="前言  本文是对卷积神经网络的认识，对于之前的认识太过笼统，经过这些时间的学习来认思路好卷积神经网络是什么，和有什么作用。  卷积神经网络在图像识别上具有很大的作用，他解决了全连接层参数繁多的局限性，也可能会因为参数的多而过拟合的局限性，卷积神经网络是通过过滤器提取每一张图像的主要信息进行一层一层的最终提取得来的，从下面的例子开始主要阐述。 MNIST手写数字识别构建模型实例化一个小型的卷积神经网">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_3_22_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MNIST手写数字识别"><span class="toc-text">MNIST手写数字识别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构建模型"><span class="toc-text">构建模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在卷积神经网络上添加分类器"><span class="toc-text">在卷积神经网络上添加分类器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在MNIST图像上训练神经网络"><span class="toc-text">在MNIST图像上训练神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在测试数据上对训练模型进行评估"><span class="toc-text">在测试数据上对训练模型进行评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过例子解释说明卷积神经网络"><span class="toc-text">通过例子解释说明卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍卷积网络层的参数"><span class="toc-text">介绍卷积网络层的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卷积总结1"><span class="toc-text">卷积总结1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GIF图深入了解卷积"><span class="toc-text">GIF图深入了解卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卷积总结2"><span class="toc-text">卷积总结2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最大池化运算"><span class="toc-text">最大池化运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-读书笔记：通过例子来了解卷积神经网络" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">读书笔记：通过例子来了解卷积神经网络</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.03.22</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  本文是对卷积神经网络的认识，对于之前的认识太过笼统，经过这些时间的学习来认思路好卷积神经网络是什么，和有什么作用。<br>  卷积神经网络在图像识别上具有很大的作用，他解决了全连接层参数繁多的局限性，也可能会因为参数的多而过拟合的局限性，卷积神经网络是通过过滤器提取每一张图像的主要信息进行一层一层的最终提取得来的，从下面的例子开始主要阐述。</p>
+<h1 id="MNIST手写数字识别"><a href="#MNIST手写数字识别" class="headerlink" title="MNIST手写数字识别"></a>MNIST手写数字识别</h1><h2 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h2><p>实例化一个小型的卷积神经网络</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line">model.add(layers.Conv2D(<span class="number">32</span>,(<span class="number">3</span>,<span class="number">3</span>),activation = <span class="string">'relu'</span>,input_shape = (<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)))</span><br><span class="line">model.add(layers.MaxPool2D((<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">64</span>,(<span class="number">3</span>,<span class="number">3</span>),activation = <span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPool2D((<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">64</span>,(<span class="number">3</span>,<span class="number">3</span>),activation = <span class="string">'relu'</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：卷积神经网络接收的形状为（image_height,image_width,image_channels)</strong>的输入张量<br>本例中的输入的张量即为（28，28，1）正为MNIST图像的格式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Model: &quot;sequential_1&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 26, 26, 32)        320       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 13, 13, 32)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 11, 11, 64)        18496     
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 5, 5, 64)          0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 3, 3, 64)          36928     
+=================================================================
+Total params: 55,744
+Trainable params: 55,744
+Non-trainable params: 0
+_________________________________________________________________</code></pre><p>从上可以看到每个Conv2D层和MaxPooling2D层的输出都是一个形状（height，width，channels） <strong>都为3D张量</strong><br>其中宽度和高度随着网络的加深而变小，channels又传入的Conv2D的第一个参数决定（如32或64）</p>
+<h2 id="在卷积神经网络上添加分类器"><a href="#在卷积神经网络上添加分类器" class="headerlink" title="在卷积神经网络上添加分类器"></a>在卷积神经网络上添加分类器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.add(layers.Flatten())<span class="comment">#Dense层可以处理1D向量，所以要将3D铺平</span></span><br><span class="line">model.add(layers.Dense(<span class="number">64</span>,activation = <span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">10</span>,activation = <span class="string">'softmax'</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Model: &quot;sequential_2&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_4 (Conv2D)            (None, 26, 26, 32)        320       
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 13, 13, 32)        0         
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 11, 11, 64)        18496     
+_________________________________________________________________
+max_pooling2d_4 (MaxPooling2 (None, 5, 5, 64)          0         
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 3, 3, 64)          36928     
+_________________________________________________________________
+flatten_3 (Flatten)          (None, 576)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 64)                36928     
+_________________________________________________________________
+dense_3 (Dense)              (None, 10)                650       
+=================================================================
+Total params: 93,322
+Trainable params: 93,322
+Non-trainable params: 0
+_________________________________________________________________</code></pre><h2 id="在MNIST图像上训练神经网络"><a href="#在MNIST图像上训练神经网络" class="headerlink" title="在MNIST图像上训练神经网络"></a>在MNIST图像上训练神经网络</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> to_categorical</span><br><span class="line">(train_images,train_labels),(test_images,test_labels) = mnist.load_data()</span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>,<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>))<span class="comment">#改变其张量</span></span><br><span class="line">train_images = train_images.astype(<span class="string">'float32'</span>)/<span class="number">255</span></span><br><span class="line"></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>,<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">'float32'</span>)/<span class="number">255</span></span><br><span class="line"></span><br><span class="line">train_labels = to_categorical(train_labels)</span><br><span class="line">test_labels = to_categorical(test_labels)</span><br><span class="line"></span><br><span class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, <span class="comment">#一般用的优化器</span></span><br><span class="line">             loss = <span class="string">'categorical_crossentropy'</span>,</span><br><span class="line">             metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(train_images,train_labels,epochs=<span class="number">5</span>,batch_size=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Epoch 1/5
+60000/60000 [==============================] - 37s 610us/step - loss: 0.1709 - accuracy: 0.9461
+Epoch 2/5
+60000/60000 [==============================] - 41s 680us/step - loss: 0.0464 - accuracy: 0.9853
+Epoch 3/5
+60000/60000 [==============================] - 41s 690us/step - loss: 0.0316 - accuracy: 0.9899
+Epoch 4/5
+60000/60000 [==============================] - 41s 683us/step - loss: 0.0235 - accuracy: 0.9929
+Epoch 5/5
+60000/60000 [==============================] - 41s 685us/step - loss: 0.0181 - accuracy: 0.9945
+
+
+
+
+
+&lt;keras.callbacks.callbacks.History at 0x6479ade50&gt;</code></pre><h2 id="在测试数据上对训练模型进行评估"><a href="#在测试数据上对训练模型进行评估" class="headerlink" title="在测试数据上对训练模型进行评估"></a>在测试数据上对训练模型进行评估</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_loss,tess_acc = model.evaluate(test_images,test_labels)</span><br></pre></td></tr></table></figure>
+
+<pre><code>10000/10000 [==============================] - 2s 197us/step</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tess_acc <span class="comment">#准确率</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>0.9926999807357788</code></pre><h1 id="通过例子解释说明卷积神经网络"><a href="#通过例子解释说明卷积神经网络" class="headerlink" title="通过例子解释说明卷积神经网络"></a>通过例子解释说明卷积神经网络</h1><h2 id="介绍卷积网络层的参数"><a href="#介绍卷积网络层的参数" class="headerlink" title="介绍卷积网络层的参数"></a>介绍卷积网络层的参数</h2><p>  从层的结构我们可以知道每一层output_shape中有三个参数，例如第一层为（26，26，32） 其中26×26即为其输出图的长与宽，32的意思为32个<strong>输出通道</strong>，其中输出通道即为输出32张26×26的<strong>特征图</strong>。综上为我们将其与输入值开始说明，接收<strong>一个</strong>大小为（28，28，1）（即为数字图像的大小）经过<strong>卷积核</strong>（3×3)改变为<strong>32个</strong>（26×26），其中这32个有点类似神经元的意思，经过权值的变化。卷积核会在接下来进行阐述。其中输出的32张特征图为在不同卷积核下操作所输出的值。<br>如下图所示：<br>左边为图像输入，中间部分为过滤器（带着一组固定权重的神经元），不同的过滤器会得到不同的输出数据，比如颜色的深浅、轮廓。相当于提取不同的特征图。<br><img src="/image/2020_3_22_1.png" alt><br>  我们大致知道了特征图的概念，即为原图像的一个特征描述，就是把图像不太需要的数据给去除掉获取它主要的数据。<br>如下图所示：下图为卷积神经网络可以学到的模式的空间层次结构。<br>如何知道其是一只猫，通过他的局部模式（比如边缘），第二个卷积层将第一层的特征组成更大的模式。<br><img src="/image/2020_3_22_2.png" alt></p>
+<h2 id="卷积总结1"><a href="#卷积总结1" class="headerlink" title="卷积总结1"></a>卷积总结1</h2><p>  现在以及了解了Conv2D的各个参数，即为卷积，卷积运算的主要目的是使<strong>原信号特征增强，并降低噪音</strong>。对图像用一个卷积核进行卷积运算，实际上是一个滤波的过程。每个卷积核都是一种特征提取方式，就像是一个筛子，将图像中符合条件的部分筛选出来</p>
+<h2 id="GIF图深入了解卷积"><a href="#GIF图深入了解卷积" class="headerlink" title="GIF图深入了解卷积"></a>GIF图深入了解卷积</h2><p>图像链接来源于：<a href="https://blog.csdn.net/v_JULY_v/article/details/51812459" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/51812459</a></p>
+<p>下图为3颜色通道，为RGB,与本例的单颜色通道不同，但大致类似。</p>
+<p><img src="https://img-blog.csdn.net/20160707204048899" alt></p>
+<p>卷积工作原理：在3D输入特征图上滑动，这些3×3或5×5的窗口，在每个在每个可能的位置停止并提取周围特征的3D图块，然后每个3D图块与学到的同一个权重矩阵【叫作卷积核】做张量，转换为1D向量。<br></p>
+<p>可以看到：<br><br>1.此处有两个过滤器，即为channels=2，意味着两个神经元<br><br>2.数据窗口每次移动两个步长取3<em>3的局部数据，即stride=2<br><br>3.zero-padding=1<br><br>（其中padding为边界效应与填充）<br><br>解释动图：<br><br>1.左边是输入为7</em>7*3 3代表RGB三颜色通道<br><br>2.中间部分是两个不同的过滤器。<br><br>3。最右边是两个不同的输出（即输出的为其特征图）<br><br><br><br>其中的W0与W1就是其权重，其权重是由其当前输出的损失值与预期值之间的距离来决定的。<br><br>其实际的权重和之前当当的神经元不同，其实质是调节卷积核中的各个值值，能够最有效的获取其特征图。<br><br>即为通过不同的过滤器，提取想要的关于图像的特定信息：颜色深浅或轮廓<br></p>
+<h2 id="卷积总结2"><a href="#卷积总结2" class="headerlink" title="卷积总结2"></a>卷积总结2</h2><p>  此处用大白话总结，一个图像，是由很多个像素点组成的。但是如果那两张一模一样的图进行比较，他们一定是相同的，但是如果拿两张类似的图，应该怎么比较呢。<br><br>  比如<br><br><img src="/image/2020_3_22_3.png" alt><br>就是通过他们的局部模式，进行匹配，查看其是否是匹配的，但是局部模式是怎么来的呢，就是通过卷积核，从图中找每一个像素矩阵块，然后通过卷积核运算为一个值，就用以表示局部模式。<br>再同每一层的运算，将局部模式不断泛化，即可以了。<br></p>
+<p><strong>通透了</strong></p>
+<h2 id="最大池化运算"><a href="#最大池化运算" class="headerlink" title="最大池化运算"></a>最大池化运算</h2><p>  在例子中有MaxPooling2D，从例子中，他是将特征图的尺寸都减半了，主要目的是为了减少参数，降低网络训练参数及模型的过拟合程度，在卷积层之后常常需要一个个降采样，通过减小矩阵的长宽，从而达到减少参数的目的<br>计算图像一个区域上的某个特定特征的平均值或最大值，这种聚合操作就叫池化。<br><br>1)减少需要处理的特征图的元素个数<br><br>2)保留主要的特征同时减少参数和计算量，防止过拟合<br></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>  卷积神经网络对于图像的识别具有很大的作用，了解了他的大致过程，也要善于实战。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/03/20/读书笔记：Python深度学——第四章：机器学习基础/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/04/13/老聃的金字塔原理—冯唐/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

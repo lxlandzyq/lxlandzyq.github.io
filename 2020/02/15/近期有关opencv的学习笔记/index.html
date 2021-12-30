@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>近期有关opencv的学习笔记 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="opencv,python,">
+  
+
+  <meta name="description" content="起飞，  主要是想学习图像识别方面的一些知识，所以把自己的零零散散的知识放在此处。 对于图片的基本知识对图像的基本情况为，每一张图像是由像素点组成的，一张有色彩的图片其每一个像素点又是由RGB来形成，其中123img[0:20,0:20,0]=255 # 其为BGR中第一个通道像素为20X20的面积中全设为白色img[10:20,10:20,1]=0 #其为第一个通道都设为黑色，在其区域里面img">
+<meta name="keywords" content="opencv,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近期有关opencv的学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/02/15/近期有关opencv的学习笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="起飞，  主要是想学习图像识别方面的一些知识，所以把自己的零零散散的知识放在此处。 对于图片的基本知识对图像的基本情况为，每一张图像是由像素点组成的，一张有色彩的图片其每一个像素点又是由RGB来形成，其中123img[0:20,0:20,0]=255 # 其为BGR中第一个通道像素为20X20的面积中全设为白色img[10:20,10:20,1]=0 #其为第一个通道都设为黑色，在其区域里面img">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/car_threshold.png">
+<meta property="og:image" content="http://yoursite.com/image/Square.jpg">
+<meta property="og:updated_time" content="2020-02-24T03:36:01.507Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="近期有关opencv的学习笔记">
+<meta name="twitter:description" content="起飞，  主要是想学习图像识别方面的一些知识，所以把自己的零零散散的知识放在此处。 对于图片的基本知识对图像的基本情况为，每一张图像是由像素点组成的，一张有色彩的图片其每一个像素点又是由RGB来形成，其中123img[0:20,0:20,0]=255 # 其为BGR中第一个通道像素为20X20的面积中全设为白色img[10:20,10:20,1]=0 #其为第一个通道都设为黑色，在其区域里面img">
+<meta name="twitter:image" content="http://yoursite.com/image/car_threshold.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#起飞，"><span class="toc-text">起飞，</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对于图片的基本知识"><span class="toc-text">对于图片的基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片的显示"><span class="toc-text">图片的显示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视频的读取"><span class="toc-text">视频的读取</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图像的阈值"><span class="toc-text">图像的阈值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#腐蚀操作与膨胀操作"><span class="toc-text">腐蚀操作与膨胀操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#腐蚀操作"><span class="toc-text">腐蚀操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#膨胀操作"><span class="toc-text">膨胀操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开运算与闭运算"><span class="toc-text">开运算与闭运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#边缘检测"><span class="toc-text">边缘检测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Canny-边缘检测"><span class="toc-text">Canny 边缘检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制边缘检测"><span class="toc-text">绘制边缘检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图像的梯度"><span class="toc-text">图像的梯度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图像金字塔"><span class="toc-text">图像金字塔</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯金字塔（向下）"><span class="toc-text">高斯金字塔（向下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拉普拉斯金字塔（向下采样方法）"><span class="toc-text">拉普拉斯金字塔（向下采样方法）</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-近期有关opencv的学习笔记" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">近期有关opencv的学习笔记</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.02.15</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="起飞，"><a href="#起飞，" class="headerlink" title="起飞，"></a>起飞，</h1><p>  主要是想学习图像识别方面的一些知识，所以把自己的零零散散的知识放在此处。</p>
+<h2 id="对于图片的基本知识"><a href="#对于图片的基本知识" class="headerlink" title="对于图片的基本知识"></a>对于图片的基本知识</h2><pre><code>对图像的基本情况为，每一张图像是由像素点组成的，一张有色彩的图片其每一个像素点又是由RGB来形成，其中</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img[0:20,0:20,0]=255 # 其为BGR中第一个通道像素为20X20的面积中全设为白色</span><br><span class="line">img[10:20,10:20,1]=0 #其为第一个通道都设为黑色，在其区域里面</span><br><span class="line">img[:,:,2]=0 #此为第三个通道</span><br></pre></td></tr></table></figure>
+
+<p>因为有BGR三颜色组成，所以会有三个通道，如果只是单纯的灰度图的话，则只有一个通道<br>如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(&apos;My_test1.png&apos;)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)</span><br><span class="line">print(img.shape)</span><br><span class="line">print(gray.shape)</span><br></pre></td></tr></table></figure>
+
+<p>对于一张彩色图有三个通道，对于一个灰度图只有一个通道<br>以上代码输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(426, 640, 3)</span><br><span class="line">(426, 640)</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片的显示"><a href="#图片的显示" class="headerlink" title="图片的显示"></a>图片的显示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(&apos;My_test1.png&apos;)</span><br><span class="line">cv2.imshow(&apos;test&apos;,img)</span><br><span class="line">cv2.waitKey(0) #其中0为当随机按下按键的时候还剩几秒关闭窗口</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="视频的读取"><a href="#视频的读取" class="headerlink" title="视频的读取"></a>视频的读取</h2><p>  视频是由每一帧图像组成的，一帧帧图片最后组成视频</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">video = cv2.VideoCapture(&apos;MyInputVid.mov&apos;)</span><br><span class="line">success,frames = video.read()</span><br><span class="line">while success:</span><br><span class="line">    cv2.imshow(&apos;test&apos;,frames) #读取每一帧</span><br><span class="line">    cv2.waitKey(30) #其中为每一帧的速度</span><br><span class="line">    success,frames = video.read()</span><br><span class="line">video.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h1 id="图像的阈值"><a href="#图像的阈值" class="headerlink" title="图像的阈值"></a>图像的阈值</h1><pre><code>对每一个像素点进行判断，判断每一个像素点，对阈值的范围，大于阈值的时候应该怎么判断，小于阈值范围的时候又应该怎么判断</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ret,thresh = cv2.threshold(src,thresh,maxval,type)</span><br></pre></td></tr></table></figure>
+
+<p>1.src 输入的图片，只能输入单通道图片，通常为灰度图（只为一种通道）<br>2.dst 输出图<br>3 thresh 阈值，通常为127<br>4,maxval 为最大值，通常为255<br>5 type 超过阈值要怎么处理<br>6 ret 为返回的阈值</p>
+<p>type的类型<br>THRESH_BINARY 超过阈值部分取maxval（最大值），否则取0<br>THRESH_BINARY_INV  THRESH_BINARY的反转<br>THRESH_TRUNC 大于阈值部分设为阈值，否则不变<br>THRESH_TOZERO 大于阈值部分不改变，否则设为0<br>THRESH_TOZERO_INV  THRESH_TOZERO的反转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">img1 = cv2.imread(&apos;car.jpg&apos;)</span><br><span class="line">img2 = img1.copy()</span><br><span class="line">ret,thresh1=cv2.threshold(img1,127,255,cv2.THRESH_BINARY)</span><br><span class="line">ret,thresh2= cv2.threshold(img1,127,255,cv2.THRESH_BINARY_INV)</span><br><span class="line">ret,thresh3 = cv2.threshold(img1,127,255,cv2.THRESH_TRUNC)</span><br><span class="line">ret,thresh4 = cv2.threshold(img1,127,255,cv2.THRESH_TOZERO)</span><br><span class="line">ret,thresh5 = cv2.threshold(img1,127,255,cv2.THRESH_TOZERO_INV)</span><br><span class="line">imgs = [img2,thresh1,thresh2,thresh3,thresh4,thresh5]</span><br><span class="line">titles = [&apos;native&apos;,&apos;THRESH_BINARY&apos;,&apos;THRESH_BINARY_INV&apos;,&apos;THRESH_TRUNC&apos;,&apos;THRESH_TOZERO&apos;,&apos;THRESH_TOZERO_INV&apos;]</span><br><span class="line">for i in range(6):</span><br><span class="line">    plt.subplot(2,3,i+1)</span><br><span class="line">    plt.imshow(imgs[i],&apos;gray&apos;)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>显示数据为：<br><img src="/image/car_threshold.png" alt></p>
+<h1 id="腐蚀操作与膨胀操作"><a href="#腐蚀操作与膨胀操作" class="headerlink" title="腐蚀操作与膨胀操作"></a>腐蚀操作与膨胀操作</h1><p>   对于图像一些突出的毛刺，需要用腐蚀来将此毛刺给去掉，通常腐蚀会使得图像的整体线条缩小，膨胀操作则会使得线条扩张</p>
+<h2 id="腐蚀操作"><a href="#腐蚀操作" class="headerlink" title="腐蚀操作"></a>腐蚀操作</h2><p>腐蚀的大致操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(“asd”)</span><br><span class="line">kernel = np.ones((3,3),np.uint8) #表明为腐蚀的大致区域 区域越大，腐蚀的就越大</span><br><span class="line">erosion = cv2.erode(img,kernel,iterations=1) #iterations 为腐蚀的次数 腐蚀次数越多就腐蚀越严重</span><br><span class="line">cv2.imshow(‘test’,erosion)</span><br></pre></td></tr></table></figure>
+
+<h2 id="膨胀操作"><a href="#膨胀操作" class="headerlink" title="膨胀操作"></a>膨胀操作</h2><p>只需要修改这一行代码，修改响应的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.dilate(img,kernel,iterations=1) #改成这个为膨胀，一般同时使用，腐蚀主要是为了删除其刺，然后再膨胀回到原来的样子</span><br></pre></td></tr></table></figure>
+
+<h2 id="开运算与闭运算"><a href="#开运算与闭运算" class="headerlink" title="开运算与闭运算"></a>开运算与闭运算</h2><p>开运算为先腐蚀，再膨胀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(‘’)</span><br><span class="line">kernel = np.ones((4,4),np.uint8)</span><br><span class="line">opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)</span><br><span class="line">cv2.imshow(‘test’,opening)</span><br></pre></td></tr></table></figure>
+
+<p>闭运算为：先膨胀再腐蚀<br>修改代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.morphologyEx(img,cv2.MORPH_CLOSE,kernel)</span><br></pre></td></tr></table></figure>
+
+<h1 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h1><h2 id="Canny-边缘检测"><a href="#Canny-边缘检测" class="headerlink" title="Canny 边缘检测"></a>Canny 边缘检测</h2><p>1）使用高斯滤波器，以平滑图像，滤除噪声<br>2）计算图像中每一个像素点的梯度强度和方向<br>3）应用非极大值抑制，以消除边缘检测带来的杂散效应<br>4）应用双阈值检测来确定真实的和潜在的边缘<br>5）通过抑制孤立的弱边缘最终完成边缘检测</p>
+<p>具体代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">img1 = cv2.imread(&apos;car.jpg&apos;)</span><br><span class="line">img = cv2.Canny(img1,50,100) //第一个值为图像值，第二个值为阈值1，第三个值为阈值2 阈值越小，图像轮廓越明显</span><br><span class="line">cv2.imshow(&apos;test&apos;,img)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>会显示图片的轮廓</p>
+<h2 id="绘制边缘检测"><a href="#绘制边缘检测" class="headerlink" title="绘制边缘检测"></a>绘制边缘检测</h2><p>用于绘制图像的边缘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.findContours(img,mode,method)</span><br></pre></td></tr></table></figure>
+
+<p>mode: RETR_TREE: 检测所有轮廓，并重购轮廓的整个层次 （一般用这个）<br>method : 轮廓的逼近方法<br>    一般用:CHAIN_APPROX_NONE:以Freeman链码的方式输出轮廓，所有其他方法输出多边形<br>        CHAIN_APPROX_SIMPLE: 压缩水平的，垂直的和斜的部分，也就是，函数只保留他们的终点部分<br>返回的值：contours,hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)<br>绘制步骤：<br>第一步，引入图片，img =cv2.imread(‘’)<br>第二步：将图片引为灰度 gary = cv2.cvtColor(img,cv2.COLOR_BRG2GRAY)<br>第三步：阈值  ret,thresh = cv2.threshold(gary,127,255,cv2.THRESH_BINARY)<br>第四步：contours,herarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)<br>第五步：将原图进行copy ，因为是将轮廓绘制到其图片上的，所以原图也会改变，所以应该复制一份图片 data_img = img.copy()<br>第六步：将需要的轮廓绘画到其原图像上 res = cv2.drawContours(data_img,contours,-1,(0,0,255),2)  #参数分别为，其图像，轮廓，-1为全部绘制(0为外圈，1位里圈)，颜色，宽度<br>具体实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(&apos;car.jpg&apos;)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY) #灰度</span><br><span class="line">ret,thresh = cv2.threshold(gray,127,255,cv2.THRESH_BINARY) #阈值</span><br><span class="line">contours,herachy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) #调用轮廓检测</span><br><span class="line">img_data = img.copy()</span><br><span class="line">res = cv2.drawContours(img_data,contours,-1,(255,0,0),2)</span><br><span class="line">cv2.imshow(&apos;test&apos;,res)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h1 id="图像的梯度"><a href="#图像的梯度" class="headerlink" title="图像的梯度"></a>图像的梯度</h1><p>用于显示颜色与颜色之间的梯度渐进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img = np.zeros((200, 200), dtype=np.uint8)</span><br><span class="line">img[50:150,50:150]=255</span><br><span class="line">soblex = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=3) </span><br><span class="line">soblex = cv2.convertScaleAbs(soblex) #</span><br><span class="line">res = np.hstack((img,soblex))</span><br><span class="line">cv2.imshow(&apos;梯度显示&apos;,res)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>其中converScaleAbs函数为不分左右，如果没有此函数的话，只在一边显示其梯度类型，另一边为负值，则不会显示</p>
+<p>Soble(img,ddepth,dx,dy,ksize)<br>ddepth 为图的深度<br>dx 为按x来计算其梯度<br>dy 为按y为来计算其梯度<br>ksize为按其尺寸来计算多少乘多少的矩阵（注意为奇数）<br>（以上代码为按y坐标来计算梯度）<br>显示<br><img src="/image/Square.jpg" alt></p>
+<h1 id="图像金字塔"><a href="#图像金字塔" class="headerlink" title="图像金字塔"></a>图像金字塔</h1><h2 id="高斯金字塔（向下）"><a href="#高斯金字塔（向下）" class="headerlink" title="高斯金字塔（向下）"></a>高斯金字塔（向下）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.pyrUo(img) //按一倍将图像增大</span><br></pre></td></tr></table></figure>
+
+<h2 id="拉普拉斯金字塔（向下采样方法）"><a href="#拉普拉斯金字塔（向下采样方法）" class="headerlink" title="拉普拉斯金字塔（向下采样方法）"></a>拉普拉斯金字塔（向下采样方法）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.pyrDown(img) //按一倍将图像减小</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/07/05/在mac中安装oracle，以及将navicat实现图形化/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/02/24/Tensorflow手写识别的认识/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

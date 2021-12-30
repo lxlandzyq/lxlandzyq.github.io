@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-name">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>若依前后端项目分离部署 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="项目学习,">
+  
+
+  <meta name="description" content="若依项目若依有前后端结合和前后端分离两个项目，该项目也是Spring boot项目，通过此可以快速的了解框架，项目地址：https://gitee.com/y_project/RuoYi-Vue通过git将其下载到本地。项目结构如下：1:为后端内容2:为前端内容在此项目中，宿主地址为：172.20.10.2虚拟机地址为：172.20.10.5，该ip地址存入数据库和项目 前期准备安装软件在上篇已经">
+<meta name="keywords" content="项目学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="若依前后端项目分离部署">
+<meta property="og:url" content="http://yoursite.com/2020/07/08/若依前后端项目分离部署/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="若依项目若依有前后端结合和前后端分离两个项目，该项目也是Spring boot项目，通过此可以快速的了解框架，项目地址：https://gitee.com/y_project/RuoYi-Vue通过git将其下载到本地。项目结构如下：1:为后端内容2:为前端内容在此项目中，宿主地址为：172.20.10.2虚拟机地址为：172.20.10.5，该ip地址存入数据库和项目 前期准备安装软件在上篇已经">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_1.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_2.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_3.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_4.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_5.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_6.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_7.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_8.png">
+<meta property="og:image" content="http://yoursite.com/image/2020_7_8_9.png">
+<meta property="og:updated_time" content="2020-07-08T14:47:13.419Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="若依前后端项目分离部署">
+<meta name="twitter:description" content="若依项目若依有前后端结合和前后端分离两个项目，该项目也是Spring boot项目，通过此可以快速的了解框架，项目地址：https://gitee.com/y_project/RuoYi-Vue通过git将其下载到本地。项目结构如下：1:为后端内容2:为前端内容在此项目中，宿主地址为：172.20.10.2虚拟机地址为：172.20.10.5，该ip地址存入数据库和项目 前期准备安装软件在上篇已经">
+<meta name="twitter:image" content="http://yoursite.com/image/2020_7_8_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#若依项目"><span class="toc-text">若依项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前期准备"><span class="toc-text">前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装软件"><span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据导入"><span class="toc-text">数据导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置"><span class="toc-text">修改配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目移动"><span class="toc-text">项目移动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前端打包"><span class="toc-text">前端打包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后端运行"><span class="toc-text">后端运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前端部署"><span class="toc-text">前端部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后端部署"><span class="toc-text">后端部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="name-若依前后端项目分离部署" class="article article-type-name" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">若依前后端项目分离部署</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.07.08</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>lxlandzyq</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="若依项目"><a href="#若依项目" class="headerlink" title="若依项目"></a>若依项目</h1><p>若依有前后端结合和前后端分离两个项目，该项目也是Spring boot项目，通过此可以快速的了解框架，项目地址：<a href="https://gitee.com/y_project/RuoYi-Vue" target="_blank" rel="noopener">https://gitee.com/y_project/RuoYi-Vue</a><br>通过git将其下载到本地。项目结构如下：<br><img src="/image/2020_7_8_1.png" alt><br>1:为后端内容<br>2:为前端内容<br>在此项目中，宿主地址为：172.20.10.2<br>虚拟机地址为：172.20.10.5，该ip地址存入数据库和项目</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>在上篇已经设置了Linux多节的搭建，在此处进行环境的搭建，为项目设置其环境。百度连接如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">资源名称：软件安装包</span><br><span class="line">下载链接:  https://pan.baidu.com/s/1nwlW5ZhzGW3qOxHsKxqf2g</span><br><span class="line">提取码:  cvuy</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><p>通过navicat对数据的导入，连接172.20.10.5IP地址等数据库，创建ry-vue数据库，再execute sql file文件，选择数据库文件导入<br><img src="/image/2020_7_8_2.png" alt></p>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>因为项目的环境都是在虚拟机上即172.20.10.5这个机子中，所以要在本地项目中修改其数据库和redis等具体ip地址。<br><img src="/image/2020_7_8_3.png" alt><br><img src="/image/2020_7_8_4.png" alt><br><img src="/image/2020_7_8_5.png" alt><br>修改数据库指定等ip地址，以及logs的位置，查看其日志</p>
+<h1 id="项目移动"><a href="#项目移动" class="headerlink" title="项目移动"></a>项目移动</h1><p>压缩ruoyi-vue整个项目，通过transmit软件将压缩包移动到172.20.10.5这个机子里。<br>压缩的目的是为了防止一些隐藏文件夹没有移动过来。</p>
+<h1 id="前端打包"><a href="#前端打包" class="headerlink" title="前端打包"></a>前端打包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip RuoYi-Vue.zip</span><br></pre></td></tr></table></figure>
+
+<p>在172.20.10.5这台机子上，将从宿主机子移过来的压缩包解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd RuoYi-Vue/ruoyi-ui</span><br></pre></td></tr></table></figure>
+
+<p>进入前端文件夹<br>将其添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --unsafe-perm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p>利用cnpm将其打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm run build:prod</span><br></pre></td></tr></table></figure>
+
+<p>前端打包成功后会在当前目录下出现一个dist的文件夹</p>
+<h1 id="后端运行"><a href="#后端运行" class="headerlink" title="后端运行"></a>后端运行</h1><p>进入后端文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/lxl/workplace/ruoyi</span><br></pre></td></tr></table></figure>
+
+<p>将其打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>打包成功会出现一个target的文件夹<br>target文件夹中ruoyi.jar包放在/home/lxl/workplace/ruoyi进行备份</p>
+<h1 id="前端部署"><a href="#前端部署" class="headerlink" title="前端部署"></a>前端部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/conf</span><br></pre></td></tr></table></figure>
+
+<p>利用nginx对项目进行部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/2020_7_8_6.png" alt><br>修改如下，即为前端部署对dist对路径，还有以及Linux下命令行中的用户名，防止权限问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br></pre></td></tr></table></figure>
+
+<p>进入该目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx</span><br></pre></td></tr></table></figure>
+
+<p>如果出现错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] still could not bind()</span><br></pre></td></tr></table></figure>
+
+<p>即为端口号被占用，查看目录注释处，kill掉其端口号，再重新启动即可<br>对其启动<br>此时可以在宿主机子上通过172.20.10.5即可查看前端对内容，但是后端还没有进行部署，所以还是无法生效对。具体展示界面如下<br><img src="/image/2020_7_8_7.png" alt></p>
+<h1 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h1><p>启动后端，让其在后台一直运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/lxl/workplace/ruoyi</span><br></pre></td></tr></table></figure>
+
+<p>进到后端目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar ruoyi.jar &amp;</span><br></pre></td></tr></table></figure>
+
+<p>在启动台上启动，如果启动失败可以在当前目录下有个nohup.out查看日志，其出现对错误<br>在本次出现对错误为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/springframework/boot/loader/JarLauncher : Unsupported major.minor version 52.0</span><br></pre></td></tr></table></figure>
+
+<p>通过查找发现是打包的Java环境要与工程的Java的环境一致，即为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">                &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">                &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">                &lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">                &lt;mybatis.spring.boot.starter.version&gt;1.3.2&lt;/mybatis.spring.boot.starter.version&gt;</span><br><span class="line">                &lt;pagehelper.spring.boot.starter.version&gt;1.2.5&lt;/pagehelper.spring.boot.starter.version&gt;</span><br><span class="line">                &lt;fastjson.version&gt;1.2.70&lt;/fastjson.version&gt;</span><br><span class="line">                &lt;druid.version&gt;1.1.14&lt;/druid.version&gt;</span><br><span class="line">                &lt;commons.io.version&gt;2.5&lt;/commons.io.version&gt;</span><br><span class="line">                &lt;commons.fileupload.version&gt;1.3.3&lt;/commons.fileupload.version&gt;</span><br><span class="line">                &lt;bitwalker.version&gt;1.19&lt;/bitwalker.version&gt;</span><br><span class="line">                &lt;jwt.version&gt;0.9.0&lt;/jwt.version&gt;</span><br><span class="line">                &lt;swagger.version&gt;2.9.2&lt;/swagger.version&gt;</span><br><span class="line">                &lt;poi.version&gt;3.17&lt;/poi.version&gt;</span><br><span class="line">                &lt;oshi.version&gt;3.9.1&lt;/oshi.version&gt;</span><br><span class="line">                &lt;velocity.version&gt;1.7&lt;/velocity.version&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Java 版本为1.8 原来centos系统自带java，其版本为1.7所以打出的jar包就无法使用，最后用1.8版本对其打包完成操作。</p>
+<p>根据上一张图片可以知道，前端跳转的目录为/prod-api，再对<br>/usr/local/nginx/conf目录下的nginx.conf进行添加后端内容<br><img src="/image/2020_7_8_8.png" alt><br>/prod-api/即为跳转的路径，其中proxy_set_header为固定内容<br>proxy_pass 为后端跳转的路径<br>其中172.20.10.5:8080 为后端存放的ip地址</p>
+<p>最后重启nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>最后再输入地址<br>172.20.10.5<br>即可查看前后端结合的项目来</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>在启动过程可能会出现端口占用的情况，可以将其kill掉再重新启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nap |grep 80</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/2020_7_8_9.png" alt><br>查看其80端口号被占用的情况<br>如果被占用无法启动，将其kill掉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill 3582</span><br></pre></td></tr></table></figure>
+
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt>
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/07/06/远程连接中，数据库出现的问题/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/07/16/vue中lint的报错/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-name">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
